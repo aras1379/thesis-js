@@ -1,0 +1,18 @@
+#run_emotion_analysis.py
+
+from emotion_recognition import analyze_audio
+from fetch_results import get_analysis_results
+import time
+
+audio_path = "../audio/s+j-clip7.m4a"
+
+# Starts the analysis
+job_id = analyze_audio(audio_path)
+
+# Wait for processing
+print("Waiting for results...")
+time.sleep(20)
+
+# Fetches and prints the results
+results = get_analysis_results(job_id)
+print("ANALYSIS RESULT:", results)
