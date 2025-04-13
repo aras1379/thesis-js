@@ -2,27 +2,43 @@
 import requests
 import json
 import os
+import re 
+import nlpcloud 
 from dotenv import load_dotenv
 
 load_dotenv()
 api_key = os.getenv("NLP_API_KEY")
+client = nlpcloud.Client("finetuned-llama-3-70b", api_key, gpu=True)
 
 def emotion_analyze(text: str):
-    url = "https://api.nlpcloud.io/v1/gpu/finetuned-llama-3-70b/sentiment"
-    headers = {
-        "Authorization": f"Token {api_key}",
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "text": f"Analyze the emotions in the following Swedish text and list the dominant emotion(s):\n\n{text}",
-        "use_gpu": True,
-        "max_length": 200,
-        "temperature": 0.5,
-        "top_p": 0.9
-    }
+    prompt = (
+        "Analyze the emotions in the following Swedish text. "
+        "Return a JSON dictionary with the emotion labels as keys and scores between 0.0 and 1.0 as values. "
+        "Use these labels only: joy, surprise, fear, anger, disgust, sadness.\n\n"
+        f"Text: {text}"
+    )
+    
+    response = client.generation(
+        prompt, 
+        max_length = 300,
+        temperature = 0.5, 
+        top_p=0.9
+    )
+    
+    generated_text = response.get("generated_text", "").strip() 
+    
+    match = re.search(r"\{.*?\}", generated_text, re.DOTALL)
+    if match:
+        json_str = match.group(0)
+        try:
+            emotion_scores = json.loads(json_str)
+        except json.JSONDecodeError:
+            print("⚠️ JSON block found but failed to parse:")
+            print(json_str)
+            emotion_scores = {}
+    else:
+        print("⚠️ No JSON block found in model output:")
+        print(generated_text)
+        emotion_scores = {}
 
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
-    if response.status_code != 200:
-        raise Exception(f"Emotion Analysis Error: {response.status_code} {response.text}")
-
-    return response.json()["scored_labels"]
+    return emotion_scores
