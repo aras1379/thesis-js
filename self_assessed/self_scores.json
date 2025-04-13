@@ -1,0 +1,12 @@
+{
+    "id_004": {
+        "audio_file": "audio_use/negative/4-neg1.wav",
+        "self_assessed": {
+            "anger": 4,
+            "sadness": 5,
+            "disgusted": 6,
+            "fear": 2,
+            "concentrated": 5
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "id_004": {
+        "audio_file": "audio_use/negative/4-neg1.m4a",
+        "transcription": " Så mitt ex då, vi har varit tillsammans i tre år och det var väl ganska bra till en början, typ första halvåret, nu när jag väl tänker efter, för det var ju inte så bra. Han prioriterade sin dator över mig och sitt spelande och i perioder så kunde han ghosta mig i flera veckor, alltså inte prata med mig överhuvudtaget, fick inget svar på någonting. Jag blev jätteirriterad, ledsen, arg, frustrerad, för jag ville bara ha ett svar och jag fick inte det. Och jag fick ingen förklaring på varför heller. Jag hade flyttat därifrån och så vet jag att jag hade ringt honom en kväll och skrivit och han svarade inte. Några dagar senare så hörde han av sig och då berättade han att han hade pratat med sitt ex. Och då kom det fram att det var samma kväll som jag hade ringt honom och han sov. Så när han vaknar på morgonen så ser han då att han har fått ett missat samtal från mig men även från sitt ex. Han väljer att skriva, eller han skrev och ringde henne direkt istället för att han skete mig men han svarade henne. Och då var jag inte glad, kan jag säga det. Det kändes som att du kan svara ditt ex, hon hör av sig en gång så kan du svara henne. Men du kan inte svara mig som du är tillsammans med och älskar. Vi gjorde ju slut då. Det var tidigt i december, vilket år det nu var, 2022. Och två månader senare så får jag höra av en gammal gemensam kollega att han då gått hem med en annan tjej på julfest på hans jobb som då var mitt gamla jobb. Och då var jag så, jaha, men julfesten var ju inte. Vi hade ju inte gjort slut när julfesten var. Så då ringde jag upp honom och ifrågasatte detta och han sa liksom, jag följde henne hem, det hände ingenting, jag gick hem, lalalala. Sen nu idag så bor de tillsammans och de blev ju tillsammans typ direkt efter vi hade gjort slut så det säger ju sig självt i min mening. Och det här är ju liksom, för mig var det stort svek för jag trodde aldrig att han skulle göra så. Oavsett hur taskig och att han inte behandlade mig så bra så trodde jag inte att han skulle göra något sånt.",
+        "nlp_emotions": {
+            "joy": 0.0,
+            "surprise": 0.5,
+            "fear": 0.2,
+            "anger": 0.8,
+            "disgust": 0.6,
+            "sadness": 0.9
+        },
+        "hume_emotions": {
+            "Anger": 0.07287059718605558,
+            "Disgust": 0.020456255663598537,
+            "Fear": 0.03484845322701836,
+            "Joy": 0.03394744462776379,
+            "Sadness": 0.024483909975493053,
+            "Surprise (negative)": 0.026388902714300413,
+            "Surprise (positive)": 0.013394237763141512
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/4-neg1.wav",
+            "self_assessed": {
+                "anger": 4,
+                "sadness": 5,
+                "disgusted": 6,
+                "fear": 2,
+                "concentrated": 5
+            }
+        }
+    }
+}

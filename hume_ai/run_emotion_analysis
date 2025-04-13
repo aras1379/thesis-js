@@ -2,13 +2,24 @@
 
 from emotion_recognition import analyze_audio
 from fetch_results import get_analysis_results
+<<<<<<< Updated upstream
 import time
 
 audio_path = "../audio/s+j-clip7.m4a"
+=======
+from average_functions import compute_average_emotions
+from config import audio_files
+
+TARGET_EMOTIONS = {"Joy", "Sadness", "Fear", "Disgust", "Anger", "Surprise (positive)",
+    "Surprise (negative)"}
+
+audio_path = audio_files["id_004_neg"]["m4a"]
+>>>>>>> Stashed changes
 
 # Starts the analysis
 job_id = analyze_audio(audio_path)
 
+<<<<<<< Updated upstream
 # Wait for processing
 print("Waiting for results...")
 time.sleep(20)
@@ -16,3 +27,94 @@ time.sleep(20)
 # Fetches and prints the results
 results = get_analysis_results(job_id)
 print("ANALYSIS RESULT:", results)
+=======
+# Wait for processing (can increase wait time if needed)
+print("Waiting for Hume AI job to finish...")
+max_retries = 30
+retry_delay = 5  # seconds
+
+results = None
+
+# Fetch results from the API
+results = None 
+for attempt in range(max_retries):
+    try:
+        results = get_analysis_results(job_id)
+        break  # If successful, break the loop
+    except Exception as e:
+        if "Job is in progress" in str(e):
+            print(f"Attempt {attempt + 1}/{max_retries}: Still processing...")
+            time.sleep(retry_delay)
+        else:
+            raise  # Something else went wrong
+
+if results is None:
+    print(" Failed to get results in time.")
+    exit(1)
+
+# Print full raw results
+print(json.dumps(results, indent=4))
+
+# Filtered emotion results
+filtered_results = []
+
+try:
+    for entry in results:
+        predictions = entry.get("results", {}).get("predictions", [])
+        
+        for prediction in predictions:
+            models_data = prediction.get("models", {})
+            prosody_model = models_data.get("prosody", {})
+            grouped_predictions = prosody_model.get("grouped_predictions", [])
+            
+            for group in grouped_predictions:
+                for segment in group.get("predictions", []):
+                    emotions = segment.get("emotions", [])
+                    
+                    # Filters emotions based on TARGET_EMOTIONS
+                    filtered = {
+                        emo["name"]: emo["score"]
+                        for emo in emotions
+                        if emo["name"] in TARGET_EMOTIONS
+                    }
+                    
+                    if filtered:  # Only append if we found matching emotions
+                        filtered_results.append(filtered)
+
+    # Check if we found any filtered results
+    if not filtered_results:
+        print("No matching emotions found.")
+
+except Exception as e:
+    print("Error while parsing results:", e)
+
+# Saves results to JSON
+filtered_results_folder = os.path.join("hume_ai", "filtered_results")
+os.makedirs(filtered_results_folder, exist_ok=True)
+
+# Extracts the base filename
+file_name = os.path.splitext(os.path.basename(audio_path))[0]
+
+# Creates unique file names 
+output_file = os.path.join(filtered_results_folder, f"{file_name}_filtered_emotions.json")
+
+with open(output_file, "w") as f:
+    json.dump(filtered_results, f, indent=4)
+
+print(f"Filtered emotions saved to '{output_file}'")
+
+# Compute average of all detected emotions
+average_scores = compute_average_emotions(filtered_results)
+
+# Print and save the average scores
+print("\n🎯 Average emotion scores across the clip:")
+for emotion, score in average_scores.items():
+    print(f"{emotion}: {score:.4f}")
+
+# Save to file
+avg_output_file = os.path.join(filtered_results_folder, f"{file_name}_average_emotions.json")
+with open(avg_output_file, "w") as f:
+    json.dump(average_scores, f, indent=4)
+
+print(f"\nAverages saved to '{avg_output_file}'")
+>>>>>>> Stashed changes
