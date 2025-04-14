@@ -4,13 +4,17 @@ import json
 
 from dotenv import load_dotenv 
 import os 
+from config import audio_files, active_audio_id
 
 load_dotenv()
 api_key = os.getenv("NLP_API_KEY")
 
+entry_id = active_audio_id
+audio_path = audio_files[entry_id]["wav"]
+
 def transcribe_audio(filepath: str) -> str: 
     # Read audiofile and convert to base64 (to run locally)
-    with open('audio/s+j-clip.m4a', 'rb') as audio_file:
+    with open(audio_path, 'rb') as audio_file:
         audio_data = audio_file.read()
         base64_encoded = base64.b64encode(audio_data).decode('utf-8')
     

@@ -1,0 +1,33 @@
+{
+    "id_0043_neg": {
+        "audio_file": "audio_use/negative/4-neg3.m4a",
+        "transcription": " Det är en sak som kände att jag var arg och orättvist på jobbet. Vi får lägga vetorn när vi vill vara lediga när vi lägger vår schema. Så jag har lagt vetor över midsommar, tre pass, får vi lägga det på hela schemaperioden. Där vi inte får bli schemalagda i så fall. Och jag har jobbat i midsommar i flera år. Och nu vill jag åka till Aspe på midsommar med släkten. Så jag har lagt vetor. Då säger de igår på jobbet att man inte får lägga vetor på midsommar. Det är inte säkert att man får ledigt. Så nu är jag ganska arg för jag vill ju vara ledig torsdag, fredag, lördag och söndag. Så jag har lagt mig ledig de dagarna och lagt bajsschema resten av perioden. Alltså hela sommaren. För jag fick ju inte den semestern jag ville ha. Trots att tjejen inte har haft någon semester. Jag fick ju semester vecka 31-34 jättesent. Så då blir jag lite frustrerad för jag tänker inte jobba på midsommar. Min kollega sa det, du är sjuka. Mäl dig om du vill bli schemalagd. Men det känns ju också, då kommer jag ju låta få sparka. Jag har inte fått fira på midsommar på Aspe på helt länge. Och för mig blir det lite så här att åka dit nu. Över midsommar blir ju typ, eftersom jag inte får vara med när de sprider askan. Så blir det mitt sätt att kanske gå dit och säga hej då. Och typ så här också, det är ju första midsommar där farfar inte är med. Första sommaren utan farfar. Och så här, Aspe är jag farfar. På något vis. Så då känner jag att jag vill vara där.",
+        "nlp_emotions": {
+            "joy": 0.2,
+            "surprise": 0.1,
+            "fear": 0.3,
+            "anger": 0.7,
+            "disgust": 0.0,
+            "sadness": 0.5
+        },
+        "hume_emotions": {
+            "anger": 0.369,
+            "disgust": 0.081,
+            "fear": 0.112,
+            "joy": 0.243,
+            "sadness": 0.109,
+            "surprise": 0.086,
+            "time": 45.909
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/4-neg3.wav",
+            "self_assessed": {
+                "anger": 6,
+                "sadness": 6,
+                "disgusted": 6,
+                "fear": 3,
+                "concentrated": 6
+            }
+        }
+    }
+}
