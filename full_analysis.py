@@ -17,7 +17,7 @@ entry_id = active_audio_id
 audio_path = audio_files[entry_id]["m4a"]
 file_name = os.path.splitext(os.path.basename(audio_path))[0]
 
-hume_avg_file = f"hume_ai/filtered_results/{entry_id}_average_emotions.json"
+hume_avg_file = f"hume_ai/filtered_results/average/{entry_id}_average_emotions.json"
 
 try:
     #Transcribe

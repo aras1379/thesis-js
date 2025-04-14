@@ -69,12 +69,8 @@ def compute_feature_arrays(data_list):
         f2_values.append(formants.get("F2", np.nan))
         f3_values.append(formants.get("F3", np.nan))
         
-        # For each emotion defined in config, extract the value from hume_emotions.
-        # The raw keys in hume might be in their original case,
-        # so we compare them in a case-insensitive manner.
+ 
         for emotion in emotions_to_analyze:
-            # Get the score if available; if not, use NaN.
-            # We assume that the hume_emotions dictionary contains keys like "Anger", "Joy", etc.
             value = hume.get(emotion, np.nan)
             emotion_values[emotion.lower()].append(value)
     

@@ -86,12 +86,21 @@ except Exception as e:
 
 # --- Output folders and filenames ---
 filtered_results_folder = os.path.join("hume_ai", "filtered_results")
-os.makedirs(filtered_results_folder, exist_ok=True)
+average_results_folder = os.path.join("hume_ai", "filtered_results", "average")
+average_raw_folder = os.path.join("hume_ai", "filtered_results", "average_raw")
+filtered_folder = os.path.join("hume_ai", "filtered_results", "filtered")
+raw_folder = os.path.join("hume_ai", "filtered_results", "raw")
 
-normalized_file = os.path.join(filtered_results_folder, f"{entry_id}_filtered_emotions.json")
-raw_file = os.path.join(filtered_results_folder, f"{entry_id}_raw_emotions.json")
-normalized_avg_file = os.path.join(filtered_results_folder, f"{entry_id}_average_emotions.json")
-raw_avg_file = os.path.join(filtered_results_folder, f"{entry_id}_average_raw_emotions.json")
+os.makedirs(filtered_results_folder, exist_ok=True)
+os.makedirs(average_results_folder, exist_ok=True)
+os.makedirs(average_raw_folder, exist_ok=True)
+os.makedirs(filtered_folder, exist_ok=True)
+os.makedirs(raw_folder, exist_ok=True)
+
+normalized_file = os.path.join(filtered_folder, f"{entry_id}_filtered_emotions.json")
+raw_file = os.path.join(raw_folder, f"{entry_id}_raw_emotions.json")
+normalized_avg_file = os.path.join(average_results_folder, f"{entry_id}_average_emotions.json")
+raw_avg_file = os.path.join(average_raw_folder, f"{entry_id}_average_raw_emotions.json")
 
 # --- Save both per-segment result sets ---
 with open(normalized_file, "w") as f:

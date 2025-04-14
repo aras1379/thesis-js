@@ -90,7 +90,7 @@ if __name__ == "__main__":
     # Set up file paths.
     entry_id = active_audio_id
     audio_path = audio_files[entry_id]["m4a"]
-    hume_json_path = f"hume_ai/filtered_results/{entry_id}_filtered_emotions.json"
+    hume_json_path = f"hume_ai/filtered_results/filtered/{entry_id}_filtered_emotions.json"
     
     for emotion in selected_emotions:
         overlay_plot(audio_path, hume_json_path, emotion=emotion)
