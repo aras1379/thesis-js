@@ -1,7 +1,7 @@
 #config.py 
 
 #Change this to the current audio for analyzation 
-active_audio_id = "id_0043_neg"
+active_audio_id = "id_002_neg"
 
 emotions_to_analyze = [
     "anger", "joy", "sadness", "surprise (positive)", 
