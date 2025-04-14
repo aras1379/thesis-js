@@ -41,6 +41,10 @@ audio_files = {
         "m4a": "audio_use/negative/sara-neg.m4a",
         "wav": "audio_use/negative/sara-neg.wav"
     },
+    "id_006_neg": {
+        "m4a": "audio_use/negative/6-neg.m4a",
+        "wav": "audio_use/negative/6-neg.wav"
+    },
     
     #POSITIVE 
     "id_001_pos": {
@@ -66,5 +70,9 @@ audio_files = {
     "id_sara_pos": {
         "m4a": "audio_use/positive/sara-pos.m4a",
         "wav": "audio_use/positive/sara-pos.wav"
+    },
+    "id_006_pos": {
+        "m4a": "audio_use/positive/6-pos.m4a",
+        "wav": "audio_use/positive/6-pos.wav"
     }
 }
