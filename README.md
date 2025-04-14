@@ -79,8 +79,8 @@ Use filtered_results/ xxx_average_emotions, saved in results_combined.json
 - visualize side by side comparison on emotions for a single clip 
 - loads results from the file: results_combined.json (hume + nlp)
 
-```python3 rq2/emotion_comparison_bar.py --clip id_004_pos --emotion all```
-```#change clip id``` 
+`python3 rq2/emotion_comparison_bar.py --clip id_004_pos --emotion all`
+`#change clip id`
 
 #### - emotion_comparison_correlation.py 
 - compare performance of hume and nlp across all clips 
