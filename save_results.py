@@ -18,4 +18,4 @@ def save_combined_result(entry_id, result_data, output_path="results_combined.js
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(all_results, f, indent=4, ensure_ascii=False)
 
-    print(f"✅ Appended/updated entry '{entry_id}' in '{output_path}'")
+    print(f" Appended/updated entry '{entry_id}' in '{output_path}'")

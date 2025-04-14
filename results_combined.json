@@ -1,32 +1,181 @@
 {
-    "id_004": {
-        "audio_file": "audio_use/negative/4-neg1.m4a",
-        "transcription": " Så mitt ex då, vi har varit tillsammans i tre år och det var väl ganska bra till en början, typ första halvåret, nu när jag väl tänker efter, för det var ju inte så bra. Han prioriterade sin dator över mig och sitt spelande och i perioder så kunde han ghosta mig i flera veckor, alltså inte prata med mig överhuvudtaget, fick inget svar på någonting. Jag blev jätteirriterad, ledsen, arg, frustrerad, för jag ville bara ha ett svar och jag fick inte det. Och jag fick ingen förklaring på varför heller. Jag hade flyttat därifrån och så vet jag att jag hade ringt honom en kväll och skrivit och han svarade inte. Några dagar senare så hörde han av sig och då berättade han att han hade pratat med sitt ex. Och då kom det fram att det var samma kväll som jag hade ringt honom och han sov. Så när han vaknar på morgonen så ser han då att han har fått ett missat samtal från mig men även från sitt ex. Han väljer att skriva, eller han skrev och ringde henne direkt istället för att han skete mig men han svarade henne. Och då var jag inte glad, kan jag säga det. Det kändes som att du kan svara ditt ex, hon hör av sig en gång så kan du svara henne. Men du kan inte svara mig som du är tillsammans med och älskar. Vi gjorde ju slut då. Det var tidigt i december, vilket år det nu var, 2022. Och två månader senare så får jag höra av en gammal gemensam kollega att han då gått hem med en annan tjej på julfest på hans jobb som då var mitt gamla jobb. Och då var jag så, jaha, men julfesten var ju inte. Vi hade ju inte gjort slut när julfesten var. Så då ringde jag upp honom och ifrågasatte detta och han sa liksom, jag följde henne hem, det hände ingenting, jag gick hem, lalalala. Sen nu idag så bor de tillsammans och de blev ju tillsammans typ direkt efter vi hade gjort slut så det säger ju sig självt i min mening. Och det här är ju liksom, för mig var det stort svek för jag trodde aldrig att han skulle göra så. Oavsett hur taskig och att han inte behandlade mig så bra så trodde jag inte att han skulle göra något sånt.",
+    "id_001_neg": {
+        "audio_file": "audio_use/negative/1-neg.m4a",
+        "transcription": " Och något som gör mig upprörd är att till exempel hur fotbollen är idag, det handlar inte om att spela fotboll, det handlar inte om kärleken till fotboll, utan numera handlar allting bara om en business, allting handlar bara om att tjäna pengar på alla möjliga plan. Konsten för fotboll, känslor för fotboll, kärlek för fotboll har försvunnit otroligt mycket för att det folk håller högt är pengar, hur mycket en spelare är värd, hur mycket en klubb är värd, hur mycket vinst en klubb gör, det handlar inte om att en klubb behöver uppnå och vinna titlar och troféer utan allting bara handlar om att tjäna pengar. Och det gör mig otroligt upprörd.",
         "nlp_emotions": {
             "joy": 0.0,
-            "surprise": 0.5,
-            "fear": 0.2,
+            "surprise": 0.1,
+            "fear": 0.0,
             "anger": 0.8,
-            "disgust": 0.6,
-            "sadness": 0.9
+            "disgust": 0.7,
+            "sadness": 0.5
         },
         "hume_emotions": {
-            "Anger": 0.07287059718605558,
-            "Disgust": 0.020456255663598537,
-            "Fear": 0.03484845322701836,
-            "Joy": 0.03394744462776379,
-            "Sadness": 0.024483909975493053,
-            "Surprise (negative)": 0.026388902714300413,
-            "Surprise (positive)": 0.013394237763141512
+            "anger": 0.163,
+            "disgust": 0.059,
+            "fear": 0.115,
+            "joy": 0.491,
+            "sadness": 0.091,
+            "surprise": 0.081,
+            "time": 21.935
         },
         "self_assessed": {
-            "audio_file": "audio_use/negative/4-neg1.wav",
+            "audio_file": "audio_use/negative/1-neg.wav",
+            "self_assessed": {
+                "anger": 5,
+                "sadness": 3,
+                "disgusted": 6,
+                "fear": 1,
+                "concentrated": 5
+            }
+        }
+    },
+    "id_002_neg": {
+        "audio_file": "audio_use/negative/2-neg.m4a",
+        "transcription": " Dels min jobbsituation, att jag känner att jag har ganska mycket mer i mitt huvud och i min personlighet än vad jag gör idag på lager. Som att jag inte stimulerar min hjärna riktigt. Jag åker dit och kan allt utovinnantill. Det känns som att jag står still på ett personligt plan. Det har ändå blivit en vana, men måndagar är ju jobbigt. Det är det ju för de flesta, men jag suktar ju efter att ha något som jag brinner för mer om man säger så. Den ställde jag nu i två och ett halvt år och sen jobbade jag fyra och ett halvt år på ett lager tidigare. Dels så är jag en sån person som hyllar folk som gör något mer än vad jag gör, för de har ändå tagit sig dit. Men såklart att det känns jobbigt efter semester, för man gör ofta bara roliga saker på semestern. Att gå till ett jobb vid sju på måndag är inte lika kul. Förut är det, men jag har vuxit upp och tagit steg som människa så att nu mera gläds jag av andras framgång skulle jag vilja säga. Oj, den frågan har dykt upp i mitt huvud många gånger. Jag säger varje gång att jag aldrig klarat av det. Så det är väl min spontana känsla till just det här påståendet. Tack för mig!",
+        "nlp_emotions": {
+            "joy": 0.4,
+            "surprise": 0.2,
+            "fear": 0.3,
+            "anger": 0.1,
+            "disgust": 0.0,
+            "sadness": 0.5
+        },
+        "hume_emotions": {
+            "anger": 0.172,
+            "disgust": 0.075,
+            "fear": 0.124,
+            "joy": 0.297,
+            "sadness": 0.209,
+            "surprise": 0.124,
+            "time": 53.314
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/2-neg.wav",
+            "self_assessed": {
+                "anger": 6,
+                "sadness": 3,
+                "disgusted": 1,
+                "fear": 4,
+                "concentrated": 5
+            }
+        }
+    },
+    "id_0042_neg": {
+        "audio_file": "audio_use/negative/4-neg2.m4a",
+        "transcription": " Jag kan prata om något som gör mig lite arg, men också ledsen. Min farfar gick ju bort för två månader sedan. I onsdags var det två månader sedan. Och jag har väl fortfarande inte riktigt velat ta in det alltid, det kommer i perioder. Men begravningen var ju den 28 februari. Och då fick man ju säga hej då, men jag var typ inte redo för att säga hej då. Så jag har väl någonstans varit så, men vi ska sprida hans aska. Och jag kan vara med då och då får vi säga hej då en gång till. Så jag hade ju tänkt att jag skulle vara med, men så pratade jag med farmor. Och farmor vill bara att det ska vara hon, pappa, min farbror och min faste med. Vilket jag förstår. Jag förstår verkligen, det är liksom hennes beslut. Men det gör mig också väldigt, väldigt ledsen, för jag såg det som ett sätt att få säga hej då en gång till. För att det är som farfar sa. Eller, vi hade ju en väldigt speciell relation. Och till och med farfar sa ju det, att Saga känns inte bara som mitt barnbarn, hon känns faktiskt som en dotter för mig typ. Och det, så förstår jag hela grejen med att liksom, man och farmor kan inte göra undantag bara för mig. Nej, men alltså jag skulle, det var nu när vi lade schemat, eller jag ringde och frågade när tanken var att vi skulle sprida hans aska. Om det var över midsommar, eller liksom så här, när vi alla ändå är där liksom, och då sa farmor då att hon och pappa och Jörmi och Mikael ska åka upp. Och då blev jag, men, jag förstår ju. Men jag känner väl också att jag känner, det känns lite orättvist på något sätt, eller så här. Att jag vill också vara med. Samtidigt så, nu tänker jag mer så här typ, för jag, det, en sak som kände att jag var arg och orättvist på jobbet. Vi får lägga vetorn när vi vill vara lediga, när vi lägger vår schema. Så jag har lagt veto över midsommartrepass, får vi lägga det på hela schematperioden.",
+        "nlp_emotions": {
+            "joy": 0.0,
+            "surprise": 0.1,
+            "fear": 0.2,
+            "anger": 0.4,
+            "disgust": 0.0,
+            "sadness": 0.8
+        },
+        "hume_emotions": {
+            "anger": 0.276,
+            "disgust": 0.07,
+            "fear": 0.103,
+            "joy": 0.283,
+            "sadness": 0.19,
+            "surprise": 0.078,
+            "time": 62.305
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/4-neg2.wav",
             "self_assessed": {
                 "anger": 4,
-                "sadness": 5,
-                "disgusted": 6,
-                "fear": 2,
+                "sadness": 6,
+                "disgusted": 1,
+                "fear": 1,
                 "concentrated": 5
+            }
+        }
+    },
+    "id_001_pos": {
+        "audio_file": "audio_use/positive/1-pos.m4a",
+        "transcription": " Det som hände var att jag fick det jobbet som jag hade sökt. Och då satt jag i bilen och blev jätteglad när hon ringde och sa det. Så då skrev jag upp jättemycket och körde jättefort och var jätteexalterad. Och jätteglad. Jag kände jättemycket lycka. Ja, men det var ju lite det som exploderade lite då. Så då blev det extra mycket. Ja, men det var ju lite samma. Det är lite jätteglad. Det känns som att det är tyngd från ens axlar lite försvinner. Så att äntligen så går det rätt väg typ. Ja, jag känner mig stolt och glad och lycklig. Jag tror att jag kommer att utvecklas mycket som människa och person och bli mycket mer ansvarstagande och mer vuxen.",
+        "nlp_emotions": {
+            "joy": 1.0,
+            "surprise": 0.2,
+            "fear": 0.0,
+            "anger": 0.0,
+            "disgust": 0.0,
+            "sadness": 0.0
+        },
+        "hume_emotions": {
+            "anger": 0.137,
+            "disgust": 0.058,
+            "fear": 0.095,
+            "joy": 0.439,
+            "sadness": 0.142,
+            "surprise": 0.129,
+            "time": 22.432
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/1-pos.wav",
+            "self_assessed": {
+                "joy": 6,
+                "surprised": null,
+                "concentrated": 4
+            }
+        }
+    },
+    "id_002_pos": {
+        "audio_file": "audio_use/positive/2-pos.m4a",
+        "transcription": " Jag var 14 år, tror jag, och min mamma och pappa ropade in mig från mitt rum hemma och satte på soffan och jag trodde först att något allvarligt hade hänt. Men sen sa de att HV71 hade ringt och ville att jag skulle börja spela där. För jag var helt galen i hockey då, så det var typ det roligaste som kunde hända. Så, överlycklig, det är väl ett kvitto på att jag minns det idag, tänker jag. Pappa var nog stolt, mamma var lite mer orolig över logistiken och pendlar fram och tillbaka. Men, och jag var glad som aldrig förr. Då, på den tiden så var alla tävlingsmänniskor och vi var barn så jag vill minnas att det var lite spridda skurar i reaktionerna. Vissa blev glada och vissa blev lite mer tystlåtna, kanske. Blandade känslor, tror jag. Såklart att man ville berätta, men också att hockey var det man levde för. Jag tror jag gjorde tre i första matchen, i en träningsmatch. Då var man också så här, då kände man sig på toppen av världen. Det var bra, för jag minns att det flög ut något Instagram-inlägg och det var kommentarer till höger och vänster och sådär. Så det vill jag minnas positivt.",
+        "nlp_emotions": {
+            "joy": 0.9,
+            "surprise": 0.7,
+            "fear": 0.1,
+            "anger": 0.0,
+            "disgust": 0.0,
+            "sadness": 0.2
+        },
+        "hume_emotions": {
+            "anger": 0.183,
+            "disgust": 0.086,
+            "fear": 0.149,
+            "joy": 0.273,
+            "sadness": 0.202,
+            "surprise": 0.107,
+            "time": 42.277
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/2-pos.wav",
+            "self_assessed": {
+                "joy": 6,
+                "surprised": null,
+                "concentrated": 6
+            }
+        }
+    },
+    "id_004_pos": {
+        "audio_file": "audio_use/positive/4-pos.m4a",
+        "transcription": " Jag fick en lillasyster, eller jag har ju två, men första, eller jag har ju tre lillasyster, men månaden som är tre år. Hon kom ju då, när fan föddes hon då? 2022? Nej, jo, 2022. Så typ slutet av sommaren 2021 så får jag då ett samtal från min pappa och hans sambo, som jag vet har pratat om barn och jag såg väl ändå fram emot det mycket. Men då ringer de mig från ingenstans. Jag är jättebakis här, vill säga. Men de ringer mig och säger att jag ska bli storasyster igen. De skickar en bild på ultraljudet och jag blir så glad att jag hulker och gråter, för det är sånt jag blir när jag blir glad. Jag kan liksom typ inte andas. Det var väldigt fint. Det känns väldigt fint att få vara storasyster, speciellt nu. Jag är ju mycket äldre än de yngsta, eller det skiljer ju väldigt mycket i ålder, men på något sätt tror jag att det är också en annan sak att få syskon när man är äldre. Man uppskattar det kanske mer när mitt äldsta syskon, som är sju år yngre än mig, när han kom. Jag tyckte väl det var kul, men han var ju skitjobbig. För jag var ju inte så gammal heller, så man tyckte ju liksom inte om varandra på samma sätt. Men ja, de ger mig mycket glädje. Jag vet inte riktigt. Det med namnen är svårt, men jag vet ju om Emilia, min andra lillasyster som fyller elva nu. Jag minns ju när hon sa mitt namn ganska tidigt, men då bodde jag ju också hemma. Så hon var ju med mig hela tiden. Men det var så gulligt, för hon sa inte saga, utan hon sa ju Soga. Sosa. Jag vet inte riktigt.",
+        "nlp_emotions": {
+            "joy": 0.8,
+            "surprise": 0.6,
+            "fear": 0.0,
+            "anger": 0.0,
+            "disgust": 0.0,
+            "sadness": 0.1
+        },
+        "hume_emotions": {
+            "anger": 0.217,
+            "disgust": 0.083,
+            "fear": 0.152,
+            "joy": 0.268,
+            "sadness": 0.162,
+            "surprise": 0.117,
+            "time": 51.492
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/4-pos.wav",
+            "self_assessed": {
+                "joy": 6,
+                "surprised": 3,
+                "concentrated": 4
             }
         }
     }

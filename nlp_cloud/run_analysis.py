@@ -2,9 +2,10 @@
 
 from transcription import transcribe_audio 
 from emotion_analyze import emotion_analyze
-from config import audio_files
+from config import audio_files, active_audio_id
 
-audio_path = audio_files["id_004_neg"]["wav"]
+entry_id = active_audio_id
+audio_path = audio_files[entry_id]["wav"]
 
 try:
     transcription = transcribe_audio(audio_path)

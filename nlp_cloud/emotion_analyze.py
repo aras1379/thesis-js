@@ -20,10 +20,10 @@ def safe_extract_json(text):
             try:
                 return json.loads(json_str)
             except:
-                print("⚠️ Still couldn't parse:")
+                print("Couldn't parse:")
                 print(json_str)
     else:
-        print("⚠️ No JSON block found in model output:")
+        print("No JSON block found in model output:")
         print(text)
     return {}
 

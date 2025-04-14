@@ -7,45 +7,45 @@ from nlp_cloud.emotion_analyze import emotion_analyze
 from hume_ai.hume_utils import load_hume_average
 
 from save_results import save_combined_result  # 👈 NEW
+from config import active_audio_id, audio_files
 
-# Load self-assessed scores (from a central file)
+# Load self-assessed scores 
 with open("self_assessed/self_scores.json") as f:
     self_scores_all = json.load(f)
 
-# Choose which file/ID to analyze
-entry_id = "id_004"
-audio_file = "audio_use/negative/4-neg1.m4a"
-audio_id = os.path.splitext(os.path.basename(audio_file))[0]
-hume_avg_file = f"hume_ai/filtered_results/{audio_id}_average_emotions.json"
+entry_id = active_audio_id
+audio_path = audio_files[entry_id]["m4a"]
+file_name = os.path.splitext(os.path.basename(audio_path))[0]
+
+hume_avg_file = f"hume_ai/filtered_results/{entry_id}_average_emotions.json"
 
 try:
-    # Step 1: Transcribe
-    transcription = transcribe_audio(audio_file)
-    print("📝 Transcription:", transcription)
+    #Transcribe
+    transcription = transcribe_audio(audio_path)
+    print("Transcription:", transcription)
 
-    # Step 2: NLP Cloud Emotion Analysis
+    #NLP Cloud 
     nlp_emotions = emotion_analyze(transcription)
-    print("📊 NLP Emotions:", nlp_emotions)
+    print("NLP Emotions:", nlp_emotions)
 
-    # Step 3: Load Hume AI results
+    # Load Hume results
     hume_emotions = load_hume_average(hume_avg_file)
-    print("🎧 Hume Emotions:", hume_emotions)
+    print("Hume Emotions:", hume_emotions)
 
-    # Step 4: Get self-assessed scores
+    # Get self-assessed labels 
     self_assessed = self_scores_all.get(entry_id, {})
     if not self_assessed:
-        print(f"⚠️ No self-assessed scores found for {entry_id}")
+        print(f"No self-assessed scores found for {entry_id}")
 
-    # Step 5: Combine and save using helper function
+    # save data
     result_data = {
-        "audio_file": audio_file,
+        "audio_file": audio_path,
         "transcription": transcription,
         "nlp_emotions": nlp_emotions,
         "hume_emotions": hume_emotions,
         "self_assessed": self_assessed
     }
-
     save_combined_result(entry_id, result_data)
 
 except Exception as e:
-    print("❌ Error during full analysis:", e)
+    print("Error during full analysis:", e)

@@ -1,0 +1,8 @@
+requests
+nlpcloud
+python-dotenv
+matplotlib
+numpy
+scipy
+pandas
+praat-parselmouth

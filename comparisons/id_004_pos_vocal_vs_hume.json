@@ -1,0 +1,27 @@
+{
+    "entry_id": "id_004_pos",
+    "audio_file": "audio_use/positive/4-pos.wav",
+    "vocal_features": {
+        "duration_seconds": 128.4,
+        "mean_pitch_hz": 234.52,
+        "mean_intensity_db": 51.15,
+        "mean_hnr_db": 15.57,
+        "formants_hz": {
+            "F1": 384.9,
+            "F2": 1887.73,
+            "F3": 3379.9
+        },
+        "jitter_local": 0.0152,
+        "shimmer_local": 0.0758
+    },
+    "hume_emotions": {
+        "anger": 0.05,
+        "disgust": 0.018,
+        "fear": 0.033,
+        "joy": 0.066,
+        "sadness": 0.034,
+        "surprise (negative)": 0.031,
+        "surprise (positive)": 0.018,
+        "time": 51.492
+    }
+}
