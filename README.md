@@ -17,6 +17,7 @@ Metod:
 Theoretical framework: 
 - NLP Cloud 
 
+## Contents 
 - [Dependencies](#dependencies)
 - [Configuration](#configuration)
 - [How to Run the Code](#how-to-run-the-code)
@@ -29,7 +30,9 @@ Theoretical framework:
 
 
 ## Dependencies 
-```pip3 install -r requirements.txt ```
+```bash
+pip3 install -r requirements.txt 
+```
 
 ## Configuration 
 Change which clip to analyze in "config.py" 
@@ -39,61 +42,71 @@ Change clip in config: active_audio_id
 2. run python3 run_compare_vocal_hume.py 
 
 ## How to run code and files purpose 
-### RQ1 
+## RQ1 
 Use filtered_results/ xxx_raw_emotions.json, save in comparisons/
-#### - Overlay_visualization.py: 
+### - Overlay_visualization.py: 
 - Analyzes 1 file and gives diagram for one emotion (or more, opens after each other) 
 - uses praat + hume values over time 
 
-```python3 rq1/overlay_visualization.py --emotion "anger"```
-```#or: --emotion all```
+```bash 
+python3 rq1/overlay_visualization.py --emotion "anger"
+#or: --emotion all
+```
 
-#### - scatter_plot.py 
+### - scatter_plot.py 
 - load aggregated clip data from "comparisons" folder 
 - uses functions from data_utils.py 
 - creates scatter plots that show relationships between acoustic features and emotion acores 
 
-```python3 rq1/scatter_plot.py --emotion "Joy,Sadness" ```
-```#or: --emotion all```
+```bash 
+python3 rq1/scatter_plot.py --emotion "Joy,Sadness" 
+#or: --emotion all
+```
 
-#### - correlation_table.py
+### - correlation_table.py
 - loads aggregated data for multiple clips from "comparisons" folder 
 - computes Pearson correlation and p-values for a series of acoustic features and emotion pairs 
 - stored in a table that is printed in terminal 
 
-```python3 rq1/correlation_table.py --emotion all```
+```bash 
+python3 rq1/correlation_table.py --emotion all
+```
 
-#### - micro_analysis.py
+### - micro_analysis.py
 - perform micro-level analysis on single clip 
 - extracts time-series acoustic features (pitch and intensity) from audio file 
 - aligns these time series with time-stamped emotion scores from hume json file that 
 - shows result in window 
 - prints summary table with Pandas in terminal 
 
-```python3 rq1/micro_analysis.py --emotion "Anger"```
-```#or: --emotion all```
+```bash 
+python3 rq1/micro_analysis.py --emotion "Anger"
+#or: --emotion all
+```
 
-### RQ2
+## RQ2
 Use filtered_results/ xxx_average_emotions, saved in results_combined.json  
-#### - emotion_comparison_bar.py 
+### - emotion_comparison_bar.py 
 - visualize side by side comparison on emotions for a single clip 
 - loads results from the file: results_combined.json (hume + nlp)
 
-`python3 rq2/emotion_comparison_bar.py --clip id_004_pos --emotion all`
-`#change clip id`
-
-#### - emotion_comparison_correlation.py 
+```bash
+python3 rq2/emotion_comparison_bar.py --clip id_004_pos --emotion all`
+#change clip id
+```
+### - emotion_comparison_correlation.py 
 - compare performance of hume and nlp across all clips 
 - loads from results_combined.json 
 - pearson correlation (r) and p.value 
 - presented in table in terminal using Pandas 
 
-```python3 rq2/emotion_comparison_correlation.py --emotion all```
-``` # or: --emotion "Joy,Sadness" ```
-
+```bash
+python3 rq2/emotion_comparison_correlation.py --emotion all
+# or: --emotion "Joy,Sadness" 
+```
 
 ## File Description 
-config.py: Contains configuration settings (clip IDs, paths, emotion labels).
+```config.py```: Contains configuration settings (clip IDs, paths, emotion labels).
 
 data_utils.py: Utilities for loading and processing JSON data.
 
