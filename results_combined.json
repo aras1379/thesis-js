@@ -91,5 +91,404 @@
                 "concentrated": 5
             }
         }
+    },
+    "id_003_neg": {
+        "audio_file": "audio_use/negative/3-neg.m4a",
+        "transcription": " Nej men lite hur det ser ut generellt kanske, alltså med mycket kriminalitet och oro i vardagen och samhället. Att folk drar sig till kriminalitet är väl lite att de känner ett utanförskap kanske och bildar egna grupper. Nej men inte så mycket just i Jönköping men jag kan tänka mig att de som bor i utsatta områden, att de känner obehag och oro när de ska göra lite vardagliga grejer. Kanske bara att gå ut på kvällen med hunden eller sådär. Att de är lite rädda att det ska ske något knas eller dumt. Det är väl i grunden botten systemet. Att man har placerat folk som kanske inte känner att de är en del av samhället med varandra så att de inte har fått känna att de kan vara en del av det. Och kanske då kommit utanför så att man nu är lite arg på att de kanske inte har skött sitt jobb eller att få med alla i ett samhälle. Ja alltså om man hade, jag måste säga där det är som värst, så hade man inte varit jättetaggad på att sätta någon till världen där det kanske är oroligt. Man hade ju mått jävligt dåligt av att hon hade kommit in på fel sida och hamnat snett och fått det tuffare i sina vardagssysslar. Och kanske jobb med det då om man jobbar med något sådär kriminellt. En del svärord kanske då, just det rekryterade jag då.",
+        "nlp_emotions": {
+            "joy": 0.0,
+            "surprise": 0.1,
+            "fear": 0.3,
+            "anger": 0.4,
+            "disgust": 0.1,
+            "sadness": 0.2
+        },
+        "hume_emotions": {
+            "anger": 0.159,
+            "disgust": 0.07,
+            "fear": 0.148,
+            "joy": 0.26,
+            "sadness": 0.263,
+            "surprise": 0.1,
+            "time": 57.776
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/3-neg.wav",
+            "self_assessed": {
+                "anger": 3,
+                "sadness": 2,
+                "disgusted": 5,
+                "fear": 2,
+                "concentrated": 5
+            }
+        }
+    },
+    "id_004_neg": {
+        "audio_file": "audio_use/negative/4-neg1.m4a",
+        "transcription": " Så mitt ex då, vi har varit tillsammans i tre år. Det var väl ganska bra till en början, typ första halvåret, nu när jag väl tänker efter, för det var inte så bra. Han prioriterade sin dator över mig och sitt spelande. I perioden kunde han ghosta mig i flera veckor, alltså inte prata med mig överhuvudtaget. Fick inget svar på någonting. Jag blev jätteirriterad, ledsen, arg, frustrerad. Jag ville bara ha ett svar och jag fick inte det. Och jag fick ingen förklaring på varför heller. Jag hade flyttat därifrån och så vet jag att jag hade ringt honom en kväll och skrivit och han svarade inte. Några dagar senare så hörde han av sig och då berättade han att han hade pratat med sitt ex. Och då kom det fram att det var samma kväll som jag hade ringt honom. Och han sov, så när han vaknar på morgonen så ser han då att han har fått ett missat samtal från mig, men även från sitt ex. Han skrev och ringde henne direkt istället för att han skete mig men han svarade henne. Och då var jag inte glad, kan jag säga det. Det kändes som att du kan svara ditt ex, hon hör av sig en gång så kan du svara henne, men du kan inte svara mig som du är tillsammans med och älskar. Vi gjorde slut då. Det var tidigt i december, vilket år det nu var, 2022. Och två månader senare så får jag höra av en gammal gemensam kollega att han då gått hem med en annan tjej på julfest på hans jobb som då var mitt gamla jobb. Och då var jag så, jaha, men julfesten var ju inte. Vi hade ju inte gjort slut när julfesten var. Så då ringde jag upp honom och ifrågasatte detta och han sa liksom, jag följde henne hem, det hände ingenting, jag gick hem, lalalala. Sen nu idag så bor de tillsammans och de blev ju tillsammans direkt efter att vi hade gjort slut. Så det säger ju sig självt i min mening. Ja, och det här är ju liksom, för mig var det stort svek för jag trodde aldrig att han skulle göra så. Oavsett hur taskig och att han inte behandlade mig så bra så trodde jag inte att han skulle göra något sånt.",
+        "nlp_emotions": {
+            "joy": 0.0,
+            "surprise": 0.2,
+            "fear": 0.1,
+            "anger": 0.7,
+            "disgust": 0.5,
+            "sadness": 0.8
+        },
+        "hume_emotions": {
+            "anger": 0.362,
+            "disgust": 0.091,
+            "fear": 0.14,
+            "joy": 0.215,
+            "sadness": 0.094,
+            "surprise": 0.097,
+            "time": 86.95
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/4-neg1.wav",
+            "self_assessed": {
+                "anger": 4,
+                "sadness": 5,
+                "disgusted": 6,
+                "fear": 2,
+                "concentrated": 5
+            }
+        }
+    },
+    "id_0042_neg": {
+        "audio_file": "audio_use/negative/4-neg2.m4a",
+        "transcription": " Jag kan prata om något som gör mig lite arg, men också ledsen. Min farfar gick ju bort för två månader sedan. I onsdags var det två månader sedan. Och jag har väl fortfarande inte riktigt velat ta in det alltid. Det kommer i perioder, men begravningen var ju den 28 februari. Och då fick man ju säga hej då, men jag var typ inte redo för att säga hej då. Så jag har väl någonstans varit så, men vi ska sprida hans aska och jag kan vara med då. Och då får vi säga hej då en gång till. Så jag hade ju tänkt att jag skulle vara med, men så pratade jag med farmor. Och farmor vill bara att det ska vara hon, pappa, min farbror och min faste med. Vilket jag förstår. Jag förstår verkligen. Det är liksom hennes beslut. Men det gör mig också väldigt, väldigt ledsen, för jag såg det som ett sätt att få säga hej då en gång till. För det är som farfar sa. Vi hade ju en väldigt speciell relation. Och till och med farfar sa ju det, att Saga känns inte bara som mitt barnbarn. Hon känns faktiskt som en dotter för mig. Så förstår jag hela grejen med att man och farmor kan inte göra undantag bara för mig. Nej, men det var nu när vi la schemat. Eller jag ringde och frågade när tanken var att vi skulle sprida hans aska. Om det var över midsommar, eller när vi alla ändå är där. Och då sa farmor att hon, pappa, Jeremy och Mikael ska åka upp. Och då blev jag... Jag förstår ju. Men jag känner väl också att det känns lite orättvist på något sätt. Att jag vill också vara med. Samtidigt så nu tänker jag mer, för jag är det en sak som kände att jag var arg och orättvist. På jobbet. Vi får lägga veto när vi vill vara lediga när vi lägger vår schema. Så jag har lagt veto över midsommartrepass. Får vi lägga det på hela schemaperioden.",
+        "nlp_emotions": {
+            "joy": 0.0,
+            "surprise": 0.1,
+            "fear": 0.2,
+            "anger": 0.3,
+            "disgust": 0.0,
+            "sadness": 0.7
+        },
+        "hume_emotions": {
+            "anger": 0.324,
+            "disgust": 0.067,
+            "fear": 0.111,
+            "joy": 0.276,
+            "sadness": 0.143,
+            "surprise": 0.079,
+            "time": 62.283
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/4-neg2.wav",
+            "self_assessed": {
+                "anger": 4,
+                "sadness": 6,
+                "disgusted": 1,
+                "fear": 1,
+                "concentrated": 5
+            }
+        }
+    },
+    "id_005_neg": {
+        "audio_file": "audio_use/negative/5-neg.m4a",
+        "transcription": " Jag blir upprörd av att vår gemensamma ansträngning inte har tagit oss längre än att vi har tillåtit den höga grad av invandring som vi har och de konsekvenser det bär och jag blir påmynd om det varje dag. För att vi inte är där gemensamt i förståelsen om konsekvenserna. Det vill säga vi har en jättelång väg att gå fortfarande för att handla i det. Likväl så känner jag mig bekymrad. Det känns som att det är en let down att det har gått till vad det är och det känns som att många har svikit många andra. Sveket är att fatta sådana beslut som påverkar samtliga trots att vissa har en stark ställning som inte följer den förstes i samhället. Den mest påtaglade jag blir påmynd om är att jag inte upplever mig, jag känner inte att människorna runt omkring mig delar min kultur. Jag känner mig som en minoritet och jag känner mig som att jag förlorat någonting som en gång var mitt. Alltså en förlust på grund av andras slav eller oförmåga. Det är bekymrande. Vad känner jag egentligen? Jag känner egentligen att jag inte har barn. Men om jag skulle föreställa mig att jag fick barn. När man får barn så är det så mycket annat som händer. Integration är väl inte det första men jag skulle känna en oro, en sorg. En sorg över att mina barn inte skulle få växa upp i ett Sverige som jag ser ett Sverige. Och även hur det skulle påverka dem som personer och de risker som de skulle kunna utsättas för.",
+        "nlp_emotions": {
+            "joy": 0.0,
+            "surprise": 0.0,
+            "fear": 0.6,
+            "anger": 0.5,
+            "disgust": 0.4,
+            "sadness": 0.8
+        },
+        "hume_emotions": {
+            "anger": 0.189,
+            "disgust": 0.095,
+            "fear": 0.149,
+            "joy": 0.137,
+            "sadness": 0.309,
+            "surprise": 0.122,
+            "time": 85.787
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/5-neg.wav",
+            "self_assessed": {
+                "anger": 1,
+                "sadness": 2,
+                "disgusted": 3,
+                "fear": 1,
+                "concentrated": 4
+            }
+        }
+    },
+    "id_006_neg": {
+        "audio_file": "audio_use/negative/6-neg.m4a",
+        "transcription": " Jag är jätteambitiös och lägger så jävla mycket tid på detta företaget och fan jobbar över som en idiot och gör allt för att fixa saker åt andra och ställer alltid upp och att man aldrig ens ska få lite uppskattning förrän de på riktigt tror att man ska säga ihop sig. Eller om man går och säger till dem. Man egentligen tar upp ett möte med dem och säger att nu inkluderar ni inte mig i saker som berör min tjänst. Och då bara tänker de alltid, åh nej förlåt vi ska vettra oss hejo på. Och så blir det bara bra från början. Man har ett möte och det känns jättebra efteråt för det låter som att de har lyssnat och de svarar och ber om ursäkt och säger hur mycket man är uppskattad och hur mycket de ser hur mycket man jobbar och all tid man lägger på det. Men sen på riktigt dagen efter händer det exakt samma sak. Och det gör mig galen. Men det är frustrerande för man gillar ju stället annat. Men just att de inte vet hur de ska sköta sin. Alltså det är ju inte jag som är en, jag är inte chef, jag är inte högst där på upp någonting. Jag vet att de behöver mig. Men jag känner ingen uppskattning och främst också att de inte, det inte finns något gehör från deras städersida. Och då blir man bara pisst, man tappar förhållandet, man blir en bitter jävel. Men det är typ omöjligt att inte bli det.",
+        "nlp_emotions": {
+            "joy": 0.2,
+            "surprise": 0.1,
+            "fear": 0.3,
+            "anger": 0.7,
+            "disgust": 0.4,
+            "sadness": 0.6
+        },
+        "hume_emotions": {
+            "anger": 0.286,
+            "disgust": 0.052,
+            "fear": 0.258,
+            "joy": 0.164,
+            "sadness": 0.153,
+            "surprise": 0.087,
+            "time": 50.339
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/6-neg.wav",
+            "self_assessed": {
+                "anger": 1,
+                "sadness": 1,
+                "disgusted": 1,
+                "fear": 1,
+                "concentrated": 1
+            }
+        }
+    },
+    "id_007_neg": {
+        "audio_file": "audio_use/negative/7-neg.m4a",
+        "transcription": " Ja, jag har en kollega som jag inte kommer överens med överhuvudtaget. Och då, när jag var ny på jobbet så skulle han lära upp mig, och då skulle han lära mig bygga elskåp. Och då visade han mig hur man ska dra och slinga ett elskåp, och det är att man drar en extra bit. För det ska vara lätt att jobba i elskåpet sen när det är färdigt och sitter på plats. Men det kändes som att det var en överdriven mängd, och att det var slöselig med material och likadant. Och då gick jag och frågade cheferna, ska vi göra så här verkligen? För det kommer ju att kosta ganska mycket extra varje elskåp och sådana grejer. Och då säger han, nej, så här ska vi inte göra. Jag har tagit det här med honom flera gånger. Och då går jag tillbaka, gör som cheferna säger istället. Han kommer och i princip vaktar mig hela tiden, kollar hur jag gör. Och ger mig idiotförklaringar på idiotförklaringar varje gång som jag säger emot honom att nej, vi ska inte göra så här. Jag har fått andra direktiv liksom. Sen till slut så ställer han sig och så börjar han ändra i mitt skåp istället, trots de direktiven som jag har fått. Och då tappar det, blir arg på honom första gången. Inte bara att han lär mig fel och går emot direktiven, utan från början så har han pratat om att vi ska göra så här. För cheferna tycker så här. Så han har ju ljugit för mig, för att jag ska göra på det sättet som han vill. Samtidigt som att alla andra på hela företaget är emot honom och haft den här konflikten med honom flera gånger innan. Och sen så går det ett tag och så får vi en som pluggar och kommer och ska göra sin lia. Och så ska den personen få bygga ett eget skåp. Och så står jag i elverkstaden för att höra samma grejer som jag fick höra allting upp från början. Och då tappar jag det fullständigt. Och sen så kommer han och ger en idiotförklaring till den som är och gör sin lia. Och då ställer jag mig och skriker på honom. För då tyckte jag nu får det räcka. Jag är oerhört frustrerad på en människa som jag haft samma problem med hela tiden. Och det har inte blivit mycket bättre.",
+        "nlp_emotions": {
+            "joy": 0.0,
+            "surprise": 0.1,
+            "fear": 0.2,
+            "anger": 0.8,
+            "disgust": 0.5,
+            "sadness": 0.3
+        },
+        "hume_emotions": {
+            "anger": 0.295,
+            "disgust": 0.089,
+            "fear": 0.133,
+            "joy": 0.256,
+            "sadness": 0.137,
+            "surprise": 0.09,
+            "time": 54.898
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/negative/7-neg.wav",
+            "self_assessed": {
+                "anger": 1,
+                "sadness": 1,
+                "disgusted": 1,
+                "fear": 1,
+                "concentrated": 1
+            }
+        }
+    },
+    "id_001_pos": {
+        "audio_file": "audio_use/positive/1-pos.m4a",
+        "transcription": " Det som hände var att jag fick det jobbet som jag hade sökt. Och då satt jag i bilen och blev jätteglad när hon ringde och sa det. Så då skrev jag upp jättemycket och körde jättefort och var jätteexalterad. Och jätteglad. Jag kände jättemycket lycka. Ja men det var ju lite det som exploderade lite då. Så då blev det extra mycket. Ja men det var ju lite samma. Det är ju lite jätteglad. Det känns som att det är tyngd från ens axlar lite försvinner. Så att äntligen så går det rätt väg typ. Ja, jag känner mig stolt och glad och lycklig. Jag tror jag kommer utvecklas mycket som människa och person och bli mycket mer ansvarstagande och mer vuxen.",
+        "nlp_emotions": {
+            "joy": 0.9,
+            "surprise": 0.5,
+            "fear": 0.0,
+            "anger": 0.0,
+            "disgust": 0.0,
+            "sadness": 0.0
+        },
+        "hume_emotions": {
+            "anger": 0.144,
+            "disgust": 0.055,
+            "fear": 0.095,
+            "joy": 0.451,
+            "sadness": 0.127,
+            "surprise": 0.128,
+            "time": 22.413
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/1-pos.wav",
+            "self_assessed": {
+                "joy": 6,
+                "surprised": null,
+                "concentrated": 4
+            }
+        }
+    },
+    "id_002_pos": {
+        "audio_file": "audio_use/positive/2-pos.m4a",
+        "transcription": " Jag var 14 år, tror jag, och min mamma och pappa ropade in mig från mitt rum hemma och satt och satte på soffan och jag trodde först att något allvarligt hade hänt, men sen sa de att HV71 hade ringt och ville att jag skulle börja spela där, för jag var helt galen i hockey då, så det var typ det roligaste som kunde hända. Överlycklig, det är väl ett kvitto på att jag minns det idag, tänker jag. Pappa var väl nog stolt, mamma var lite mer orolig över logistiken och pendlar fram och tillbaka, men jag var glad som aldrig förr. På den tiden så var alla tävlingsmänniskor och vi var barn, så jag vill minnas att det var lite spridda skurar i reaktionerna, vissa blev glada och vissa blev lite mer tystlåtna, avundsjuka. Blandade känslor, tror jag. Såklart att man ville berätta, men också att hockey var det man levde för. Jag tror jag gjorde tre i första matchen, i en träningsmatch, så då var man också såhär, då kände man sig på toppen av världen. Det var bra, för jag minns att det flög ut något i Instagram, min lägg och det var kommentarer till höger och vänster och sådär, så det vill jag minnas positivt.",
+        "nlp_emotions": {
+            "joy": 0.8,
+            "surprise": 0.6,
+            "fear": 0.1,
+            "anger": 0.0,
+            "disgust": 0.0,
+            "sadness": 0.2
+        },
+        "hume_emotions": {
+            "anger": 0.195,
+            "disgust": 0.084,
+            "fear": 0.156,
+            "joy": 0.275,
+            "sadness": 0.17,
+            "surprise": 0.121,
+            "time": 41.896
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/2-pos.wav",
+            "self_assessed": {
+                "joy": 6,
+                "surprised": null,
+                "concentrated": 6
+            }
+        }
+    },
+    "id_003_pos": {
+        "audio_file": "audio_use/positive/3-pos.m4a",
+        "transcription": " När jag kom in på den utbildningen, när man hade pluggat upp jättemycket på komvux, då kände man att allt arbete var bra, tycker jag. Det var ändå stor omväxling från gymnasiet, en kurs eller två kurser i taget istället för typ 25. Det har känts kul, lärorikt och spännande. Man är ändå lite intresserad av det man studerar till. Jag har ändå känt att man har överpresterat på tentorna. På vad man har som senaste tenta, då tänkte jag att det är ett ROF, men så var det typ ett C. Då var man ju överlycklig för man trodde att man skulle få göra om tentan, men då slapp man det och så var det ändå ett helt okej betyg. Det var både lycka och lättnad i att man slippit göra det och att det ändå var bra. Jag kände mig mer påtutsatt. Den sidan låg ju typ ner, men till slut så kom man in och då blev man så jävla glad. Då satt vi på rast och så sprang jag ner för att min syster jobbade på samma jobb, eller sommarjobbade. Då sprang vi och tränade hos henne. Det var kul och man var stolt över vad man lyckats åstadkomma.",
+        "nlp_emotions": {
+            "joy": 0.8,
+            "surprise": 0.6,
+            "fear": 0.1,
+            "anger": 0.0,
+            "disgust": 0.0,
+            "sadness": 0.1
+        },
+        "hume_emotions": {
+            "anger": 0.177,
+            "disgust": 0.078,
+            "fear": 0.141,
+            "joy": 0.292,
+            "sadness": 0.195,
+            "surprise": 0.117,
+            "time": 45.851
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/3-pos.wav",
+            "self_assessed": {
+                "joy": 5,
+                "surprised": null,
+                "concentrated": 5
+            }
+        }
+    },
+    "id_004_pos": {
+        "audio_file": "audio_use/positive/4-pos.m4a",
+        "transcription": " Jag fick en lillasyster, eller jag har ju två, men första, eller jag har ju tre lillasyster, men månadelsen som är tre år. Hon kom ju då, när fan föddes hon då? 2022? Nej? 2020? Jo, 2022. Ja, så typ slutet av sommaren 2021 så får jag då ett samtal från min pappa och hans sambo. Som jag vet har liksom pratat om barn och jag såg väl ändå fram emot det mycket, men då ringer de mig från ingenstans. Jag är jättebakis här, vill sägas. Men de ringer mig och säger att jag ska bli storasyster igen. De skickar en bild på ultraljudet och jag blir så glad att jag hulker och gråter, för det är sånt jag blir när jag blir glad. Jag kan liksom typ inte andas. Det var väldigt fint. Det känns väldigt fint att få vara storasyster, speciellt nu. Jag är ju mycket äldre än de yngsta. Eller det skiljer ju väldigt mycket i ålder, men på något sätt så tror jag att det är också en annan sak att få syskon när man är äldre. Man uppskattar det kanske mer. Mitt äldsta syskon, som är sju år yngre än mig, när han kom. Jag tyckte väl det var kul, men han var ju skitjobbig. För jag var ju inte så gammal heller så man tyckte ju inte om varandra på samma sätt. Men ja, de ger mig mycket glädje. Jag vet inte riktigt. Namn är svårt, men jag vet ju Emilia, min andra lillasyster som fyller elva nu. Jag minns ju när hon sa mitt namn ganska tidigt, men då bodde jag ju också hemma. Så hon var ju med mig hela tiden. Men det var så gulligt, för hon sa inte Saga, utan hon sa ju Soga! Sosa! Ja.",
+        "nlp_emotions": {
+            "joy": 0.8,
+            "surprise": 0.6,
+            "fear": 0.0,
+            "anger": 0.0,
+            "disgust": 0.0,
+            "sadness": 0.1
+        },
+        "hume_emotions": {
+            "anger": 0.246,
+            "disgust": 0.078,
+            "fear": 0.164,
+            "joy": 0.258,
+            "sadness": 0.129,
+            "surprise": 0.125,
+            "time": 51.897
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/4-pos.wav",
+            "self_assessed": {
+                "joy": 6,
+                "surprised": 3,
+                "concentrated": 4
+            }
+        }
+    },
+    "id_005_pos": {
+        "audio_file": "audio_use/positive/5-pos.m4a",
+        "transcription": " Och jag minns att jag hade noll förväntningar på att det här skulle gå bra. Men han kom och sa att det gick bra. Nej vänta, nu vet jag! Det var det moment, vi hade först ett moment, det var riskbanan. Det andra momentet var då som följde efter att man hade klarat riskbanan. Det var ju en glad nyhet även där. Det man gjorde efter var att man åkte ut på landsväg. Och väl på landsväg så körde jag. Och där kände jag att det inte alltid gick jättebra. Och återigen, det är en gråzon. Han ska bedöma om man gör bra ifrån sig eller inte. Så att säga, jag skulle inte kunna argumentera emot. Hur som haver, tillbaka på parkeringen där uppkörningen avslutades. Så låg han bara mot mig, sträckte fram handen och sa gratulerar. Och jag trodde ju inte det han sa. Och det kändes ju fantastiskt. Det var en vikt som lyftes från axlarna. En vikt jag inte hade någonting emot att bära uppenbarligen i och med att jag inte förväntade mig någonting annat. Jag accepterade läget. Utsattheten. Och det känns lite som att är det någonting han har missat här? Är det helt säkert? Det är som att vinna på en trisslåt och då måste man läsa symbolerna en gång till. Det var mycket trevligt. Ja. Upplevelsen är ganska dynamisk. Ibland, motorcykeln. Det är lite nedsmutsat verktyg för mig nu. Den har använts både som nöje, som färdmedel och som terapi. Och den bär ju med sig lite efterlämning av samtliga användningsområden. Så det är inte en... Jag önskar att jag hade kunnat säga att jag sätter på mig den som bara rensas alla tankar. Men det gör den inte nödvändigtvis, utan den... Det är en aktivitet som bär med sig en historia. Men när jag sätter mig på den så känner jag mig i regel ganska cool. Och när jag gasar så känner jag mig också cool. Alltid lite bekymrad över hur den går. Så att allting känns bra. Men när det känns bra om man ligger på högt varvtal och har ett flow i körningen. Då känns det väldigt bra. Sen så är det ju... Den aktiva körningen får ju med sig också ett konstant risk. Så hela färden. Allt med att man njuter av kanske lite vyer, lite adrenalin, lite...",
+        "nlp_emotions": {
+            "joy": 0.7,
+            "surprise": 0.5,
+            "fear": 0.4,
+            "anger": 0.1,
+            "disgust": 0.0,
+            "sadness": 0.2
+        },
+        "hume_emotions": {
+            "anger": 0.202,
+            "disgust": 0.093,
+            "fear": 0.143,
+            "joy": 0.127,
+            "sadness": 0.32,
+            "surprise": 0.114,
+            "time": 96.064
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/5-pos.wav",
+            "self_assessed": {
+                "joy": 4,
+                "surprised": 1,
+                "concentrated": 4
+            }
+        }
+    },
+    "id_006_pos": {
+        "audio_file": "audio_use/positive/6-pos.m4a",
+        "transcription": " Ja, vi har nyligen skickat iväg en maskin som jag har ritat hela, och det är en kille på jobbet som sen han började har haft skit mycket problem med. För att liksom han har lite skev bild och så här, han är typ, han tänker att kvinnor inte ska jobba och hålla på och massa sånt där. Och vi har brakt, alltså vi har verkligen skrikbråkat en gång till och med, det har varit, alltså kaos på honom. Och i alla fall så var det typ en gång nu då, innan vi skickade iväg den här maskinen, så var det typ bara väldigt random då, så var det en kille som skulle filma maskinen då och jag skulle typ demonstrera hur det funkade och sånt där. Han som filmade frågade typ bara, är det bättre typ att du inte ska ha tatueringar på dig eller något? Eller alltså vi ska dölja dina tatueringar för vi har mycket kunder i Tyskland och utemans och sånt där. Och så frågade de ju, han om de kanske tycker det är opassande om jag har tatueringar eller så på videon. Och då så kom han killen då, min kollega, och så sa han bara, men det är ju ändå, jag tycker ändå så här, det är jättebra att det är någon som faktiskt vet hur den här maskinen fungerar. Alltså hon som har gritat den som kan den bästa och alla som är så duktiga har löst detta. Och jag blev så chockad när han sa det för typ så mycket problem som vi har haft och jag blev rakt ut bara chockad och sen hela glad för att han sa det för att det kändes som att det var väldigt sincere att han sa det av alla. För att jag kunde inte tänka mig att han skulle stiga ner från sin höga häst och typ säga att en tjej har gjort någonting på en ingenjörsnivå dessutom. Alltså liksom att han har gjort en sån grej som, ja det var en bra, det gjorde mig väldigt glad i alla fall. Jo men det var, det blev en bra dag, jag var på bra humör.",
+        "nlp_emotions": {
+            "joy": 0.7,
+            "surprise": 0.6,
+            "fear": 0.0,
+            "anger": 0.4,
+            "disgust": 0.0,
+            "sadness": 0.1
+        },
+        "hume_emotions": {
+            "anger": 0.233,
+            "disgust": 0.059,
+            "fear": 0.301,
+            "joy": 0.155,
+            "sadness": 0.154,
+            "surprise": 0.099,
+            "time": 51.854
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/6-pos.wav",
+            "self_assessed": {
+                "anger": 0,
+                "joy": 0,
+                "sadness": 0,
+                "disgust": 0,
+                "fear": 0,
+                "surprise": 0,
+                "pride": 0,
+                "gratefulness": 0
+            }
+        }
+    },
+    "id_007_pos": {
+        "audio_file": "audio_use/positive/7-pos.m4a",
+        "transcription": " Ett ögonblick som jag kände mig riktigt stolt var när jag bänkade hundra kilo första gången. Då kändes det som att man hade lyckats med någonting när man tränade i många år som man hade försökt med länge. Det var ända sedan jag började gymma så är det väl som många andra så är det väl det man vill kunna om man är lite grabbig grabb eller så. Ja, då skickade jag en snäpp till Elina och då hade jag filmat. Och då fick jag beröm av Elina och var väldigt nöjd.",
+        "nlp_emotions": {
+            "joy": 0.9,
+            "surprise": 0.1,
+            "fear": 0.0,
+            "anger": 0.0,
+            "disgust": 0.0,
+            "sadness": 0.0
+        },
+        "hume_emotions": {
+            "anger": 0.194,
+            "disgust": 0.091,
+            "fear": 0.134,
+            "joy": 0.363,
+            "sadness": 0.1,
+            "surprise": 0.118,
+            "time": 14.83
+        },
+        "self_assessed": {
+            "audio_file": "audio_use/positive/7-pos.wav",
+            "self_assessed": {
+                "anger": 0,
+                "joy": 0,
+                "sadness": 0,
+                "disgust": 0,
+                "fear": 0,
+                "surprise": 0,
+                "pride": 0,
+                "gratefulness": 0
+            }
+        }
     }
 }
