@@ -45,6 +45,10 @@ audio_files = {
         "m4a": "audio_use/negative/6-neg.m4a",
         "wav": "audio_use/negative/6-neg.wav"
     },
+    "id_007_neg": {
+        "m4a": "audio_use/negative/7-neg.m4a",
+        "wav": "audio_use/negative/7-neg.wav"
+    },
     
     #POSITIVE 
     "id_001_pos": {
@@ -74,5 +78,9 @@ audio_files = {
     "id_006_pos": {
         "m4a": "audio_use/positive/6-pos.m4a",
         "wav": "audio_use/positive/6-pos.wav"
+    },
+    "id_007_pos": {
+        "m4a": "audio_use/positive/7-pos.m4a",
+        "wav": "audio_use/positive/7-pos.wav"
     }
 }
