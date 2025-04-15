@@ -1,0 +1,27 @@
+{
+    "entry_id": "id_004_neg",
+    "audio_file": "audio_use/negative/4-neg1.wav",
+    "vocal_features": {
+        "duration_seconds": 185.03,
+        "mean_pitch_hz": 220.22,
+        "mean_intensity_db": 60.76,
+        "mean_hnr_db": 13.39,
+        "formants_hz": {
+            "F1": 1458.84,
+            "F2": 2671.13,
+            "F3": 3650.26
+        },
+        "jitter_local": 0.018,
+        "shimmer_local": 0.0737
+    },
+    "hume_emotions": {
+        "anger": 0.101,
+        "disgust": 0.023,
+        "fear": 0.04,
+        "joy": 0.041,
+        "sadness": 0.022,
+        "surprise (negative)": 0.031,
+        "surprise (positive)": 0.016,
+        "time": 86.95
+    }
+}

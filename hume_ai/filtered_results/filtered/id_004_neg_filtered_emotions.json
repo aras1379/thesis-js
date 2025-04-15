@@ -1,0 +1,524 @@
+[
+    {
+        "anger": 0.154,
+        "disgust": 0.077,
+        "fear": 0.254,
+        "joy": 0.156,
+        "sadness": 0.264,
+        "surprise": 0.096,
+        "time": 1.23
+    },
+    {
+        "anger": 0.361,
+        "disgust": 0.104,
+        "fear": 0.289,
+        "joy": 0.034,
+        "sadness": 0.149,
+        "surprise": 0.064,
+        "time": 2.11000005
+    },
+    {
+        "anger": 0.202,
+        "disgust": 0.162,
+        "fear": 0.049,
+        "joy": 0.335,
+        "sadness": 0.034,
+        "surprise": 0.218,
+        "time": 6.21
+    },
+    {
+        "anger": 0.135,
+        "disgust": 0.07,
+        "fear": 0.187,
+        "joy": 0.25,
+        "sadness": 0.292,
+        "surprise": 0.066,
+        "time": 9.67
+    },
+    {
+        "anger": 0.008,
+        "disgust": 0.006,
+        "fear": 0.005,
+        "joy": 0.889,
+        "sadness": 0.034,
+        "surprise": 0.058,
+        "time": 12.657499999999999
+    },
+    {
+        "anger": 0.334,
+        "disgust": 0.103,
+        "fear": 0.173,
+        "joy": 0.09,
+        "sadness": 0.166,
+        "surprise": 0.133,
+        "time": 18.122895999999997
+    },
+    {
+        "anger": 0.133,
+        "disgust": 0.267,
+        "fear": 0.185,
+        "joy": 0.159,
+        "sadness": 0.021,
+        "surprise": 0.235,
+        "time": 20.461423
+    },
+    {
+        "anger": 0.159,
+        "disgust": 0.02,
+        "fear": 0.017,
+        "joy": 0.731,
+        "sadness": 0.039,
+        "surprise": 0.034,
+        "time": 26.0179215
+    },
+    {
+        "anger": 0.395,
+        "disgust": 0.124,
+        "fear": 0.227,
+        "joy": 0.047,
+        "sadness": 0.11,
+        "surprise": 0.098,
+        "time": 29.9028205
+    },
+    {
+        "anger": 0.195,
+        "disgust": 0.195,
+        "fear": 0.051,
+        "joy": 0.139,
+        "sadness": 0.355,
+        "surprise": 0.065,
+        "time": 31.448974
+    },
+    {
+        "anger": 0.398,
+        "disgust": 0.058,
+        "fear": 0.179,
+        "joy": 0.219,
+        "sadness": 0.042,
+        "surprise": 0.104,
+        "time": 32.88708
+    },
+    {
+        "anger": 0.422,
+        "disgust": 0.122,
+        "fear": 0.191,
+        "joy": 0.082,
+        "sadness": 0.101,
+        "surprise": 0.082,
+        "time": 34.36513
+    },
+    {
+        "anger": 0.257,
+        "disgust": 0.122,
+        "fear": 0.229,
+        "joy": 0.191,
+        "sadness": 0.104,
+        "surprise": 0.097,
+        "time": 35.76329
+    },
+    {
+        "anger": 0.46,
+        "disgust": 0.089,
+        "fear": 0.31,
+        "joy": 0.026,
+        "sadness": 0.052,
+        "surprise": 0.063,
+        "time": 37.08155
+    },
+    {
+        "anger": 0.162,
+        "disgust": 0.043,
+        "fear": 0.368,
+        "joy": 0.172,
+        "sadness": 0.188,
+        "surprise": 0.068,
+        "time": 38.160133
+    },
+    {
+        "anger": 0.457,
+        "disgust": 0.151,
+        "fear": 0.087,
+        "joy": 0.068,
+        "sadness": 0.183,
+        "surprise": 0.054,
+        "time": 40.357237
+    },
+    {
+        "anger": 0.214,
+        "disgust": 0.151,
+        "fear": 0.176,
+        "joy": 0.143,
+        "sadness": 0.08,
+        "surprise": 0.236,
+        "time": 42.234764
+    },
+    {
+        "anger": 0.492,
+        "disgust": 0.15,
+        "fear": 0.135,
+        "joy": 0.061,
+        "sadness": 0.073,
+        "surprise": 0.089,
+        "time": 44.3719485
+    },
+    {
+        "anger": 0.211,
+        "disgust": 0.17,
+        "fear": 0.167,
+        "joy": 0.15,
+        "sadness": 0.152,
+        "surprise": 0.15,
+        "time": 47.802507500000004
+    },
+    {
+        "anger": 0.424,
+        "disgust": 0.066,
+        "fear": 0.235,
+        "joy": 0.046,
+        "sadness": 0.148,
+        "surprise": 0.081,
+        "time": 52.616310999999996
+    },
+    {
+        "anger": 0.41,
+        "disgust": 0.055,
+        "fear": 0.209,
+        "joy": 0.171,
+        "sadness": 0.04,
+        "surprise": 0.114,
+        "time": 55.872122000000005
+    },
+    {
+        "anger": 0.614,
+        "disgust": 0.112,
+        "fear": 0.055,
+        "joy": 0.147,
+        "sadness": 0.022,
+        "surprise": 0.05,
+        "time": 59.008085
+    },
+    {
+        "anger": 0.354,
+        "disgust": 0.034,
+        "fear": 0.094,
+        "joy": 0.365,
+        "sadness": 0.087,
+        "surprise": 0.065,
+        "time": 63.958338999999995
+    },
+    {
+        "anger": 0.535,
+        "disgust": 0.172,
+        "fear": 0.077,
+        "joy": 0.03,
+        "sadness": 0.033,
+        "surprise": 0.153,
+        "time": 67.55598
+    },
+    {
+        "anger": 0.41,
+        "disgust": 0.057,
+        "fear": 0.215,
+        "joy": 0.12,
+        "sadness": 0.122,
+        "surprise": 0.076,
+        "time": 72.35284
+    },
+    {
+        "anger": 0.256,
+        "disgust": 0.041,
+        "fear": 0.083,
+        "joy": 0.358,
+        "sadness": 0.042,
+        "surprise": 0.22,
+        "time": 74.971123
+    },
+    {
+        "anger": 0.573,
+        "disgust": 0.03,
+        "fear": 0.112,
+        "joy": 0.083,
+        "sadness": 0.021,
+        "surprise": 0.181,
+        "time": 79.255
+    },
+    {
+        "anger": 0.546,
+        "disgust": 0.053,
+        "fear": 0.158,
+        "joy": 0.015,
+        "sadness": 0.117,
+        "surprise": 0.111,
+        "time": 82.295
+    },
+    {
+        "anger": 0.362,
+        "disgust": 0.151,
+        "fear": 0.203,
+        "joy": 0.066,
+        "sadness": 0.107,
+        "surprise": 0.111,
+        "time": 85.055
+    },
+    {
+        "anger": 0.751,
+        "disgust": 0.069,
+        "fear": 0.084,
+        "joy": 0.062,
+        "sadness": 0.018,
+        "surprise": 0.016,
+        "time": 87.485
+    },
+    {
+        "anger": 0.671,
+        "disgust": 0.066,
+        "fear": 0.174,
+        "joy": 0.031,
+        "sadness": 0.018,
+        "surprise": 0.04,
+        "time": 90.065
+    },
+    {
+        "anger": 0.692,
+        "disgust": 0.068,
+        "fear": 0.151,
+        "joy": 0.024,
+        "sadness": 0.007,
+        "surprise": 0.057,
+        "time": 91.2525
+    },
+    {
+        "anger": 0.468,
+        "disgust": 0.103,
+        "fear": 0.249,
+        "joy": 0.035,
+        "sadness": 0.091,
+        "surprise": 0.055,
+        "time": 92.81904499999999
+    },
+    {
+        "anger": 0.379,
+        "disgust": 0.058,
+        "fear": 0.088,
+        "joy": 0.322,
+        "sadness": 0.019,
+        "surprise": 0.135,
+        "time": 95.776723
+    },
+    {
+        "anger": 0.345,
+        "disgust": 0.088,
+        "fear": 0.351,
+        "joy": 0.032,
+        "sadness": 0.011,
+        "surprise": 0.173,
+        "time": 97.955015
+    },
+    {
+        "anger": 0.208,
+        "disgust": 0.157,
+        "fear": 0.133,
+        "joy": 0.198,
+        "sadness": 0.138,
+        "surprise": 0.166,
+        "time": 101.891925
+    },
+    {
+        "anger": 0.631,
+        "disgust": 0.069,
+        "fear": 0.137,
+        "joy": 0.033,
+        "sadness": 0.043,
+        "surprise": 0.088,
+        "time": 105.582065
+    },
+    {
+        "anger": 0.513,
+        "disgust": 0.044,
+        "fear": 0.183,
+        "joy": 0.067,
+        "sadness": 0.108,
+        "surprise": 0.086,
+        "time": 109.073655
+    },
+    {
+        "anger": 0.284,
+        "disgust": 0.122,
+        "fear": 0.296,
+        "joy": 0.139,
+        "sadness": 0.05,
+        "surprise": 0.109,
+        "time": 112.56523999999999
+    },
+    {
+        "anger": 0.443,
+        "disgust": 0.102,
+        "fear": 0.07,
+        "joy": 0.13,
+        "sadness": 0.205,
+        "surprise": 0.05,
+        "time": 115.2787
+    },
+    {
+        "anger": 0.047,
+        "disgust": 0.033,
+        "fear": 0.009,
+        "joy": 0.777,
+        "sadness": 0.017,
+        "surprise": 0.117,
+        "time": 121.67
+    },
+    {
+        "anger": 0.342,
+        "disgust": 0.065,
+        "fear": 0.116,
+        "joy": 0.237,
+        "sadness": 0.046,
+        "surprise": 0.194,
+        "time": 126.0100025
+    },
+    {
+        "anger": 0.029,
+        "disgust": 0.019,
+        "fear": 0.031,
+        "joy": 0.835,
+        "sadness": 0.039,
+        "surprise": 0.048,
+        "time": 129.037505
+    },
+    {
+        "anger": 0.106,
+        "disgust": 0.093,
+        "fear": 0.066,
+        "joy": 0.405,
+        "sadness": 0.292,
+        "surprise": 0.038,
+        "time": 131.765005
+    },
+    {
+        "anger": 0.277,
+        "disgust": 0.059,
+        "fear": 0.08,
+        "joy": 0.381,
+        "sadness": 0.115,
+        "surprise": 0.087,
+        "time": 135.645
+    },
+    {
+        "anger": 0.13,
+        "disgust": 0.038,
+        "fear": 0.016,
+        "joy": 0.709,
+        "sadness": 0.039,
+        "surprise": 0.068,
+        "time": 139.39499999999998
+    },
+    {
+        "anger": 0.519,
+        "disgust": 0.114,
+        "fear": 0.143,
+        "joy": 0.076,
+        "sadness": 0.09,
+        "surprise": 0.058,
+        "time": 142.755
+    },
+    {
+        "anger": 0.47,
+        "disgust": 0.093,
+        "fear": 0.117,
+        "joy": 0.164,
+        "sadness": 0.086,
+        "surprise": 0.07,
+        "time": 145.26250499999998
+    },
+    {
+        "anger": 0.314,
+        "disgust": 0.063,
+        "fear": 0.034,
+        "joy": 0.421,
+        "sadness": 0.129,
+        "surprise": 0.039,
+        "time": 148.51000499999998
+    },
+    {
+        "anger": 0.37,
+        "disgust": 0.084,
+        "fear": 0.076,
+        "joy": 0.316,
+        "sadness": 0.079,
+        "surprise": 0.076,
+        "time": 152.930005
+    },
+    {
+        "anger": 0.616,
+        "disgust": 0.056,
+        "fear": 0.084,
+        "joy": 0.129,
+        "sadness": 0.022,
+        "surprise": 0.093,
+        "time": 157.79737
+    },
+    {
+        "anger": 0.417,
+        "disgust": 0.055,
+        "fear": 0.172,
+        "joy": 0.23,
+        "sadness": 0.088,
+        "surprise": 0.037,
+        "time": 162.323115
+    },
+    {
+        "anger": 0.285,
+        "disgust": 0.104,
+        "fear": 0.169,
+        "joy": 0.272,
+        "sadness": 0.076,
+        "surprise": 0.093,
+        "time": 165.960485
+    },
+    {
+        "anger": 0.633,
+        "disgust": 0.203,
+        "fear": 0.024,
+        "joy": 0.011,
+        "sadness": 0.098,
+        "surprise": 0.032,
+        "time": 168.858385
+    },
+    {
+        "anger": 0.337,
+        "disgust": 0.134,
+        "fear": 0.107,
+        "joy": 0.108,
+        "sadness": 0.101,
+        "surprise": 0.213,
+        "time": 172.12350500000002
+    },
+    {
+        "anger": 0.241,
+        "disgust": 0.056,
+        "fear": 0.053,
+        "joy": 0.399,
+        "sadness": 0.134,
+        "surprise": 0.118,
+        "time": 175.77828
+    },
+    {
+        "anger": 0.257,
+        "disgust": 0.041,
+        "fear": 0.102,
+        "joy": 0.473,
+        "sadness": 0.075,
+        "surprise": 0.052,
+        "time": 180.04434
+    },
+    {
+        "anger": 0.614,
+        "disgust": 0.079,
+        "fear": 0.059,
+        "joy": 0.13,
+        "sadness": 0.067,
+        "surprise": 0.052,
+        "time": 183.69613
+    }
+]

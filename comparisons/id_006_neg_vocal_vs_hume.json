@@ -1,0 +1,27 @@
+{
+    "entry_id": "id_006_neg",
+    "audio_file": "audio_use/negative/6-neg.wav",
+    "vocal_features": {
+        "duration_seconds": 94.82,
+        "mean_pitch_hz": 210.07,
+        "mean_intensity_db": 62.59,
+        "mean_hnr_db": 12.76,
+        "formants_hz": {
+            "F1": 1172.56,
+            "F2": 2666.31,
+            "F3": 3654.53
+        },
+        "jitter_local": 0.0244,
+        "shimmer_local": 0.1254
+    },
+    "hume_emotions": {
+        "anger": 0.116,
+        "disgust": 0.022,
+        "fear": 0.124,
+        "joy": 0.052,
+        "sadness": 0.07,
+        "surprise (negative)": 0.056,
+        "surprise (positive)": 0.019,
+        "time": 50.339
+    }
+}

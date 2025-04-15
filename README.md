@@ -6,6 +6,10 @@ Automatisera konvertering från mp4 till wav
 
 Skriva om i rapport: 
 Metod:
+- Att vi ska gruppera känslor (praat) och sedan jämföra med hume 
+
+- skriva med att vi normaliserat loudness för alla klipp
+
 - Hur har normaliserat hume values 
 
 - Pearson och p values ? 
@@ -91,7 +95,7 @@ Use filtered_results/ xxx_average_emotions, saved in results_combined.json
 - loads results from the file: results_combined.json (hume + nlp)
 
 ```bash
-python3 rq2/emotion_comparison_bar.py --clip id_004_pos --emotion all`
+python3 rq2/emotion_comparison_bar.py --clip id_004_pos --emotion all
 #change clip id
 ```
 ### emotion_comparison_correlation.py 
