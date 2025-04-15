@@ -45,11 +45,13 @@ def overlay_plot(audio_path, hume_json_path, emotion="anger"):
     fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(12, 10), sharex=True)
     
     ### Top subplot: Pitch overlay with Hume emotion
+    entry_id = active_audio_id
+    audio_path = audio_files[entry_id]["m4a"]
     ax1 = axes[0]
     ax1.plot(pitch_time, pitch_values, label='Pitch (Hz)', color='blue')
     ax1.set_ylabel('Pitch (Hz)', color='blue')
     ax1.tick_params(axis='y', labelcolor='blue')
-    ax1.set_title(f"Pitch and Hume {emotion} Over Time")
+    ax1.set_title(f"Pitch and Hume {emotion} Over Time {active_audio_id}")
     
     # Secondary y-axis for Hume emotion
     ax1b = ax1.twinx()

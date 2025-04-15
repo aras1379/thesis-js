@@ -94,26 +94,46 @@ def micro_level_analysis(audio_path, hume_json_path, emotion="Anger"):
     
     return segments_summary
 
-def plot_segment_scatter(segments_summary, feature_key, emotion_key, feature_label, emotion_label):
+def plot_combined_scatter(segments_summary, emotion, entry_id):
     """
-    Create a scatter plot for a specified acoustic feature vs. emotion.
+    Create a single figure with two scatter plots:
+    Avg Pitch vs. Emotion and Avg Intensity vs. Emotion.
     """
-    feature_vals = np.array([seg[feature_key] for seg in segments_summary])
-    emotion_vals = np.array([seg[emotion_key] for seg in segments_summary])
+    emotion_key = f"Hume {emotion} Score"
     
-    plt.figure(figsize=(8,6))
-    plt.scatter(feature_vals, emotion_vals, color='purple')
-    plt.xlabel(feature_label)
-    plt.ylabel(emotion_label)
-    plt.title(f"{feature_label} vs {emotion_label}")
-    valid = ~np.isnan(feature_vals) & ~np.isnan(emotion_vals)
-    if np.sum(valid) > 1:
-        m, b = np.polyfit(feature_vals[valid], emotion_vals[valid], 1)
-        plt.plot(feature_vals, m*feature_vals + b, linestyle='--', color='black')
-        r, p = pearsonr(feature_vals[valid], emotion_vals[valid])
-        plt.legend([f"Pearson r: {r:.2f}, p-value: {p:.3f}"])
+    pitch_vals = np.array([seg["Avg Pitch (Hz)"] for seg in segments_summary])
+    intensity_vals = np.array([seg["Avg Intensity (dB)"] for seg in segments_summary])
+    emotion_vals = np.array([seg[emotion_key] for seg in segments_summary])
+
+    fig, axes = plt.subplots(2, 1, figsize=(10, 10))
+
+    # Scatter: Pitch vs Emotion
+    axes[0].scatter(pitch_vals, emotion_vals, color='purple')
+    axes[0].set_xlabel("Avg Pitch (Hz)")
+    axes[0].set_ylabel(f"Hume {emotion} Score")
+    axes[0].set_title(f"Avg Pitch vs Hume {emotion} ({entry_id})")
+    valid_pitch = ~np.isnan(pitch_vals) & ~np.isnan(emotion_vals)
+    if np.sum(valid_pitch) > 1:
+        m, b = np.polyfit(pitch_vals[valid_pitch], emotion_vals[valid_pitch], 1)
+        axes[0].plot(pitch_vals, m*pitch_vals + b, linestyle='--', color='black')
+        r, p = pearsonr(pitch_vals[valid_pitch], emotion_vals[valid_pitch])
+        axes[0].legend([f"Pearson r: {r:.2f}, p: {p:.3f}"])
+
+    # Scatter: Intensity vs Emotion
+    axes[1].scatter(intensity_vals, emotion_vals, color='darkorange')
+    axes[1].set_xlabel("Avg Intensity (dB)")
+    axes[1].set_ylabel(f"Hume {emotion} Score")
+    axes[1].set_title(f"Avg Intensity vs Hume {emotion} ({entry_id})")
+    valid_intensity = ~np.isnan(intensity_vals) & ~np.isnan(emotion_vals)
+    if np.sum(valid_intensity) > 1:
+        m, b = np.polyfit(intensity_vals[valid_intensity], emotion_vals[valid_intensity], 1)
+        axes[1].plot(intensity_vals, m*intensity_vals + b, linestyle='--', color='black')
+        r, p = pearsonr(intensity_vals[valid_intensity], emotion_vals[valid_intensity])
+        axes[1].legend([f"Pearson r: {r:.2f}, p: {p:.3f}"])
+
     plt.tight_layout()
     plt.show()
+
 
 def main():
     parser = argparse.ArgumentParser(description="Micro-Level Analysis for Emotion Recognition")
@@ -136,17 +156,28 @@ def main():
     for emotion in selected_emotions:
         segments_summary = micro_level_analysis(audio_path, hume_json_path, emotion=emotion)
         df = pd.DataFrame(segments_summary)
+        
         print(f"\nSegment-Level Analysis Table for {emotion}:")
         print(df.to_string(index=False))
+        
+        # Export to Excel
+        excel_filename = f"segment_level_{entry_id}_{emotion.lower()}_analysis.xlsx"
+
+        excel_output_path = os.path.join("exports", excel_filename)
+        os.makedirs("exports", exist_ok=True)
+        df.to_excel(excel_output_path, index=False)
+        print(f"Saved Excel file for {emotion}: {excel_output_path}")
         
         # Plot scatter for Avg Pitch vs. the selected Hume emotion.
         pitch_key = "Avg Pitch (Hz)"
         emotion_key = f"Hume {emotion} Score"
-        plot_segment_scatter(segments_summary, pitch_key, emotion_key, "Avg Pitch (Hz)", f"Hume {emotion} Score")
+        
         
         # Plot scatter for Avg Intensity vs. the selected Hume emotion.
         intensity_key = "Avg Intensity (dB)"
-        plot_segment_scatter(segments_summary, intensity_key, emotion_key, "Avg Intensity (dB)", f"Hume {emotion} Score")
+        plot_combined_scatter(segments_summary, emotion, active_audio_id)
+
+
 
 if __name__ == "__main__":
     main()
