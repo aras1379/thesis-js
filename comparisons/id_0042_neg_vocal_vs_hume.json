@@ -15,13 +15,12 @@
         "shimmer_local": 0.083
     },
     "hume_emotions": {
-        "anger": 0.091,
-        "disgust": 0.016,
-        "fear": 0.025,
-        "joy": 0.041,
-        "sadness": 0.028,
-        "surprise (negative)": 0.025,
-        "surprise (positive)": 0.011,
+        "anger": 0.324,
+        "disgust": 0.067,
+        "fear": 0.111,
+        "joy": 0.276,
+        "sadness": 0.143,
+        "surprise": 0.079,
         "time": 62.283
     }
 }

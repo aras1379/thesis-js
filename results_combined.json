@@ -225,25 +225,28 @@
             "fear": 0.3,
             "anger": 0.7,
             "disgust": 0.4,
-            "sadness": 0.6
+            "sadness": 0.5
         },
         "hume_emotions": {
             "anger": 0.286,
             "disgust": 0.052,
             "fear": 0.258,
             "joy": 0.164,
-            "sadness": 0.153,
+            "sadness": 0.154,
             "surprise": 0.087,
-            "time": 50.339
+            "time": 50.338
         },
         "self_assessed": {
             "audio_file": "audio_use/negative/6-neg.wav",
             "self_assessed": {
-                "anger": 1,
-                "sadness": 1,
-                "disgusted": 1,
+                "anger": 4,
+                "joy": 1,
+                "sadness": 4,
+                "disgust": 3,
                 "fear": 1,
-                "concentrated": 1
+                "surprise": 2,
+                "tiredness": 5,
+                "frustration": 5
             }
         }
     },
@@ -446,14 +449,14 @@
         "self_assessed": {
             "audio_file": "audio_use/positive/6-pos.wav",
             "self_assessed": {
-                "anger": 0,
-                "joy": 0,
-                "sadness": 0,
-                "disgust": 0,
-                "fear": 0,
-                "surprise": 0,
-                "pride": 0,
-                "gratefulness": 0
+                "anger": 1,
+                "joy": 5,
+                "sadness": 1,
+                "disgust": 1,
+                "fear": 1,
+                "surprise": 5,
+                "pride": 5,
+                "gratefulness": 4
             }
         }
     },
