@@ -1,45 +1,67 @@
-# run_compare_vocal_hume.py
+# build_comparisons_with_probs.py
 
 import os
 import json
 from praat_parselmouth.vocal_extract import extract_features
-from hume_ai.hume_utils import load_hume_average
-from config import active_audio_id, audio_files
+from hume_ai.hume_utils      import load_hume_average, normalize_emotions
+from utils.categorize_vocal_emotions import rate_emotion_distances
+from config import audio_files
 
-entry_id = active_audio_id
-audio_path = audio_files[entry_id]["wav"]
-file_name = os.path.splitext(os.path.basename(audio_path))[0]
-hume_avg_file = f"hume_ai/filtered_results/average/{entry_id}_average_emotions.json"
+LABELS = ['anger','fear','joy','sadness','surprise']
+out_dir = "comparisons"
+os.makedirs(out_dir, exist_ok=True)
 
+def get_hume_label(probs):
+    p = {k.lower():v for k,v in probs.items() if k.lower() in LABELS}
+    return max(p, key=p.get) if p else "unknown"
 
+def normalize_by_inverse(distances, eps=1e-6):
+    """
+    Turn a {emo: distance} dict into a normalized {emo: score} 
+    by inverting and dividing by the total.
+    """
+    inv = {emo: 1.0/(dist + eps) for emo, dist in distances.items()}
+    total = sum(inv.values())
+    return {emo: score/total for emo, score in inv.items()}
 
-try:
-    # Extract vocal features
-    print("Extracting vocal features..")
-    vocal_features = extract_features(audio_path)
-    print("Vocal features:", vocal_features)
+def main():
+    for entry_id, paths in audio_files.items():
+        wav = paths["wav"]
+        try:
+            feats = extract_features(wav)
 
-    # Load Hume average emotion scores
-    print("loading Hume AI emotion averages...")
-    hume_emotions = load_hume_average(hume_avg_file)
-    print("Hume Emotions:", hume_emotions)
+            # 1) Mahalanobis–style distances from your table
+            praat_distances = rate_emotion_distances(feats)
 
-    # Save both to comparison folder 
-    output_data = {
-        "entry_id": entry_id,
-        "audio_file": audio_path,
-        "vocal_features": vocal_features,
-        "hume_emotions": hume_emotions
-    }
+            # 2) Invert & normalize exactly like Hume does:
+            praat_norm = normalize_by_inverse(praat_distances)
 
-    comparison_folder = "comparisons"
-    os.makedirs(comparison_folder, exist_ok=True)
-    output_file = os.path.join(comparison_folder, f"{entry_id}_vocal_vs_hume.json")
+            # 3) top Praat label from the normalized inverses
+            praat_label = max(praat_norm, key=praat_norm.get)
 
-    with open(output_file, "w") as f:
-        json.dump(output_data, f, indent=4)
+            # now load Hume
+            raw_h      = load_hume_average(
+                            f"hume_ai/filtered_results/average/{entry_id}_average_emotions.json")
+            hume_probs = normalize_emotions(raw_h)
+            hume_label = get_hume_label(hume_probs)
 
-    print(f"\n Comparison saved to '{output_file}'")
+            out = {
+                "entry_id":        entry_id,
+                "vocal_features":  feats,
+                "praat_distances": praat_distances,
+                "praat_scores":    praat_norm,
+                "praat_label":     praat_label,
+                "hume_probs":      hume_probs,
+                "hume_label":      hume_label,
+            }
 
-except Exception as e:
-    print("Error during comparison:", e)
+            with open(os.path.join(out_dir, f"{entry_id}_vocal_vs_hume.json"), "w") as f:
+                json.dump(out, f, indent=4)
+
+            print("✅", entry_id)
+
+        except Exception as e:
+            print(f"[!] {entry_id}: {e}")
+
+if __name__ == "__main__":
+    main()

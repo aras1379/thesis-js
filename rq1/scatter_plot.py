@@ -1,92 +1,65 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.stats import pearsonr
-import argparse
-import sys
 import os
+import json
+import argparse
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from data_utils import load_all_clip_data, compute_feature_arrays
-from config import emotions_to_analyze
+LABELS = ['anger', 'fear', 'joy', 'sadness', 'surprise']
 
 parser = argparse.ArgumentParser(
-    description="Scatter Plot for Aggregated Acoustic Features vs. Emotion Scores"
+    description="Scatter plots of Praat vs. Hume soft scores per emotion"
 )
 parser.add_argument("--emotion", type=str, default="all",
-                    help=("Emotion label(s) to analyze (e.g., anger, joy, sadness; "
-                          "comma-separated, or 'all' for all emotions)"))
+                    help="Emotion(s) to plot (comma‐separated) or 'all'.")
 args = parser.parse_args()
 
-# Determine the list of emotions to process.
-if args.emotion.lower() == "all":
-    selected_emotions = emotions_to_analyze
+# Determine selected emotions
+auto = False
+if args.emotion.lower() == 'all':
+    selected = LABELS
+    auto = True
 else:
-    selected_emotions = [e.strip() for e in args.emotion.split(',')]
+    selected = [e.strip().lower() for e in args.emotion.split(',')]
+    # filter to valid
+    selected = [e for e in selected if e in LABELS]
 
-data_list = load_all_clip_data("comparisons")
-features = compute_feature_arrays(data_list)
+# Load soft scores from comparisons/*.json
+comp_dir = os.path.join(os.path.dirname(__file__), '..', 'comparisons')
+records = {emo: {'praat': [], 'hume': []} for emo in LABELS}
 
-available_emotions = [k for k in features.keys() if k not in ("mean_pitch", "mean_intensity", "F1", "F2", "F3")]
-print("Available emotion keys:", available_emotions)
-
-def plot_segment_scatter(feature_vals, emotion_vals, feature_label, emotion_label):
-    """
-    Create a scatter plot for a given acoustic feature versus an emotion.
-    """
-    plt.figure(figsize=(8,6))
-    plt.scatter(feature_vals, emotion_vals, color='purple')
-    plt.xlabel(feature_label)
-    plt.ylabel(emotion_label)
-    plt.title(f"{feature_label} vs {emotion_label}")
-    valid = ~np.isnan(feature_vals) & ~np.isnan(emotion_vals)
-    if np.sum(valid) > 1:
-        m, b = np.polyfit(feature_vals[valid], emotion_vals[valid], 1)
-        plt.plot(feature_vals[valid], m * feature_vals[valid] + b, linestyle='--', color='black')
-        r, p = pearsonr(feature_vals[valid], emotion_vals[valid])
-        plt.legend([f"Pearson r: {r:.2f}, p-value: {p:.3f}"])
-    plt.tight_layout()
-    plt.show()
-
-for emotion in selected_emotions:
-    emotion_key = emotion.lower()
-
-    if emotion_key not in features:
-        print(f"Emotion '{emotion}' not present in aggregated features. Available keys: {available_emotions}. Skipping...")
+for fn in sorted(os.listdir(comp_dir)):
+    if not fn.endswith('.json'):
         continue
+    data = json.load(open(os.path.join(comp_dir, fn)))
+    hume = data.get('hume_probs', {})
+    praat = data.get('praat_scores', {})
+    # normalize keys
+    for emo in LABELS:
+        p = praat.get(emo, np.nan)
+        h = hume.get(emo, np.nan)
+        records[emo]['praat'].append(p)
+        records[emo]['hume'].append(h)
 
-    # --- Plot for Mean Pitch vs. the selected emotion ---
+# Plot
+for emo in selected:
+    x = np.array(records[emo]['praat'], dtype=float)
+    y = np.array(records[emo]['hume'], dtype=float)
+    mask = (~np.isnan(x)) & (~np.isnan(y))
+    if mask.sum() < 2:
+        print(f"Not enough data for '{emo}' (only {mask.sum()} points), skipping.")
+        continue
+    xv, yv = x[mask], y[mask]
+    # scatter
     plt.figure(figsize=(8,6))
-    plt.scatter(features["mean_pitch"], features[emotion_key], color='blue')
-    plt.xlabel("Mean Pitch (Hz)")
-    plt.ylabel(f"Hume {emotion}")
-    plt.title(f"Mean Pitch vs Hume {emotion}")
-    if len(features["mean_pitch"]) > 1:
-        valid_mask = ~np.isnan(features["mean_pitch"]) & ~np.isnan(features[emotion_key])
-        if np.sum(valid_mask) > 1:
-            m, b = np.polyfit(features["mean_pitch"][valid_mask], features[emotion_key][valid_mask], 1)
-            plt.plot(features["mean_pitch"][valid_mask],
-                     m * features["mean_pitch"][valid_mask] + b,
-                     linestyle='--', color='black')
-            r, p = pearsonr(features["mean_pitch"][valid_mask], features[emotion_key][valid_mask])
-            plt.legend([f"Pearson r: {r:.2f}, p-value: {p:.3f}"])
-    plt.tight_layout()
-    plt.show()
-    
-    # --- Plot for Mean Intensity vs. the selected emotion ---
-    plt.figure(figsize=(8,6))
-    plt.scatter(features["mean_intensity"], features[emotion_key], color='orange')
-    plt.xlabel("Mean Intensity (dB)")
-    plt.ylabel(f"Hume {emotion}")
-    plt.title(f"Mean Intensity vs Hume {emotion}")
-    if len(features["mean_intensity"]) > 1:
-        valid_mask = ~np.isnan(features["mean_intensity"]) & ~np.isnan(features[emotion_key])
-        if np.sum(valid_mask) > 1:
-            m, b = np.polyfit(features["mean_intensity"][valid_mask], features[emotion_key][valid_mask], 1)
-            plt.plot(features["mean_intensity"][valid_mask],
-                     m * features["mean_intensity"][valid_mask] + b,
-                     linestyle='--', color='black')
-            r, p = pearsonr(features["mean_intensity"][valid_mask], features[emotion_key][valid_mask])
-            plt.legend([f"Pearson r: {r:.2f}, p-value: {p:.3f}"])
+    plt.scatter(xv, yv, alpha=0.7)
+    plt.xlabel(f"Praat soft‐score for '{emo}'")
+    plt.ylabel(f"Hume soft‐score for '{emo}'")
+    plt.title(f"Praat vs. Hume soft scores: {emo}")
+    # regression line
+    m, b = np.polyfit(xv, yv, 1)
+    plt.plot(xv, m*xv + b, linestyle='--', color='black',
+             label=f"r={pearsonr(xv,yv)[0]:.2f}, p={pearsonr(xv,yv)[1]:.3f}")
+    plt.legend()
     plt.tight_layout()
     plt.show()

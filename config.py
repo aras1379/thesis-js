@@ -1,11 +1,11 @@
 #config.py 
 
 #Change this to the current audio for analyzation 
-active_audio_id = "id_001_pos"
+active_audio_id = "id_002_neg"
 
 emotions_to_analyze = [
     "anger", "joy", "sadness", "surprise (positive)", 
-    "surprise (negative)", "fear", "disgust"
+    "surprise (negative)", "fear"
 ]
 
 audio_files = {
@@ -37,10 +37,7 @@ audio_files = {
         "m4a": "audio_use/negative/5-neg.m4a",
         "wav": "audio_use/negative/5-neg.wav"
     },
-    "id_sara_neg": {
-        "m4a": "audio_use/negative/sara-neg.m4a",
-        "wav": "audio_use/negative/sara-neg.wav"
-    },
+
     "id_006_neg": {
         "m4a": "audio_use/negative/6-neg.m4a",
         "wav": "audio_use/negative/6-neg.wav"
@@ -71,10 +68,7 @@ audio_files = {
         "m4a": "audio_use/positive/5-pos.m4a",
         "wav": "audio_use/positive/5-pos.wav"
     },
-    "id_sara_pos": {
-        "m4a": "audio_use/positive/sara-pos.m4a",
-        "wav": "audio_use/positive/sara-pos.wav"
-    },
+
     "id_006_pos": {
         "m4a": "audio_use/positive/6-pos.m4a",
         "wav": "audio_use/positive/6-pos.wav"

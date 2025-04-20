@@ -1,91 +1,91 @@
-import os
-import json
-import pandas as pd
+# rq1/label_comparison_praat_hume.py
+
+import os, json, numpy as np
+from scipy.stats import pearsonr, entropy
 from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
-import sys 
-import os 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config import audio_files
-from utils.categorize_vocal_emotions import categorize_emotion_from_vocal_markers
-from hume_ai.hume_utils import normalize_emotions, combine_surprise_scores
+import pandas as pd
 
-LABEL_LIST = ['anger', 'fear', 'joy', 'sadness', 'surprise']
-
-def get_hume_top_label(hume_scores: dict) -> str:
-    # Lowercase all keys first
-    hume_scores = {k.lower(): v for k, v in hume_scores.items()}
-
-    # Keep only label-relevant keys
-    emotion_only = {k: v for k, v in hume_scores.items() if k in LABEL_LIST}
-
-    if not emotion_only:
-        return "unknown"
-
-    return max(emotion_only.items(), key=lambda item: item[1])[0]
-
-
+LABELS = ['anger','fear','joy','sadness','surprise']
 
 def main():
     praat_labels = []
-    hume_labels = []
-    ids = []
-    skipped_disgust = 0
+    hume_labels  = []
+    filenames    = []
+    praat_vecs   = []
+    hume_vecs    = []
 
-    for entry_id in audio_files:
-        comparison_file = f"comparisons/{entry_id}_vocal_vs_hume.json"
-        if not os.path.exists(comparison_file):
-            continue
+    comp_dir = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '..', 'comparisons')
+    )
 
-        with open(comparison_file, "r") as f:
-            data = json.load(f)
+    for fn in sorted(os.listdir(comp_dir)):
+        data = json.load(open(os.path.join(comp_dir, fn)))
+        entry = data.get("entry_id", fn)
+        filenames.append(entry)
 
-        try:
-            praat_label = categorize_emotion_from_vocal_markers(data["vocal_features"])
-            hume_label = get_hume_top_label(data["hume_emotions"])
+        # hard labels
+        praat_lbl = data.get("praat_label", "unknown")
+        hume_lbl  = data.get("hume_label",  "unknown")
+        praat_labels.append(praat_lbl)
+        hume_labels.append(hume_lbl)
 
-            # ⛔ Skip or count if Hume's top label is 'disgust'
-            if hume_label == "disgust":
-                skipped_disgust += 1
-                continue  # 👈 Optional: skip adding it to evaluation
+        # soft vectors (normalized)
+        h_vec = np.array([ data["hume_probs"].get(e, 0.0)    for e in LABELS ])
+        p_vec = np.array([ data["praat_scores"].get(e, 0.0)  for e in LABELS ])
+        hume_vecs.append(h_vec)
+        praat_vecs.append(p_vec)
 
-        except Exception as e:
-            print(f"[!] Error processing {entry_id}: {e}")
-            continue
-
-
-        ids.append(entry_id)
-        praat_labels.append(praat_label)
-        hume_labels.append(hume_label)
-
+    # 0) Per‐file alignment
     df = pd.DataFrame({
-        "entry_id": ids,
+        "entry_id":    filenames,
         "praat_label": praat_labels,
-        "hume_label": hume_labels,
-        "match": [p == h for p, h in zip(praat_labels, hume_labels)]
+        "hume_label":  hume_labels,
+        "match":       [p==h for p,h in zip(praat_labels, hume_labels)]
     })
-    print(f"\n⚠️ Skipped {skipped_disgust} samples where Hume predicted 'disgust' (not included in vocal features classification)")
-
-
-    print("\n🎯 Praat vs Hume (hard label) comparison:")
+    print("\nPraat vs Hume (hard‑label) comparison:")
     print(df.to_string(index=False))
-    
-    
 
-    # Classification report
-    print("\n📊 Classification Report (treating Hume as ground truth):")
-    print(classification_report(hume_labels, praat_labels, labels=LABEL_LIST, zero_division=0))
+    # 1) Classification report
+    print("\nClassification Report (marker vs Hume):")
+    print(classification_report(
+        y_true=hume_labels,
+        y_pred=praat_labels,
+        labels=LABELS,
+        zero_division=0
+    ))
 
-    # Confusion matrix
-    cm = confusion_matrix(hume_labels, praat_labels, labels=LABEL_LIST)
+    # 2) Confusion matrix
+    cm = confusion_matrix(hume_labels, praat_labels, labels=LABELS)
+    plt.figure(figsize=(6,5))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-                xticklabels=LABEL_LIST, yticklabels=LABEL_LIST)
-    plt.xlabel("Predicted (Praat)")
-    plt.ylabel("True (Hume)")
-    plt.title("Confusion Matrix: Praat vs Hume")
+                xticklabels=LABELS, yticklabels=LABELS)
+    plt.xlabel("Praat label")
+    plt.ylabel("Hume label")
+    plt.title("Confusion Matrix")
     plt.tight_layout()
     plt.show()
 
-if __name__ == "__main__":
+    # 3) Cosine similarity over normalized soft‑scores
+    cos_sims = []
+    for p_vec, h_vec in zip(praat_vecs, hume_vecs):
+        denom = np.linalg.norm(p_vec) * np.linalg.norm(h_vec)
+        cos_sims.append(np.dot(p_vec, h_vec) / denom if denom>0 else 0.0)
+    print(f"\nMean cosine similarity (soft vectors): {np.mean(cos_sims):.3f}")
+
+    # 4) Flattened Pearson r
+    all_p = np.vstack(praat_vecs).ravel()
+    all_h = np.vstack(hume_vecs).ravel()
+    print(f"Flattened Pearson r (soft vectors): {pearsonr(all_p, all_h)[0]:.3f}")
+
+    # 5) Mean JS divergence
+    js_ds = []
+    for p_vec, h_vec in zip(praat_vecs, hume_vecs):
+        m = 0.5*(p_vec + h_vec)
+        js = 0.5*(entropy(p_vec, m) + entropy(h_vec, m))
+        js_ds.append(js)
+    print(f"Mean JS divergence (soft vectors): {np.mean(js_ds):.3f}")
+
+if __name__ == '__main__':
     main()

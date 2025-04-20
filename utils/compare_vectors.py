@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.spatial.distance import cosine
 
-LABEL_LIST = ['anger', 'disgust', 'fear', 'joy', 'sadness', 'surprise']
+LABEL_LIST = ['anger', 'fear', 'joy', 'sadness', 'surprise']
 
 def one_hot_vector(label, label_list=LABEL_LIST):
     return np.array([1.0 if e == label else 0.0 for e in label_list])

@@ -2,7 +2,19 @@
 
 ## To do: 
 
-Automatisera konvertering från mp4 till wav 
+OBS VIKTIGT!!! 
+
+- Måste ta bort disgust från Hume - alltså köra om allting tror jag eller filtrera om men det görs eg. i den filen men går nog lägga in i full_analysis.py 
+
+- Kolla över hur Praat känslorna delas in - ger samma känslor hela tiden 
+
+- ALLA klipp måste köras om från full_analysis.py INNAN några RQ2 analyser görs. Men först måste disgust försvinna från hume 
+
+- Normalisera self-assessed men just nu stämmer ej överrens med andra så vi får vänta med det 
+
+- Kontrollera alla statistiska analyser i RQ2. Men först ändra samtliga värden och kör full_analysis för alla klipp (klipp byts i config.py)
+
+- Refactor hela jävla koden speciellt för rq1 
 
 Skriva om i rapport: 
 Metod:

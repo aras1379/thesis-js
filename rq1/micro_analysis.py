@@ -1,183 +1,195 @@
-import json
-import numpy as np
+import os, json, math, argparse, sys
+import numpy as np, pandas as pd, parselmouth
 import matplotlib.pyplot as plt
-import parselmouth
-import pandas as pd
-from scipy.stats import pearsonr
-import argparse
-import sys
-import os
-
+from scipy.stats import pearsonr, entropy
+from sklearn.metrics import confusion_matrix, classification_report
+import seaborn as sns
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from config import active_audio_id, audio_files, emotions_to_analyze 
+from config import active_audio_id, audio_files, emotions_to_analyze
+from utils.categorize_vocal_emotions import classify_segment, categorize_emotion_from_table_full
 
-WINDOW = 5 
+LABEL_LIST = ['anger','fear','joy','sadness','surprise']
+WINDOW     = 0.5  # +/- 0.5s snippet
 
-def segment_average(time_array, value_array, t_mid, window=WINDOW):
-    """
-    Computes the average value for a feature (e.g., pitch, intensity) within a window around t_mid.
-    """
-    mask = (time_array >= (t_mid - window)) & (time_array <= (t_mid + window))
-    if np.sum(mask) > 0:
-        return np.nanmean(value_array[mask])
+def segment_average(x, v, t_mid, window=WINDOW):
+    mask = (x >= t_mid - window) & (x <= t_mid + window)
+    return np.nanmean(v[mask]) if np.any(mask) else np.nan
+
+def get_pitch_data(wav):
+    snd = parselmouth.Sound(wav)
+    p   = snd.to_pitch()
+    t   = p.xs()
+    v   = p.selected_array['frequency']
+    v[v==0] = np.nan
+    return t, v
+
+def get_intensity_data(wav):
+    snd = parselmouth.Sound(wav)
+    I   = snd.to_intensity()
+    t   = I.xs()
+    v   = I.values.T.squeeze()
+    v[v==0] = np.nan
+    return t, v
+
+def load_hume_segments(path):
+    return json.load(open(path))
+
+
+def normalize_dict(d, keys):
+    """Take d[key] over keys, and return a new dict of key→(d[key]/sum)."""
+    vals = np.array([ d.get(k,0.0) for k in keys ], dtype=float)
+    total = vals.sum()
+    if total > 0:
+        probs = vals/total
     else:
-        return np.nan
+        probs = np.zeros_like(vals)
+    return dict(zip(keys, probs))
 
-def get_pitch_data(audio_path):
-    """
-    Extracts the pitch time series and pitch values from the audio.
-    """
-    snd = parselmouth.Sound(audio_path)
-    pitch = snd.to_pitch()
-    pitch_time = pitch.xs()
-    pitch_values = pitch.selected_array['frequency']
-    pitch_values[pitch_values == 0] = np.nan  
-    return pitch_time, pitch_values
+def micro_level_analysis_all2(wav, hume_json_path):
+    pt, pv = get_pitch_data(wav)
+    it, iv = get_intensity_data(wav)
+    segments = load_hume_segments(hume_json_path)
 
-def get_intensity_data(audio_path):
-    """
-    Extracts the intensity time series and intensity values from the audio.
-    """
-    snd = parselmouth.Sound(audio_path)
-    intensity = snd.to_intensity()
-    intensity_time = intensity.xs()
-    intensity_values = np.squeeze(intensity.values.T)
-    intensity_values[intensity_values == 0] = np.nan
-    return intensity_time, intensity_values
+    rows = []
+    for seg in segments:
+        t_mid = seg.get("time")
+        if t_mid is None: 
+            continue
 
-def load_hume_segments(json_path):
-    """
-    Loads the Hume JSON data that has been pre-processed for segmentation.
-    The expected format is a list of dictionaries. Each dictionary has a "time" field
-    (the segment midpoint) and emotion scores.
-    """
-    with open(json_path, "r") as f:
-        data = json.load(f)
-    return data
-
-def micro_level_analysis(audio_path, hume_json_path, emotion="Anger"):
-    """
-    For each segment (as defined in the Hume JSON file), compute the average pitch and intensity
-    (using a fixed window around the segment midpoint) and record the Hume emotion score.
-    Returns a list of dictionaries with the results.
-    """
-
-    pitch_time, pitch_values = get_pitch_data(audio_path)
-    intensity_time, intensity_values = get_intensity_data(audio_path)
-    
-    # Load Hume segment data
-    hume_segments = load_hume_segments(hume_json_path)
-    
-    segments_summary = []
-    
-    for segment in hume_segments:
-        t_mid = segment.get("time", None)
-        if t_mid is None:
-            continue  
-        
-        # Compute average pitch and intensity in the time window around t_mid
-        avg_pitch = segment_average(pitch_time, pitch_values, t_mid, WINDOW)
-        avg_intensity = segment_average(intensity_time, intensity_values, t_mid, WINDOW)
-        
-        # Get the chosen emotion score from the segment
-        emotion_score = segment.get(emotion, np.nan)
-        
-        # Use fixed keys for consistency in the table
-        segment_info = {
-            "Segment Mid Time (s)": t_mid,
-            "Avg Pitch (Hz)": avg_pitch,
-            "Avg Intensity (dB)": avg_intensity,
-            f"Hume {emotion} Score": emotion_score
+        row = {
+            "SegmentTime":    t_mid,
+            "AvgPitch_Hz":    segment_average(pt, pv, t_mid),
+            "AvgIntensity_dB":segment_average(it, iv, t_mid),
         }
-        segments_summary.append(segment_info)
-    
-    return segments_summary
 
-def plot_combined_scatter(segments_summary, emotion, entry_id):
+        # 1) dump all Hume scores
+        for emo in LABEL_LIST:
+            # keys in seg might be capitalized or have other fields—lowercase match
+            row[f"hume_{emo}"] = seg.get(emo, seg.get(emo.capitalize(), np.nan))
+
+        # 2) pick Hume top‐label
+        hvec = {emo: row[f"hume_{emo}"] for emo in LABEL_LIST}
+        row["Hume_label"] = max(hvec, key=lambda e: hvec[e] or 0)
+
+        # 3) Praat label on the same snippet
+        row["Praat_label"] = classify_segment(wav, t_mid, WINDOW)
+
+        rows.append(row)
+
+    return pd.DataFrame(rows)
+
+def micro_level_analysis_all(wav, hume_json_path):
     """
-    Create a single figure with two scatter plots:
-    Avg Pitch vs. Emotion and Avg Intensity vs. Emotion.
+    Returns a DataFrame per Hume segment with:
+      - SegmentTime
+      - AvgPitch_Hz, AvgIntensity_dB
+      - hume_prob_<emo> + Hume_label
+      - praat_prob_<emo> + Praat_label
     """
-    emotion_key = f"Hume {emotion} Score"
-    
-    pitch_vals = np.array([seg["Avg Pitch (Hz)"] for seg in segments_summary])
-    intensity_vals = np.array([seg["Avg Intensity (dB)"] for seg in segments_summary])
-    emotion_vals = np.array([seg[emotion_key] for seg in segments_summary])
+    pt, pv = get_pitch_data(wav)
+    it, iv = get_intensity_data(wav)
+    segments = load_hume_segments(hume_json_path)
 
-    fig, axes = plt.subplots(2, 1, figsize=(10, 10))
+    rows = []
+    for seg in segments:
+        t_mid = seg.get("time")
+        if t_mid is None:
+            continue
 
-    # Scatter: Pitch vs Emotion
-    axes[0].scatter(pitch_vals, emotion_vals, color='purple')
-    axes[0].set_xlabel("Avg Pitch (Hz)")
-    axes[0].set_ylabel(f"Hume {emotion} Score")
-    axes[0].set_title(f"Avg Pitch vs Hume {emotion} ({entry_id})")
-    valid_pitch = ~np.isnan(pitch_vals) & ~np.isnan(emotion_vals)
-    if np.sum(valid_pitch) > 1:
-        m, b = np.polyfit(pitch_vals[valid_pitch], emotion_vals[valid_pitch], 1)
-        axes[0].plot(pitch_vals, m*pitch_vals + b, linestyle='--', color='black')
-        r, p = pearsonr(pitch_vals[valid_pitch], emotion_vals[valid_pitch])
-        axes[0].legend([f"Pearson r: {r:.2f}, p: {p:.3f}"])
+        row = {
+            "SegmentTime":     t_mid,
+            "AvgPitch_Hz":     segment_average(pt, pv, t_mid),
+            "AvgIntensity_dB": segment_average(it, iv, t_mid),
+        }
 
-    # Scatter: Intensity vs Emotion
-    axes[1].scatter(intensity_vals, emotion_vals, color='darkorange')
-    axes[1].set_xlabel("Avg Intensity (dB)")
-    axes[1].set_ylabel(f"Hume {emotion} Score")
-    axes[1].set_title(f"Avg Intensity vs Hume {emotion} ({entry_id})")
-    valid_intensity = ~np.isnan(intensity_vals) & ~np.isnan(emotion_vals)
-    if np.sum(valid_intensity) > 1:
-        m, b = np.polyfit(intensity_vals[valid_intensity], emotion_vals[valid_intensity], 1)
-        axes[1].plot(intensity_vals, m*intensity_vals + b, linestyle='--', color='black')
-        r, p = pearsonr(intensity_vals[valid_intensity], emotion_vals[valid_intensity])
-        axes[1].legend([f"Pearson r: {r:.2f}, p: {p:.3f}"])
+        # — Hume soft‑scores (normalized) —
+        raw_hume = {
+            emo: seg.get(emo, seg.get(emo.capitalize(), 0.0))
+            for emo in LABEL_LIST
+        }
+        hume_probs = normalize_dict(raw_hume, LABEL_LIST)
+        for emo, p in hume_probs.items():
+            row[f"hume_prob_{emo}"] = p
+        row["Hume_label"] = max(hume_probs, key=hume_probs.get)
 
+        # — Praat soft‑scores (invert Mahalanobis, normalize) —
+        dists = categorize_emotion_from_table_full(wav, t_mid, WINDOW)
+        inv   = { emo: 1.0/(d+1e-8) for emo,d in dists.items() }
+        praat_probs = normalize_dict(inv, LABEL_LIST)
+        for emo, p in praat_probs.items():
+            row[f"praat_prob_{emo}"] = p
+        row["Praat_label"] = max(praat_probs, key=praat_probs.get)
+
+        rows.append(row)
+
+    return pd.DataFrame(rows)
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Segment‑Level Table (soft‑scores only)"
+    )
+    args = parser.parse_args()
+
+    entry_id  = active_audio_id
+    wav_path  = audio_files[entry_id]["m4a"]
+    hume_json = f"hume_ai/filtered_results/filtered/{entry_id}_filtered_emotions.json"
+
+    df = micro_level_analysis_all(wav_path, hume_json)
+
+    # Drop the pitch/intensity columns if you really don't want them:
+    # df = df.drop(columns=["AvgPitch_Hz","AvgIntensity_dB"])
+
+    # 1) Print & save the table
+    print(f"\nSegment‑Level Table for {entry_id}:")
+    print(df.to_string(index=False))
+
+    os.makedirs("exports", exist_ok=True)
+    out_xl = f"exports/segment_level_{entry_id}_soft_scores.xlsx"
+    df.to_excel(out_xl, index=False)
+    print("Saved Excel →", out_xl)
+
+    # 2) Hard‑label segment confusion
+    y_true = df["Hume_label"]
+    y_pred = df["Praat_label"]
+    print("\nClassification Report (segment):")
+    print(classification_report(y_true, y_pred,
+                                labels=LABEL_LIST,
+                                zero_division=0))
+
+    cm = confusion_matrix(y_true, y_pred, labels=LABEL_LIST)
+    plt.figure(figsize=(6,5))
+    sns.heatmap(cm, annot=True, fmt="d",
+                xticklabels=LABEL_LIST, yticklabels=LABEL_LIST,
+                cmap="Blues")
+    plt.xlabel("Praat Label")
+    plt.ylabel("Hume Label")
+    plt.title(f"Segment Confusion ({entry_id})")
     plt.tight_layout()
     plt.show()
 
+    # 3) Pearson r per emotion on the soft scores
+    print("\nPearson r (Hume vs Praat soft‑scores) by emotion:")
+    for emo in LABEL_LIST:
+        h = df[f"hume_prob_{emo}"]
+        p = df[f"praat_prob_{emo}"]
+        mask = (~h.isna()) & (~p.isna())
+        r = pearsonr(h[mask], p[mask])[0] if mask.sum()>1 else np.nan
+        print(f"  {emo:>8} → r = {r:.3f}")
 
-def main():
-    parser = argparse.ArgumentParser(description="Micro-Level Analysis for Emotion Recognition")
-    parser.add_argument("--emotion", type=str, default="all",
-                    help="Emotion label(s) to analyze (e.g., Anger, Joy, Sadness, or comma-separated list, or 'all' for all emotions)")
+    # 4) Mean cosine similarity
+    H = df[[f"hume_prob_{e}"   for e in LABEL_LIST]].values
+    P = df[[f"praat_prob_{e}"  for e in LABEL_LIST]].values
+    cos_sims = [
+        np.dot(H[i],P[i])/(np.linalg.norm(H[i])*np.linalg.norm(P[i])+1e-8)
+        for i in range(len(df))
+    ]
+    print(f"\nMean cosine similarity: {np.nanmean(cos_sims):.3f}")
 
-    args = parser.parse_args()
+    # 5) Mean JS divergence
+    js = [0.5*(entropy(H[i],0.5*(H[i]+P[i])) + entropy(P[i],0.5*(H[i]+P[i])))
+          for i in range(len(df))]
+    print(f"Mean JS divergence: {np.nanmean(js):.3f}")
 
-    # Determine which emotions to process.
-    if args.emotion.lower() == "all":
-        selected_emotions = emotions_to_analyze
-    else:
-        selected_emotions = [e.strip() for e in args.emotion.split(',')]
-
-    # Set up the file paths.
-    entry_id = active_audio_id
-    audio_path = audio_files[entry_id]["m4a"]
-    hume_json_path = f"hume_ai/filtered_results/filtered/{entry_id}_filtered_emotions.json"
-    
-    for emotion in selected_emotions:
-        segments_summary = micro_level_analysis(audio_path, hume_json_path, emotion=emotion)
-        df = pd.DataFrame(segments_summary)
-        
-        print(f"\nSegment-Level Analysis Table for {emotion}:")
-        print(df.to_string(index=False))
-        
-        # Export to Excel
-        excel_filename = f"segment_level_{entry_id}_{emotion.lower()}_analysis.xlsx"
-
-        excel_output_path = os.path.join("exports", excel_filename)
-        os.makedirs("exports", exist_ok=True)
-        df.to_excel(excel_output_path, index=False)
-        print(f"Saved Excel file for {emotion}: {excel_output_path}")
-        
-        # Plot scatter for Avg Pitch vs. the selected Hume emotion.
-        pitch_key = "Avg Pitch (Hz)"
-        emotion_key = f"Hume {emotion} Score"
-        
-        
-        # Plot scatter for Avg Intensity vs. the selected Hume emotion.
-        intensity_key = "Avg Intensity (dB)"
-        plot_combined_scatter(segments_summary, emotion, active_audio_id)
-
-
-
-if __name__ == "__main__":
+if __name__=="__main__":
     main()

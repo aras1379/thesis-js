@@ -31,7 +31,7 @@ def emotion_analyze(text: str):
     prompt = (
         "You are an emotion analysis system. "
         "Given a Swedish text, respond only with a JSON object using these emotion labels: "
-        "joy, surprise, fear, anger, disgust, sadness. Each value must be a float between 0.0 and 1.0. "
+        "joy, surprise, fear, anger, sadness. Each value must be a float between 0.0 and 1.0. "
         "Respond with the JSON directly and nothing else.\n\n"
         f"{text}"
     )

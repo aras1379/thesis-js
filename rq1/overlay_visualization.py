@@ -1,3 +1,5 @@
+## Compares pitch and intensity with hume emotions over time 
+
 import json
 import numpy as np 
 import matplotlib.pyplot as plt 

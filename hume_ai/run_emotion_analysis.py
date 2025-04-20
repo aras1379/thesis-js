@@ -14,7 +14,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from config import audio_files, active_audio_id
 
 TARGET_EMOTIONS = {
-    "Joy", "Sadness", "Fear", "Disgust", "Anger",
+    "Joy", "Sadness", "Fear", "Anger",
     "Surprise (positive)", "Surprise (negative)"
 }
 

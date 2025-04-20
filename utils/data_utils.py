@@ -4,6 +4,20 @@ import glob
 import numpy as np
 from config import emotions_to_analyze  
 
+import json
+import os
+
+ACOUSTIC_STATS_PATH = os.path.join(os.path.dirname(__file__), "acoustic_stats.json")
+
+with open(ACOUSTIC_STATS_PATH, "r") as f:
+    ACOUSTIC_STATS = json.load(f)
+
+def z_score(value, mean, std):
+    try:
+        return (value - mean) / std if std > 0 else 0
+    except:
+        return 0
+
 def load_json(file_path):
     with open(file_path, "r") as f:
         return json.load(f)

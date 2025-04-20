@@ -1,26 +1,45 @@
 {
     "entry_id": "id_005_neg",
-    "audio_file": "audio_use/negative/5-neg.wav",
     "vocal_features": {
-        "duration_seconds": 191.66,
+        "mean_pitch_st": -4.12,
         "mean_pitch_hz": 118.24,
         "mean_intensity_db": 58.15,
-        "mean_hnr_db": 10.2,
+        "mean_hnr_db": -0.5,
+        "jitter_local": 0.0261,
+        "shimmer_local": 0.1096,
         "formants_hz": {
             "F1": 1118.56,
             "F2": 2623.03,
-            "F3": 3611.26
+            "F3": 3611.26,
+            "B1": 492.57,
+            "B2": 862.76,
+            "B3": 461.16
         },
-        "jitter_local": 0.0261,
-        "shimmer_local": 0.1096
+        "voiced_length": 114.85,
+        "unvoiced_length": 76.81
     },
-    "hume_emotions": {
-        "anger": 0.189,
-        "disgust": 0.095,
-        "fear": 0.149,
-        "joy": 0.137,
-        "sadness": 0.309,
-        "surprise": 0.122,
+    "praat_distances": {
+        "anger": 59.867459102800865,
+        "joy": 105.61542594816316,
+        "fear": 144.7438280221627,
+        "sadness": 51.196200754146226,
+        "surprise": 40.62268873679584
+    },
+    "praat_scores": {
+        "anger": 0.21628303720114928,
+        "joy": 0.12259871947407389,
+        "fear": 0.08945677468964702,
+        "sadness": 0.25291556125066944,
+        "surprise": 0.31874590738446046
+    },
+    "praat_label": "surprise",
+    "hume_probs": {
+        "anger": 0.2086092715231788,
+        "fear": 0.16445916114790285,
+        "joy": 0.15121412803532008,
+        "sadness": 0.3410596026490066,
+        "surprise": 0.1346578366445916,
         "time": 85.787
-    }
+    },
+    "hume_label": "sadness"
 }

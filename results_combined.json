@@ -35,11 +35,10 @@
         "transcription": " Och något som gör mig upprörd är att till exempel om fotbollen idag, det handlar inte om att spela fotboll, det handlar inte om kärleken till fotboll, utan numera handlar allting bara om en business, allting handlar bara om att tjäna pengar på alla möjliga plan. Konsten för fotboll, känslor för fotboll, kärlek för fotboll har försvunnit otroligt mycket för att det folk håller högt är pengar, hur mycket en spelare är värd, hur mycket en klubb är värd, hur mycket vinst en klubb gör, det handlar inte om att en klubb behöver uppnå och vinna titlar och troféer utan allting bara handlar om att tjäna pengar. Och det gör mig otroligt upprörd.",
         "nlp_emotions": {
             "joy": 0.0,
-            "surprise": 0.0,
-            "fear": 0.0,
-            "anger": 0.8,
-            "disgust": 0.7,
-            "sadness": 0.6
+            "surprise": 0.053,
+            "fear": 0.105,
+            "anger": 0.474,
+            "sadness": 0.368
         },
         "hume_emotions": {
             "anger": 0.183,
@@ -65,12 +64,11 @@
         "audio_file": "audio_use/negative/2-neg.m4a",
         "transcription": " Dels min jobbsituation, att jag känner att jag har ganska mycket mer i mitt huvud och i min personlighet än vad jag gör idag och lager. Som att jag inte stimulerar min hjärna riktigt. Jag åker dit och kan allt utovinnantill. Det känns som att jag står still på ett personligt plan. Det har ändå blivit en vana, men måndagar är jobbigt. Det är det ju för de flesta. Jag suktar ju efter att ha något som jag brinner för mer, om man säger så. Den ställde jag nu i två och ett halvt år och sen jobbade jag fyra och ett halvt år på ett lager tidigare. Dels är jag en sån person som hyllar folk som gör något mer än vad jag gör, för de har ändå tagit sig dit. Men såklart känns det jobbigt efter semester, för man gör ofta bara roliga saker på semestern. Att gå till ett jobb vid sju på måndag är inte lika kul. Förut är det, men jag har vuxit upp och tagit steg som människa så att nu mer gläds jag av andras framgång, skulle jag vilja säga. Oj, den frågan har dykt upp i mitt huvud många gånger. Jag säger varje gång att jag hade aldrig klarat av det. Så det är väl min spontana känsla till just det här påståendet.",
         "nlp_emotions": {
-            "joy": 0.3,
-            "surprise": 0.2,
-            "fear": 0.4,
-            "anger": 0.1,
-            "disgust": 0.0,
-            "sadness": 0.5
+            "joy": 0.267,
+            "surprise": 0.133,
+            "fear": 0.2,
+            "anger": 0.067,
+            "sadness": 0.333
         },
         "hume_emotions": {
             "anger": 0.183,
