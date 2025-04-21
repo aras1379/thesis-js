@@ -3,7 +3,7 @@
 import os 
 import json 
 
-def save_combined_result(entry_id, result_data, output_path="results_combined.json"):
+def save_combined_result(entry_id, result_data, output_path="results_combined_rq2_rq3.json"):
     # Load existing results if file exists
     if os.path.exists(output_path):
         with open(output_path, "r", encoding="utf-8") as f:

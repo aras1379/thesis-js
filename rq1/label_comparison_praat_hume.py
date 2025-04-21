@@ -17,7 +17,7 @@ def main():
     hume_vecs    = []
 
     comp_dir = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), '..', 'comparisons')
+        os.path.join(os.path.dirname(__file__), '..', 'comparisons_rq1')
     )
 
     for fn in sorted(os.listdir(comp_dir)):

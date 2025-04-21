@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from config import audio_files, active_audio_id
 
 # Load data
-with open("results_combined.json", "r") as f:
+with open("results_combined_rq2_rq3.json", "r") as f:
     results = json.load(f)
 
 entry_id = active_audio_id

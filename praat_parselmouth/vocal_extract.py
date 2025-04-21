@@ -1,3 +1,6 @@
+## Extract vocal features to tables 
+## This file is used for RQ1 folder 
+
 import numpy as np
 import parselmouth
 from parselmouth.praat import call

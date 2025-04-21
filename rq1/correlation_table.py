@@ -12,7 +12,7 @@ LABELS = ["anger","fear","joy","sadness","surprise"]
 
 def load_all():
     comp_dir = os.path.abspath(
-        os.path.join(os.path.dirname(__file__),'..','comparisons')
+        os.path.join(os.path.dirname(__file__),'..','comparisons_rq1')
     )
     records = []
     for fn in sorted(os.listdir(comp_dir)):

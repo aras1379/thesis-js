@@ -23,7 +23,7 @@ if args.emotion.lower() == "all":
 else:
     selected_emotions = [e.strip().lower() for e in args.emotion.split(',')]
 
-combined_results_file = "results_combined.json"
+combined_results_file = "results_combined_rq2_rq3.json"
 with open(combined_results_file, "r") as f:
     combined_results = json.load(f)
 

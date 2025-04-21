@@ -1,5 +1,5 @@
 #visualize_features.py
-
+## Visualiserar alla vocal features - not in use 
 import parselmouth 
 from parselmouth.praat import call 
 import os 

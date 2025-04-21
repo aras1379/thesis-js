@@ -13,8 +13,8 @@ def normalize(d, keys):
     else:
         return {k: 0.0 for k in keys}
     
-for fn in sorted(os.listdir("comparisons")):
-    path = os.path.join("comparisons", fn)
+for fn in sorted(os.listdir("comparisons_rq1")):
+    path = os.path.join("comparisons_rq1", fn)
     data = json.load(open(path))
     entry = data["entry_id"]
 

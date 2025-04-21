@@ -8,7 +8,7 @@ from utils.categorize_vocal_emotions import rate_emotion_distances
 from config import audio_files
 
 LABELS = ['anger','fear','joy','sadness','surprise']
-out_dir = "comparisons"
+out_dir = "comparisons_rq1"
 os.makedirs(out_dir, exist_ok=True)
 
 def get_hume_label(probs):

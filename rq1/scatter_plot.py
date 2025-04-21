@@ -25,7 +25,7 @@ else:
     selected = [e for e in selected if e in LABELS]
 
 # Load soft scores from comparisons/*.json
-comp_dir = os.path.join(os.path.dirname(__file__), '..', 'comparisons')
+comp_dir = os.path.join(os.path.dirname(__file__), '..', 'comparisons_rq1')
 records = {emo: {'praat': [], 'hume': []} for emo in LABELS}
 
 for fn in sorted(os.listdir(comp_dir)):
