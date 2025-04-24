@@ -27,17 +27,21 @@ try:
     #NLP Cloud 
     raw_nlp = emotion_analyze(transcription)
     nlp_norm = normalize_emotions(raw_nlp)
-    nlp_rounded = {k: round(v, 3) for k, v in nlp_norm.items()}
+    nlp_rounded = {k: round(v, 2) for k, v in nlp_norm.items()}
 
     # Load Hume results
     hume_emotions = load_hume_average(hume_avg_file)
     print("Hume Emotions:", hume_emotions)
 
     # Get self-assessed labels 
-    raw_self = self_scores_all.get(entry_id, {})
-    self_emotions = normalize_emotions(raw_self)
+    entry_self = self_scores_all.get(entry_id, {})
+    raw_self  = entry_self.get("self_assessed", {})
     if not raw_self:
         print(f"No self-assessed scores found for {entry_id}")
+    # Now normalize that flat map of 5 numbers
+    self_emotions = normalize_emotions(raw_self)
+    self_emotions = {k: round(v, 2) for k, v in self_emotions.items()}
+
 
     # save data
     result_data = {
@@ -45,7 +49,7 @@ try:
         "transcription": transcription,
         "nlp_emotions": nlp_rounded,
         "hume_emotions": hume_emotions,
-        "self_assessed": raw_self
+        "self_assessed": self_emotions
     }
     save_combined_result(entry_id, result_data)
 

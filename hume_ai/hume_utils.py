@@ -18,19 +18,21 @@ def combine_surprise_scores(hume_dict: dict) -> float:
 
 
 TARGET_LABELS = {
-    "anger", "fear", "joy", "sadness", "surprise"
+    "anger", "joy", "sadness", "fear", "surprise"
 }
 
 def normalize_emotions(emotion_dict: dict) -> dict:
     emotion_dict = emotion_dict.copy()
 
-    if "Surprise (negative)" in emotion_dict and "Surprise (positive)" in emotion_dict:
+    if "surprise (negative)" in emotion_dict and "surprise (positive)" in emotion_dict:
         emotion_dict["surprise"] = combine_surprise_scores(emotion_dict)
-        emotion_dict.pop("Surprise (negative)", None)
-        emotion_dict.pop("Surprise (positive)", None)
+        emotion_dict.pop("surprise (negative)", None)
+        emotion_dict.pop("surprise (positive)", None)
 
     # Lowercase everything
     emotion_dict = {k.lower(): v for k, v in emotion_dict.items()}
+    
+    
 
     # Keep only target emotions
     filtered = {k: v for k, v in emotion_dict.items() if k in TARGET_LABELS or k == "time"}
@@ -39,7 +41,7 @@ def normalize_emotions(emotion_dict: dict) -> dict:
     emotion_scores = {k: v for k, v in filtered.items() if k != "time"}
     total = sum(emotion_scores.values())
 
-    # ✅ Don't round until after normalization
+    #
     if total > 0:
         normalized = {k: v / total for k, v in emotion_scores.items()}
     else:

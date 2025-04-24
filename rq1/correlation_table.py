@@ -16,10 +16,16 @@ def load_all():
     )
     records = []
     for fn in sorted(os.listdir(comp_dir)):
-        data = json.load(open(os.path.join(comp_dir, fn)))
+        # **only** process .json files
+        if not fn.lower().endswith('.json'):
+            continue
+
+        path = os.path.join(comp_dir, fn)
+        with open(path, encoding='utf-8') as f:
+            data = json.load(f)
+
         for emo in LABELS:
             h = data["hume_probs"].get(emo, np.nan)
-            # use the inverse‐distance normalized scores, not the old probs
             p = data["praat_scores"].get(emo, np.nan)
             records.append({
                 "clip": fn,

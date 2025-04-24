@@ -1,10 +1,7 @@
 {
-    "anger": 0.091,
-    "disgust": 0.016,
-    "fear": 0.025,
-    "joy": 0.041,
-    "sadness": 0.028,
-    "surprise (negative)": 0.025,
-    "surprise (positive)": 0.011,
-    "time": 62.283
+    "anger": 0.09,
+    "fear": 0.03,
+    "joy": 0.04,
+    "sadness": 0.03,
+    "surprise": 0.02
 }

@@ -17,7 +17,7 @@ parser.add_argument("--emotion", type=str, default="all",
                           "comma-separated, or 'all' for all emotions)"))
 args = parser.parse_args()
 
-all_emotion_categories = ["anger", "joy", "sadness", "fear", "disgust", "surprise"]
+all_emotion_categories = ["anger", "joy", "sadness", "fear", "surprise"]
 if args.emotion.lower() == "all":
     selected_emotions = all_emotion_categories
 else:

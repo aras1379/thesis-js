@@ -8,7 +8,7 @@ import sys
 from emotion_recognition import analyze_audio
 from fetch_results import get_analysis_results
 from average_functions import compute_average_emotions
-from hume_utils import normalize_emotions
+from hume_utils import normalize_emotions, combine_surprise_scores
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from config import audio_files, active_audio_id
@@ -48,6 +48,8 @@ if results is None:
 # Print full raw Hume result for inspection (optional)
 print(json.dumps(results, indent=4))
 
+from hume_utils import normalize_emotions, combine_surprise_scores
+
 raw_results = []
 normalized_results = []
 
@@ -55,16 +57,16 @@ try:
     for entry in results:
         predictions = entry.get("results", {}).get("predictions", [])
         for prediction in predictions:
-            prosody_model = prediction.get("models", {}).get("prosody", {})
-            grouped_predictions = prosody_model.get("grouped_predictions", [])
+            prosody_model        = prediction.get("models", {}).get("prosody", {})
+            grouped_predictions  = prosody_model.get("grouped_predictions", [])
 
             for group in grouped_predictions:
                 for segment in group.get("predictions", []):
-                    emotions = segment.get("emotions", [])
+                    emotions   = segment.get("emotions", [])
                     time_frame = segment.get("time", {})
-                    midpoint = (time_frame.get("begin", 0) + time_frame.get("end", 0)) / 2
+                    midpoint   = (time_frame.get("begin", 0) + time_frame.get("end", 0)) / 2
 
-                    # Extract only target emotions
+                    # 1) Build the dict of raw scores (still mixed-case keys)
                     raw_emotions = {
                         emo["name"]: emo["score"]
                         for emo in emotions
@@ -72,17 +74,49 @@ try:
                     }
                     raw_emotions["time"] = midpoint
 
-                    # Save lowercase raw values
+                    # 2) Lowercase all keys immediately
                     raw_entry = {k.lower(): v for k, v in raw_emotions.items()}
+
+                    # 3) Combine positive + negative surprise into one 'surprise'
+                    if "surprise (positive)" in raw_entry and "surprise (negative)" in raw_entry:
+                        raw_entry["surprise"] = combine_surprise_scores(raw_entry)
+                        raw_entry.pop("surprise (positive)", None)
+                        raw_entry.pop("surprise (negative)", None)
+                    else:
+                        # if neither channel was present, make sure we still have surprise=0
+                        raw_entry.setdefault("surprise", 0.0)
+
+                    # 4) Append to raw_results
                     raw_results.append(raw_entry)
 
-                    # Normalize for NLP comparison
-                    normalized_entry = normalize_emotions(raw_emotions)
+                    # 5) Normalize (this now only ever sees one 'surprise' key)
+                    normalized_entry = normalize_emotions(raw_entry)
                     normalized_results.append(normalized_entry)
 
 except Exception as e:
     print("Error while parsing results:", e)
     exit(1)
+
+# … later, after saving per-segment files …
+
+# --- Compute and save averages ---
+normalized_avg = compute_average_emotions(normalized_results)
+raw_avg        = compute_average_emotions(raw_results)
+
+# --- Combine surprise in the *averages* as well, just in case ---
+if "surprise (positive)" in raw_avg and "surprise (negative)" in raw_avg:
+    raw_avg["surprise"] = combine_surprise_scores(raw_avg)
+    raw_avg.pop("surprise (positive)", None)
+    raw_avg.pop("surprise (negative)", None)
+else:
+    raw_avg.setdefault("surprise", 0.0)
+
+# --- Round and persist ---
+normalized_avg_rounded = {k: round(v, 2) for k, v in normalized_avg.items()}
+raw_avg_rounded        = {k: round(v, 2) for k, v in raw_avg.items()}
+
+# … (print + json.dump as before) …
+
 
 # --- Output folders and filenames ---
 filtered_results_folder = os.path.join("hume_ai", "filtered_results")
@@ -115,8 +149,8 @@ print(f"✅ Raw emotions saved to '{raw_file}'")
 normalized_avg = compute_average_emotions(normalized_results)
 raw_avg = compute_average_emotions(raw_results)
 
-normalized_avg_rounded = {k: round(v, 3) for k, v in normalized_avg.items()}
-raw_avg_rounded = {k: round(v, 3) for k, v in raw_avg.items()}
+normalized_avg_rounded = {k: round(v, 2) for k, v in normalized_avg.items()}
+raw_avg_rounded = {k: round(v, 2) for k, v in raw_avg.items()}
 
 print("\n Normalized average (proportional, compare with NLP):")
 for k, v in normalized_avg_rounded.items():

@@ -29,11 +29,12 @@ def safe_extract_json(text):
 
 def emotion_analyze(text: str):
     prompt = (
-        "You are an emotion analysis system. "
-        "Given a Swedish text, respond only with a JSON object using these emotion labels: "
-        "joy, surprise, fear, anger, sadness. Each value must be a float between 0.0 and 1.0. "
-        "Respond with the JSON directly and nothing else.\n\n"
-        f"{text}"
+        "Du är ett avancerat system för emotionsanalys av svenska texter.\n\n"
+        "Givet följande text, GE ENDAST ett JSON-objekt med EXAKT dessa fem nycklar:\n"
+        "  anger, joy, sadness, fear, surprise\n\n"
+        "Varje värde ska vara ett decimaltal mellan 0.0 och 1.0 med tre decimaler (t.ex. 0.123).\n"
+        "Du får inte skriva något annat – bara det rena JSON-objektet.\n\n"
+        f"TEXT:\n{text}"
     )
 
     response = client.generation(
