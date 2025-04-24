@@ -3,80 +3,60 @@
         "audio_file": "audio_use/negative/1-neg.wav",
         "self_assessed": {
             "anger": 5,
+            "joy": 1,
             "sadness": 3,
-            "disgusted": 6,
             "fear": 1,
-            "concentrated": 5
+            "surprise": 1
         }
     },
     "id_002_neg":{
         "audio_file": "audio_use/negative/2-neg.wav",
         "self_assessed": {
             "anger": 6,
+            "joy": 1,
             "sadness": 3,
-            "disgusted": 1,
             "fear": 4,
-            "concentrated": 5
-        }
-    },
-    "id_003_neg":{
-        "audio_file": "audio_use/negative/3-neg.wav",
-        "self_assessed": {
-            "anger": 3,
-            "sadness": 2,
-            "disgusted": 5,
-            "fear": 2,
-            "concentrated": 5
+            "surprise": 1
         }
     },
     "id_004_neg": {
         "audio_file": "audio_use/negative/4-neg1.wav",
         "self_assessed": {
             "anger": 4,
+            "joy": 1,
             "sadness": 5,
-            "disgusted": 6,
             "fear": 2,
-            "concentrated": 5
+            "surprise": 1
         }
     },
     "id_0042_neg": {
         "audio_file": "audio_use/negative/4-neg2.wav",
         "self_assessed": {
             "anger": 4,
+            "joy": 1,
             "sadness": 6,
-            "disgusted": 1,
             "fear": 1,
-            "concentrated": 5
+            "surprise": 2
         }
     },
     "id_0043_neg": {
         "audio_file": "audio_use/negative/4-neg3.wav",
         "self_assessed": {
             "anger": 6,
+            "joy": 1,
             "sadness": 6,
-            "disgusted": 6,
             "fear": 3,
-            "concentrated": 6
+            "surprise": 1
         }
     },
     "id_005_neg": {
         "audio_file": "audio_use/negative/5-neg.wav",
         "self_assessed": {
-            "anger": 1,
-            "sadness": 2,
-            "disgusted": 3,
-            "fear": 1,
-            "concentrated": 4
-        }
-    },
-    "id_sara_neg": {
-        "audio_file": "audio_use/negative/sara-neg.wav",
-        "self_assessed": {
-            "anger": 4,
-            "sadness": 2,
-            "disgusted": 3,
+            "anger": 2,
+            "joy": 1,
+            "sadness": 3,
             "fear": 2,
-            "concentrated": 4
+            "surprise": 1
         }
     },
     "id_006_neg": {
@@ -85,11 +65,8 @@
             "anger": 4,
             "joy":1,
             "sadness": 4,
-            "disgust": 3,
             "fear": 1,
-            "surprise": 2,
-            "tiredness": 5,
-            "frustration": 5
+            "surprise": 2
         }
     },
     "id_007_neg": {
@@ -98,59 +75,112 @@
             "anger": 2,
             "joy":2,
             "sadness": 1,
-            "disgust": 6,
             "fear": 1,
-            "surprise": 1,
-            "tiredness": 3,
-            "frustration": 3
+            "surprise": 1
         }
     },
+
+    "id_010_neg": {
+        "audio_file": "audio_use/negative/10-neg.wav",
+        "self_assessed": {
+            "anger": 5,
+            "joy": 1,
+            "sadness": 3,
+            "fear": 2,
+            "surprise": 4
+        }
+    },
+    "id_011_neg": {
+        "audio_file": "audio_use/negative/11-neg.wav",
+        "self_assessed": {
+            "anger": 3,
+            "joy": 3,
+            "sadness": 2,
+            "fear": 1,
+            "surprise": 1
+        }
+    },
+    "id_012_neg": {
+        "audio_file": "audio_use/negative/12-neg.wav",
+        "self_assessed": {
+            "anger": 1,
+            "joy": 3,
+            "sadness": 1,
+            "fear": 2,
+            "surprise": 1
+        }
+    },
+    "id_013_neg": {
+        "audio_file": "audio_use/negative/13-neg.wav",
+        "self_assessed": {
+            "anger": 4,
+            "joy": 1,
+            "sadness": 4,
+            "fear": 3,
+            "surprise": 1
+        }
+    },
+    "id_014_neg": {
+        "audio_file": "audio_use/negative/14-neg.wav",
+        "self_assessed": {
+            "anger": 1,
+            "joy": 3,
+            "sadness": 1,
+            "fear": 2,
+            "surprise": 2
+        }
+    },
+    "id_015_neg": {
+        "audio_file": "audio_use/negative/15-neg.wav",
+        "self_assessed": {
+            "anger": 3,
+            "joy": 2,
+            "sadness": 2,
+            "fear": 3,
+            "surprise": 1
+        }
+    },
+
+
+    
     "id_001_pos": {
         "audio_file": "audio_use/positive/1-pos.wav",
         "self_assessed": {
+            "anger": 1,
             "joy": 6,
-            "surprised": null,
-            "concentrated": 4
+            "sadness": 1,
+            "fear": 1,
+            "surprise": 4
         }
     },
     "id_002_pos": {
         "audio_file": "audio_use/positive/2-pos.wav",
         "self_assessed": {
+            "anger": 1, 
             "joy": 6,
-            "surprised": null,
-            "concentrated": 6
-        }
-    },
-    "id_003_pos": {
-        "audio_file": "audio_use/positive/3-pos.wav",
-        "self_assessed": {
-            "joy": 5,
-            "surprised": null,
-            "concentrated": 5
+            "sadness": 1,
+            "fear": 2,
+            "surprise": 1
         }
     },
     "id_004_pos": {
         "audio_file": "audio_use/positive/4-pos.wav",
         "self_assessed": {
+            "anger": 1,
             "joy": 6,
-            "surprised": 3,
-            "concentrated": 4
+            "sadness": 1,
+            "fear": 1,
+            "surprise": 3
         }
     },
     "id_005_pos": {
         "audio_file": "audio_use/positive/5-pos.wav",
         "self_assessed": {
+            "anger": 1,
             "joy": 4,
-            "surprised": 1,
-            "concentrated": 4
-        }
-    },
-    "id_sara_pos": {
-        "audio_file": "audio_use/positive/sara-pos.wav",
-        "self_assessed": {
-            "joy": 6,
-            "surprised": 1,
-            "concentrated": 3
+            "sadness": 2,
+            "fear": 2,
+            "surprise": 2
         }
     },
     "id_006_pos": {
@@ -159,11 +189,8 @@
             "anger": 1,
             "joy": 5,
             "sadness": 1,
-            "disgust": 1,
             "fear": 1,
-            "surprise": 5,
-            "pride": 5,
-            "gratefulness": 4
+            "surprise": 5
         }
     },
     "id_007_pos": {
@@ -172,11 +199,70 @@
             "anger": 1,
             "joy": 3,
             "sadness": 1,
-            "disgust": 1,
             "fear": 1,
-            "surprise": 1,
-            "pride": 4,
-            "gratefulness": 4
+            "surprise": 1
+        }
+    },
+
+    
+    "id_010_pos": {
+        "audio_file": "audio_use/positive/10-pos.wav",
+        "self_assessed": {
+            "anger": 1,
+            "joy": 6,
+            "sadness": 4,
+            "fear": 1,
+            "surprise": 1
+        }
+    },
+    "id_011_pos": {
+        "audio_file": "audio_use/positive/11-pos.wav",
+        "self_assessed": {
+            "anger": 1,
+            "joy": 6,
+            "sadness": 1,
+            "fear": 1,
+            "surprise": 1
+        }
+    },
+    "id_012_pos": {
+        "audio_file": "audio_use/positive/12-pos.wav",
+        "self_assessed": {
+            "anger": 1,
+            "joy": 6,
+            "sadness": 1,
+            "fear": 1,
+            "surprise": 3
+        }
+    },
+    "id_013_pos": {
+        "audio_file": "audio_use/positive/13-pos.wav",
+        "self_assessed": {
+            "anger": 1,
+            "joy": 6,
+            "sadness": 1,
+            "fear": 1,
+            "surprise": 1
+        }
+    },
+    "id_014_pos": {
+        "audio_file": "audio_use/positive/14-pos.wav",
+        "self_assessed": {
+            "anger": 1,
+            "joy": 4,
+            "sadness": 1,
+            "fear": 1,
+            "surprise": 3
+        }
+    },
+    "id_015_pos": {
+        "audio_file": "audio_use/positive/15-pos.wav",
+        "self_assessed": {
+            "anger": 2,
+            "joy": 5,
+            "sadness": 1,
+            "fear": 1,
+            "surprise": 1
         }
     }
 }

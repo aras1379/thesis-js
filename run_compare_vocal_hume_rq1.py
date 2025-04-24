@@ -4,7 +4,7 @@ import os
 import json
 from praat_parselmouth.vocal_extract import extract_features
 from hume_ai.hume_utils      import load_hume_average, normalize_emotions
-from utils.categorize_vocal_emotions import rate_emotion_distances
+from utils.categorize_vocal_emotions import rate_emotion_distances, categorize_emotion_from_vocal_markers, categorize_emotion_table
 from config import audio_files
 
 LABELS = ['anger','fear','joy','sadness','surprise']
@@ -31,27 +31,34 @@ def main():
             feats = extract_features(wav)
 
             # 1) Mahalanobis–style distances from your table
-            praat_distances = rate_emotion_distances(feats)
+            #praat_distances = rate_emotion_distances(feats)
 
             # 2) Invert & normalize exactly like Hume does:
-            praat_norm = normalize_by_inverse(praat_distances)
+            #praat_norm = normalize_by_inverse(praat_distances)
+            
+            praat_cat = categorize_emotion_table(feats)
+            praat_scores = {emo: round(score, 3) for emo, score in praat_cat.items()}
+            
+            
+            
+           # praat_emotions_norm = normalize_by_inverse(praat_emotions)
 
             # 3) top Praat label from the normalized inverses
-            praat_label = max(praat_norm, key=praat_norm.get)
+            praat_label = max(praat_scores, key=praat_scores.get)
 
             # now load Hume
             raw_h      = load_hume_average(
                             f"hume_ai/filtered_results/average/{entry_id}_average_emotions.json")
             hume_probs = normalize_emotions(raw_h)
-            hume_label = get_hume_label(hume_probs)
+            hume_scores = {emo: round(score, 3) for emo, score in hume_probs.items()}
+            hume_label = get_hume_label(hume_scores)
 
             out = {
                 "entry_id":        entry_id,
                 "vocal_features":  feats,
-                "praat_distances": praat_distances,
-                "praat_scores":    praat_norm,
+                "praat_scores":    praat_scores,
                 "praat_label":     praat_label,
-                "hume_probs":      hume_probs,
+                "hume_probs":      hume_scores,
                 "hume_label":      hume_label,
             }
 

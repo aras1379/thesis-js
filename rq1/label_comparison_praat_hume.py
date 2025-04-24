@@ -21,6 +21,8 @@ def main():
     )
 
     for fn in sorted(os.listdir(comp_dir)):
+        if not fn.lower().endswith('.json'):
+            continue
         data = json.load(open(os.path.join(comp_dir, fn)))
         entry = data.get("entry_id", fn)
         filenames.append(entry)

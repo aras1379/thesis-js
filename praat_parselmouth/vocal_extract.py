@@ -28,7 +28,11 @@ def extract_features(audio_path):
 
     # 2) intensity (dB)
     intensity = snd.to_intensity()
-    mean_intensity_db = float(np.nanmean(intensity.values))
+    #mean_intensity_db = float(np.nanmean(intensity.values))
+    inten = snd.to_intensity()
+    iv = inten.values.flatten()
+    iv[iv==0] = np.nan
+    mean_intensity_db = float(np.nanmean(iv))
 
     # 3) HNR (dB)
     hnr = snd.to_harmonicity_ac(0.01, 75, 0.1, 1.0)
@@ -63,10 +67,5 @@ def extract_features(audio_path):
             "F1": round(f1, 2),
             "F2": round(f2, 2),
             "F3": round(f3, 2),
-            "B1": round(b1, 2),
-            "B2": round(b2, 2),
-            "B3": round(b3, 2),
         },
-        "voiced_length":     round(voiced_length,    2),
-        "unvoiced_length":   round(unvoiced_length,  2),
     }

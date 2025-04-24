@@ -20,7 +20,7 @@ clip = results.get(entry_id)
 hume_emotions = {k.lower(): v for k, v in clip["hume_emotions"].items() if k.lower() != "time"}
 nlp_emotions = {k.lower(): v for k, v in clip["nlp_emotions"].items()}
 
-emotion_categories = ["anger", "joy", "sadness", "fear", "disgust", "surprise"]
+emotion_categories = ["anger", "joy", "sadness", "fear", "surprise"]
 
 hume_scores = [hume_emotions.get(emo, np.nan) for emo in emotion_categories]
 nlp_scores = [nlp_emotions.get(emo, np.nan) for emo in emotion_categories]
