@@ -216,8 +216,8 @@ def compute_and_plot_composite(df):
 
 if __name__ == '__main__':
     df_clips = build_clip_level_df()
-    plot_feature_emotion_heatmap(df_clips)
-    average_cross_correlogram()
+    #plot_feature_emotion_heatmap(df_clips)
+    #average_cross_correlogram()
     df_segs = build_segment_df()
-    scatter_regression(df_segs)
+    #scatter_regression(df_segs)
     compute_and_plot_composite(df_segs)

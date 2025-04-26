@@ -1,6 +1,6 @@
 ## Compare hume value scores time to time vs pitch and intensity
 ## can add more vocal features 
-
+## ANVÄND 
 import os
 import json
 import sys
@@ -10,9 +10,10 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 # make sure your project root is on the path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
+from utils.data_utils import plot_and_save
 from config import active_audio_id, audio_files
 from rq1.micro_analysis import micro_level_analysis_all  # adjust import if needed
 TARGET_EMO = "joy"
@@ -65,6 +66,8 @@ def acoustic_vs_hume_time_series(wav_path, hume_json_path, target_emo):
     # --- make plots ---
     emo_col = f"Hume_{target_emo}"
     entry_id = os.path.splitext(os.path.basename(wav_path))[0]
+    
+    save_dir = "plots"
 
     # 1) time series: pitch + emotion
     fig, ax1 = plt.subplots(figsize=(8, 4))
@@ -78,7 +81,8 @@ def acoustic_vs_hume_time_series(wav_path, hume_json_path, target_emo):
     ax1.legend(loc="upper left")
     ax2.legend(loc="upper right")
     plt.tight_layout()
-    plt.show()
+    
+    plot_and_save(fig, f"{save_dir}/pitch_{target_emo}_{entry_id}")
 
     # 2) time series: intensity + emotion
     fig, ax1 = plt.subplots(figsize=(8, 4))
@@ -92,7 +96,7 @@ def acoustic_vs_hume_time_series(wav_path, hume_json_path, target_emo):
     ax1.legend(loc="upper left")
     ax2.legend(loc="upper right")
     plt.tight_layout()
-    plt.show()
+    plot_and_save(fig, f"{save_dir}/intensity_{target_emo}_{entry_id}")
 
     # 3) scatter: AvgPitch vs emotion, AvgIntensity vs emotion
     fig, (axp, axi) = plt.subplots(1, 2, figsize=(10, 4))

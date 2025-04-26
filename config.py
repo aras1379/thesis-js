@@ -1,7 +1,7 @@
 #config.py 
 
 #Change this to the current audio for analyzation 
-active_audio_id = "id_013_neg"
+active_audio_id = "id_006_pos"
 
 emotions_to_analyze = [
     "anger", "joy", "sadness", "surprise (positive)", 
@@ -46,6 +46,14 @@ audio_files = {
         "m4a": "audio_use/negative/7-neg.m4a",
         "wav": "audio_use/negative/7-neg.wav"
     },
+    "id_008_neg": {
+        "m4a": "audio_use/negative/8-neg.m4a",
+        "wav": "audio_use/negative/8-neg.wav"
+    },
+    "id_009_neg": {
+        "m4a": "audio_use/negative/9-neg.m4a",
+        "wav": "audio_use/negative/9-neg.wav"
+    },
     "id_010_neg":{
         "m4a": "audio_use/negative/10-neg.m4a",
         "wav": "audio_use/negative/10-neg.wav"
@@ -69,6 +77,10 @@ audio_files = {
     "id_015_neg":{
         "m4a": "audio_use/negative/15-neg.m4a",
         "wav": "audio_use/negative/15-neg.wav"
+    },
+    "id_016_neg":{
+        "m4a": "audio_use/negative/16-neg.m4a",
+        "wav": "audio_use/negative/16-neg.wav"
     },
     
     #POSITIVE 
@@ -101,6 +113,14 @@ audio_files = {
         "m4a": "audio_use/positive/7-pos.m4a",
         "wav": "audio_use/positive/7-pos.wav"
     },
+    "id_008_pos": {
+        "m4a": "audio_use/positive/8-pos.m4a",
+        "wav": "audio_use/positive/8-pos.wav"
+    },
+    "id_009_pos": {
+        "m4a": "audio_use/positive/9-pos.m4a",
+        "wav": "audio_use/positive/9-pos.wav"
+    },
     "id_010_pos":{
         "m4a": "audio_use/positive/10-pos.m4a",
         "wav": "audio_use/positive/10-pos.wav"
@@ -124,5 +144,9 @@ audio_files = {
     "id_015_pos":{
         "m4a": "audio_use/positive/15-pos.m4a",
         "wav": "audio_use/positive/15-pos.wav"
+    },
+    "id_016_pos":{
+        "m4a": "audio_use/positive/16-pos.m4a",
+        "wav": "audio_use/positive/16-pos.wav"
     }
 }

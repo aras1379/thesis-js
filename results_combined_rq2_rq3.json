@@ -648,5 +648,155 @@
             "fear": 0.27,
             "surprise": 0.09
         }
+    },
+    "id_016_pos": {
+        "audio_file": "audio_use/positive/16-pos.m4a",
+        "transcription": " En gång när jag har varit väldigt väldigt glad var när jag hade suttit i studion med min pappa och vi hade mixrat och mastrat en låt i typ sju timmar och det var äntligen klart och det var den första låten som vi gjorde ihop och då var jag glad. Det var en av de bästa gångerna som jag kan komma ihåg på senaste. Levande, kreativ, som att man har någonting att tillföra. Man känner att det inte finns några problem med någonting. Så känns det. Samma sak där, det finns inga problem någonstans. Man är bara där och har kul. Ser det inte som ett jobb utan man bara gör någonting som man själv tycker är roligt och man bara njuter. Om det är folk. Ibland är det inte folk och då är det tungt och då är det inte lika kul. Men oftast så är det kul. Musik är nice. Så när jag är ute och spelar eller sitter i studion med pappa, det är det bästa som finns.",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 0.88,
+            "sadness": 0.12,
+            "fear": 0.0,
+            "surprise": 0.0
+        },
+        "hume_emotions": {
+            "anger": 0.28,
+            "fear": 0.14,
+            "joy": 0.21,
+            "sadness": 0.24,
+            "surprise": 0.13
+        },
+        "self_assessed": {
+            "anger": 0.1,
+            "joy": 0.6,
+            "sadness": 0.1,
+            "fear": 0.1,
+            "surprise": 0.1
+        }
+    },
+    "id_016_neg": {
+        "audio_file": "audio_use/negative/16-neg.m4a",
+        "transcription": " Senast nu i veckan när jag var på gymmet med min lillebror som var på besök så stod han och tränade och då var hon bakom honom och så började hon prata med några random personer och bara jag längtar efter rättegången, jag hoppas han blir avstängd härifrån för att min lillebror var där. Så det gjorde mig sur, dels för att hon står och liksom tycker att det är ganska roligt antar jag, det känns som att hon gläds ganska mycket över det liksom och bryr sig så lite om hennes image att hon känner att ja men jag kan gå och prata om det här högt så att hans brorsa liksom, för hon kan ju inte säga det direkt till mig så då ser hon det högt när han står bredvid istället. Nej det gör mig arg men det gör han arg också så det är lugnt. Ja hon är ganska sjuk, alltså det är fett jobbigt att alltid gå och känna att hon ska bara förstöra saker och vara i vägen typ. Man vet ju aldrig hur långt hon kommer gå med saker och ting och jag tror att hon kan gå ganska långt med vad som helst och ljuga om vad som helst bara för att mitt liv ska vara illa men samtidigt så är det ju hon som får lägga tid på det, det behöver inte jag lägga tid på. Så det är skönt på det sättet att man lägger upp det så men man går ju och blir irriterad på det att en person bara orkar typ. Men sen har hon ju försökt dra av sig genom sina kompisar och genom annat så. Hon har ju försökt men det har ju inte gått så bra för henne hittills.",
+        "nlp_emotions": {
+            "anger": 0.29,
+            "joy": 0.1,
+            "sadness": 0.33,
+            "fear": 0.18,
+            "surprise": 0.1
+        },
+        "hume_emotions": {
+            "anger": 0.29,
+            "fear": 0.17,
+            "joy": 0.18,
+            "sadness": 0.26,
+            "surprise": 0.1
+        },
+        "self_assessed": {
+            "anger": 0.44,
+            "joy": 0.11,
+            "sadness": 0.22,
+            "fear": 0.11,
+            "surprise": 0.11
+        }
+    },
+    "id_008_neg": {
+        "audio_file": "audio_use/negative/8-neg.m4a",
+        "transcription": " I min vardag förmodar jag att jag blir argast mest om jag typ stöter på någon som fuskar i spelen jag kör på för att jag ser inte syftet med att göra det. Jag förstår inte varför man skulle göra någon sån sak för ingen blir imponerad. Så jag antar att jag blir arg på dem bara för att jag kan inte se var de kommer ifrån, vad vinster med att spela den eller om jag förstörer för alla andra. Så det är om man går av på det och de är någon typ av sadist liknande människa. Men jag förstår verkligen inte det, jag blir arg. Om jag märker att det är uppenbart, för ibland kalas det och då är det inte det. Men om jag märker att det är uppenbart så svär jag väl. Försöker kalla någon en hemsk sak, att han liksom inte är bra. Försöker få genom kommunikation, antingen skriver jag eller så säger jag någonting för att förmedla min frustration för honom. Det förbluffar mig liksom så jag blir arg för jag fattar inte varför någon skulle slösa tid och andras tid på något sånt vis.",
+        "nlp_emotions": {
+            "anger": 0.74,
+            "joy": 0.0,
+            "sadness": 0.17,
+            "fear": 0.0,
+            "surprise": 0.09
+        },
+        "hume_emotions": {
+            "anger": 0.32,
+            "fear": 0.17,
+            "joy": 0.22,
+            "sadness": 0.22,
+            "surprise": 0.08
+        },
+        "self_assessed": {
+            "anger": 0.33,
+            "joy": 0.11,
+            "sadness": 0.22,
+            "fear": 0.11,
+            "surprise": 0.22
+        }
+    },
+    "id_009_neg": {
+        "audio_file": "audio_use/negative/9-neg.m4a",
+        "transcription": " Just nu så är jag lite irriterad på samhället när det kommer till att allt är så dyrt, alla matpriser och så. Det är inte lätt som student, tycker inte jag, att kunna försörja sig och samtidigt ha kul, men det kostar ju också pengar. Och lite nu så när man ska söka jobb, att det är svårt att få lärartjänst i och med att det är mycket vikarier och sånt istället. För att de kanske är billigare att anställa än att anställa en nyexad lärare. Det var ju vad jag hade kommit på just nu i alla fall. Ja, alltså, innan var det ju mycket enklare att kunna gå och handla och kunna kanske köpa lite mer än vad man ville. Men nu får man ju ha en lista och kolla på extrapris och så, att det inte blir för dyrt. Toapapper kostar ju nästan typ 60 kronor liksom och då känns det ju inte så jättekul att betala. Men jag tänker också på alla andra som kanske har det svårt att inte ha mycket pengar alls. Hur jobbigt det kan vara att gå och handla, vilken ångest. Och så, jag tycker också det är väldigt för mycket dyrt här när det kommer till till exempel buss och annan trafik. Jag tycker det är jättedåligt att man kan åka en timme på en bussbiljett som kostar 40 kronor och sen får du köpa en till. Det är 80 kronor. Det är svindyrt. Och likaså om man ska åka tåg. Nu fick jag betala 160 kronor för att åka hem. Likaså med busskort. Det har också blivit jättedyrt. Innan kostade det 500, nu kostar det 600 nästan. Och det är studentpris liksom. Så jag tycker... Ja, det är jag väl lite sur på. Att det är så himla dyrt hela tiden. Och kläder har också blivit jättedyrt. Och det är tråkigt. För alla kan inte bara gå och handla och köpa där de vill utan det tar emot lite också.",
+        "nlp_emotions": {
+            "anger": 0.44,
+            "joy": 0.06,
+            "sadness": 0.35,
+            "fear": 0.12,
+            "surprise": 0.03
+        },
+        "hume_emotions": {
+            "anger": 0.27,
+            "fear": 0.14,
+            "joy": 0.34,
+            "sadness": 0.12,
+            "surprise": 0.13
+        },
+        "self_assessed": {
+            "anger": 0.33,
+            "joy": 0.11,
+            "sadness": 0.33,
+            "fear": 0.11,
+            "surprise": 0.11
+        }
+    },
+    "id_009_pos": {
+        "audio_file": "audio_use/positive/9-pos.m4a",
+        "transcription": " när vi tog studenten 2018. Jag kan helt klart säga att det är en av de bästa dagarna i hela mitt liv. Jag har aldrig varit så glad och känt mig så uppskattad av vänner och familj. De är umgyckliga med, var ju nära vänner i klassen och min bästa kompis. Vilket gjorde det mycket roligare. Och sen så var det ju roliga dagar därefter. Vi gick på bal, det var också väldigt kul, man fick känna sig lite fin. Studentresa var också väldigt roligt. Ganska bekymmersfri. Men det är i alla fall, studentdagen skulle jag säga är en dag då jag känner mig väldigt glad och bekymmersfri. Och jag antar också att jag kommer känna så nu i och med examen. Jag hoppas jag får samma euferi. Kanske inte lika... Kanske inte lika glad på så sätt med alkoholmängden. Men ändå glad, skulle jag säga. Det kommer jag vara.",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 0.86,
+            "sadness": 0.1,
+            "fear": 0.0,
+            "surprise": 0.05
+        },
+        "hume_emotions": {
+            "anger": 0.23,
+            "fear": 0.13,
+            "joy": 0.42,
+            "sadness": 0.13,
+            "surprise": 0.1
+        },
+        "self_assessed": {
+            "anger": 0.11,
+            "joy": 0.56,
+            "sadness": 0.11,
+            "fear": 0.11,
+            "surprise": 0.11
+        }
+    },
+    "id_008_pos": {
+        "audio_file": "audio_use/positive/8-pos.m4a",
+        "transcription": " Vi var i Finland och Jesper blev superfull och däckade innan tolvslaget och skulle inte hänga med ut. Alla skrattade åt honom, han låg och spydde och grejer och jäklades med honom. Men sen hängde han med ut ändå och då blev alla lika glada fast på ett annat vis. Då pekade alla på honom och sa att det var sjukaste att han kom tillbaka och festade med honom sen. Så det var jävligt roligt, alla tyckte det var jävligt kul och då blev det automatiskt roligare för alla hade det jävligt nice den kvällen. Överlag var den en väldigt rolig resa där alla hade kul, vilket smittar sig. Det var kanon hela tiden skulle jag säga, även när man mådde illa från gårdagens bravade så var alla nöjda med resan vilket är skönt. Det var väldigt nice att alla andra trivdes också, det smittade av sig bra. Vi var glada hela tiden skulle jag säga, skämtade och skrattade mycket under resan. Åtget också, så det var en succé hela den upplevelsen.",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 0.81,
+            "sadness": 0.0,
+            "fear": 0.0,
+            "surprise": 0.19
+        },
+        "hume_emotions": {
+            "anger": 0.12,
+            "fear": 0.1,
+            "joy": 0.6,
+            "sadness": 0.1,
+            "surprise": 0.08
+        },
+        "self_assessed": {
+            "anger": 0.11,
+            "joy": 0.56,
+            "sadness": 0.11,
+            "fear": 0.11,
+            "surprise": 0.11
+        }
     }
 }

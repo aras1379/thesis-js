@@ -1,8 +1,11 @@
-import os
+# USE 
+import os, sys 
 import json
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.data_utils import plot_and_save
 # Define your emotions of interest here:
 emotions_to_analyze = ["anger","fear","joy","sadness","surprise"]
 
@@ -33,13 +36,10 @@ def build_comparison_table(comparisons_dir="comparisons_rq1"):
     df = pd.DataFrame(records).set_index("entry_id")
     return df
 
-def build_comparison_diagram():
-    # Configuration
-    comparisons_dir = "comparisons_rq1"
+def build_comparison_diagram(comparisons_dir="comparisons_rq1", save_dir="plots"):
     emotions = ["anger", "fear", "joy", "sadness", "surprise"]
     width = 0.2  # horizontal offset for scatter
 
-    # Load all data into lists
     records = []
     for fn in sorted(os.listdir(comparisons_dir)):
         if not fn.endswith("_vocal_vs_hume.json"):
@@ -55,52 +55,54 @@ def build_comparison_diagram():
                 "hume_score":  hume.get(emo,  np.nan)
             })
 
-    # Organize by emotion
     fig, ax = plt.subplots(figsize=(10, 6))
     x_positions = np.arange(len(emotions))
 
-    for i, emo in enumerate(emotions):
-        # extract scores for this emotion across clips
-        praat_vals = [r["praat_score"] for r in records if r["emotion"] == emo]
-        hume_vals  = [r["hume_score"]  for r in records if r["emotion"] == emo]
-        # scatter plot with slight x-offset
-        ax.scatter(
-            np.full(len(praat_vals), x_positions[i] - width/2),
-            praat_vals,
-            label="Praat (Audio)" if i == 0 else "",
-            marker="o",
-            alpha=0.7
-        )
-        ax.scatter(
-            np.full(len(hume_vals), x_positions[i] + width/2),
-            hume_vals,
-            label="Hume (Speech AI)" if i == 0 else "",
-            marker="s",
-            alpha=0.7
-        )
+    # 1️⃣ Scatter plots med fasta färger
+    praat_color = 'tab:blue'
+    hume_color  = 'tab:orange'
 
-        # Mean lines
-        praat_means = [np.nanmean([r["praat_score"] for r in records if r["emotion"] == emo]) for emo in emotions]
-        hume_means  = [np.nanmean([r["hume_score"]  for r in records if r["emotion"] == emo]) for emo in emotions]
-        ax.plot(x_positions - width/2, praat_means, linestyle="--", marker="o", label="Praat Mean")
-        ax.plot(x_positions + width/2, hume_means,  linestyle="--", marker="s", label="Hume Mean")
+    # for i, emo in enumerate(emotions):
+    #     praat_vals = [r["praat_score"] for r in records if r["emotion"] == emo]
+    #     hume_vals  = [r["hume_score"]  for r in records if r["emotion"] == emo]
+    #     ax.scatter(
+    #         np.full(len(praat_vals), x_positions[i] - width/2),
+    #         praat_vals,
+    #         label="Praat (Audio)" if i == 0 else "",
+    #         marker="o",
+    #         alpha=0.7,
+    #         color=praat_color
+    #     )
+    #     ax.scatter(
+    #         np.full(len(hume_vals), x_positions[i] + width/2),
+    #         hume_vals,
+    #         label="Hume (Speech AI)" if i == 0 else "",
+    #         marker="s",
+    #         alpha=0.7,
+    #         color=hume_color
+    #     )
 
-        # Formatting
-        ax.set_xticks(x_positions)
-        ax.set_xticklabels([e.title() for e in emotions], rotation=45)
-        ax.set_ylabel("Score")
-        ax.set_title("Praat vs. Hume Emotion Scores Across All Clips")
-        ax.legend()
-        plt.tight_layout()
+    # 2️⃣ Mean lines
+    praat_means = [np.nanmean([r["praat_score"] for r in records if r["emotion"] == emo]) for emo in emotions]
+    hume_means  = [np.nanmean([r["hume_score"]  for r in records if r["emotion"] == emo]) for emo in emotions]
+    ax.plot(x_positions - width/2, praat_means, linestyle="--", marker="o", label="Praat Mean", color=praat_color)
+    ax.plot(x_positions + width/2, hume_means,  linestyle="--", marker="s", label="Hume Mean", color=hume_color)
 
-        # Save and show
-        output_dir = "exports"
-        os.makedirs(output_dir, exist_ok=True)
-        out_path = os.path.join(output_dir, "praat_hume_all_clips_scatter.png")
-        fig.savefig(out_path)
-        plt.show()
+    # Formatting
+    ax.set_xticks(x_positions)
+    ax.set_xticklabels([e.title() for e in emotions], rotation=45)
+    ax.set_ylabel("Score")
+    ax.set_title("Praat vs. Hume Emotion Scores Across All Clips")
+    ax.legend()
+    plt.tight_layout()
 
-        print(f"Saved visual comparison: {out_path}")
+    # Save and show
+    os.makedirs(save_dir, exist_ok=True)
+    filename = os.path.join(save_dir, "praat_hume_all_clips_scatter")
+    plot_and_save(fig, filename)
+
+    print(f"Saved visual comparison: {filename}.pdf")
+
         
 def main():
     comp_dir = "comparisons_rq1"

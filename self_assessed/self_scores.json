@@ -160,6 +160,16 @@
             "surprise": 1
         }
     },
+    "id_016_neg":{
+        "audio_file": "audio_use/negative/16-neg.wav",
+        "self_assessed": {
+            "anger": 4,
+            "joy": 1,
+            "sadness": 2,
+            "fear":1,
+            "surprise":1
+        }
+    },
 
 
     
@@ -301,6 +311,16 @@
             "sadness": 1,
             "fear": 1,
             "surprise": 1
+        }
+    },
+    "id_016_pos":{
+        "audio_file": "audio_use/positive/16-pos.wav",
+        "self_assessed": {
+            "anger": 1,
+            "joy": 6,
+            "sadness": 1,
+            "fear":1,
+            "surprise":1
         }
     }
 }

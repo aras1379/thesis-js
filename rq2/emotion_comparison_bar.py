@@ -7,6 +7,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import audio_files, active_audio_id
+from utils.data_utils import plot_and_save
 
 # Load data
 with open("results_combined_rq2_rq3.json", "r") as f:
@@ -41,7 +42,12 @@ ax.set_xticklabels(emotion_categories, rotation=45)
 ax.legend()
 plt.tight_layout()
 plt.show()
+output_dir = "plots_rq2"
+os.makedirs(output_dir, exist_ok=True)
+plot_filename = os.path.join(output_dir, f"speech_vs_text_emotions_{entry_id}")
+plot_and_save(fig, plot_filename)
 
+print(f"Saved comparison plot: {plot_filename}.pdf")
 # Create and print DataFrame
 df = pd.DataFrame({
     "Emotion": [e.title() for e in emotion_categories],
@@ -53,7 +59,7 @@ print("\nComparison Table:")
 print(df.to_string(index=False))
 
 # Save to Excel
-output_dir = "exports"
+output_dir = "exports_rq2"
 os.makedirs(output_dir, exist_ok=True)
 excel_filename = f"emotion_scores_comparison_{entry_id}.xlsx"
 excel_path = os.path.join(output_dir, excel_filename)

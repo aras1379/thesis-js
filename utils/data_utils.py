@@ -3,9 +3,19 @@ import json
 import glob
 import numpy as np
 from config import emotions_to_analyze  
-
+import matplotlib.pyplot as plt
 import json
 import os
+
+def plot_and_save(fig, filename, show_plot=True):
+    # Spara som PDF
+    fig.savefig(f"{filename}.pdf", bbox_inches='tight')
+    
+    # Visa om du vill
+    if show_plot:
+        plt.show()
+    else:
+        plt.close(fig)
 
 ACOUSTIC_STATS_PATH = os.path.join(os.path.dirname(__file__), "acoustic_stats.json")
 
