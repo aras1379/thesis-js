@@ -1,0 +1,32 @@
+{
+    "entry_id": "id_010_neg",
+    "vocal_features": {
+        "mean_pitch_st": 5.23,
+        "mean_pitch_hz": 202.89,
+        "mean_intensity_db": 63.99,
+        "mean_hnr_db": 9.73,
+        "jitter_local": 0.0259,
+        "shimmer_local": 0.1389,
+        "formants_hz": {
+            "F1": 646.07,
+            "F2": 1982.82,
+            "F3": 2906.52
+        }
+    },
+    "praat_scores": {
+        "joy": 0.31,
+        "fear": 0.188,
+        "anger": 0.188,
+        "surprise": 0.188,
+        "sadness": 0.127
+    },
+    "praat_label": "joy",
+    "hume_probs": {
+        "anger": 0.242,
+        "fear": 0.152,
+        "joy": 0.293,
+        "sadness": 0.182,
+        "surprise": 0.131
+    },
+    "hume_label": "joy"
+}

@@ -10,7 +10,7 @@ from config import audio_files, active_audio_id
 from utils.data_utils import plot_and_save
 
 # Load data
-with open("results_combined_rq2_rq3.json", "r") as f:
+with open("results_combined_normalized_percent.json", "r") as f:
     results = json.load(f)
 
 entry_id = active_audio_id
@@ -48,7 +48,7 @@ plot_filename = os.path.join(output_dir, f"speech_vs_text_emotions_{entry_id}")
 plot_and_save(fig, plot_filename)
 
 print(f"Saved comparison plot: {plot_filename}.pdf")
-# Create and print DataFrame
+
 df = pd.DataFrame({
     "Emotion": [e.title() for e in emotion_categories],
     "Hume (Speech-Based)": hume_scores,

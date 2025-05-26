@@ -17,14 +17,24 @@ def extract_features(audio_path):
     else:
         snd = audio_path
    
-
+    duration = snd.get_total_duration()
+    if duration < 2.0:
+        pitch_floor = 100
+    else:
+        pitch_floor = 75
+        
+    try:
+        pitch = snd.to_pitch(time_step=0.01, pitch_floor=pitch_floor, pitch_ceiling=500)
+    except parselmouth.PraatError:
+        # If it still fails, fallback to higher pitch_floor
+        pitch = snd.to_pitch(time_step=0.01, pitch_floor=120, pitch_ceiling=500)
     # 1) pitch → semitones above 150 Hz
-    pitch = snd.to_pitch()
     freqs = pitch.selected_array['frequency']
     freqs[freqs == 0] = np.nan
     mean_hz = float(np.nanmean(freqs))
     mean_pitch_st = 12 * np.log2(mean_hz / 150.0)
     mean_pitch_hz = round(mean_hz, 2)
+
 
     # 2) intensity (dB)
     intensity = snd.to_intensity()
@@ -33,6 +43,8 @@ def extract_features(audio_path):
     iv = inten.values.flatten()
     iv[iv==0] = np.nan
     mean_intensity_db = float(np.nanmean(iv))
+    mean_intensity_st = 12*np.log2(mean_intensity_db / 61.0)
+    
 
     # 3) HNR (dB)
     hnr = snd.to_harmonicity_ac(0.01, 75, 0.1, 1.0)
@@ -58,6 +70,7 @@ def extract_features(audio_path):
     return {
         "mean_pitch_st":     round(mean_pitch_st,    2),
         "mean_pitch_hz":     mean_pitch_hz,
+        "mean_intensity_st": round(mean_intensity_st, 2),
         "mean_intensity_db": round(mean_intensity_db,2),
         "mean_hnr_db":       round(mean_hnr_db,      2),
         "jitter_local":      round(jitter_local,     4),

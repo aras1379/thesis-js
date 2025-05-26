@@ -1,0 +1,14 @@
+{
+    "mean_pitch_st": 4.69,
+    "mean_pitch_hz": 196.66,
+    "mean_intensity_st": 0.77,
+    "mean_intensity_db": 63.77,
+    "mean_hnr_db": 9.97,
+    "jitter_local": 0.027,
+    "shimmer_local": 0.1427,
+    "formants_hz": {
+        "F1": 409.57,
+        "F2": 1791.89,
+        "F3": 2704.16
+    }
+}

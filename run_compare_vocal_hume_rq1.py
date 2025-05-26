@@ -1,74 +1,95 @@
-# build_comparisons_with_probs.py
+# run_compare_vocal_hume 
 
 import os
 import json
 from praat_parselmouth.vocal_extract import extract_features
 from hume_ai.hume_utils      import load_hume_average, normalize_emotions
-from utils.categorize_vocal_emotions import rate_emotion_distances, categorize_emotion_from_vocal_markers, categorize_emotion_table
+from utils.categorize_vocal_emotions import categorise_emotion_all_scores,  categorize_emotion_table
 from config import audio_files
+from rq1.config_rq1 import INPUT_DIR_V3, EMO_LABELS
 
-LABELS = ['anger','fear','joy','sadness','surprise']
-out_dir = "comparisons_rq1"
-os.makedirs(out_dir, exist_ok=True)
+OUT_DIR = INPUT_DIR_V3
+features_dir = os.path.join(OUT_DIR, "features_cache")
+os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(features_dir, exist_ok=True)
+
 
 def get_hume_label(probs):
-    p = {k.lower():v for k,v in probs.items() if k.lower() in LABELS}
+    p = {k.lower(): v for k, v in probs.items() if k.lower() in EMO_LABELS}
     return max(p, key=p.get) if p else "unknown"
 
+
 def normalize_by_inverse(distances, eps=1e-6):
-    """
-    Turn a {emo: distance} dict into a normalized {emo: score} 
-    by inverting and dividing by the total.
-    """
+
     inv = {emo: 1.0/(dist + eps) for emo, dist in distances.items()}
     total = sum(inv.values())
     return {emo: score/total for emo, score in inv.items()}
 
+
 def main():
     for entry_id, paths in audio_files.items():
         wav = paths["wav"]
+        feat_file = os.path.join(features_dir, f"{entry_id}_feats.json")
+
         try:
-            feats = extract_features(wav)
+            # Load or extract features 
+            if os.path.exists(feat_file):
+                with open(feat_file, 'r') as f:
+                    feats = json.load(f)
+            else:
+                feats = extract_features(wav)
+                with open(feat_file, 'w') as f:
+                    json.dump(feats, f, indent=4)
 
-            # 1) Mahalanobis–style distances from your table
-            #praat_distances = rate_emotion_distances(feats)
+            # Rule-based scoring 
+            praat_list = categorise_emotion_all_scores(
+                feats,
+                K_NEAR=1.2,
+                k_extreme=1.0,
+                K_EXTREME_PER_EMO={
+                    "joy":0.7,
+                    "anger":1.3,
+                    "sadness":1.0,
+                    "fear":1.0,
+                    "surprise":1.0
+                },
+      
+            )
+            praat_scores = {emo: round(score, 2) for emo, score in dict(praat_list).items()}
 
-            # 2) Invert & normalize exactly like Hume does:
-            #praat_norm = normalize_by_inverse(praat_distances)
-            
-            praat_cat = categorize_emotion_table(feats)
-            praat_scores = {emo: round(score, 3) for emo, score in praat_cat.items()}
-            
-            
-            
-           # praat_emotions_norm = normalize_by_inverse(praat_emotions)
+            # normalize 
+            praat_norm = normalize_emotions(praat_scores)
+            praat_norm_round = {emo: round(score, 3) for emo, score in praat_norm.items()}
 
-            # 3) top Praat label from the normalized inverses
-            praat_label = max(praat_scores, key=praat_scores.get)
+            # pick your top label 
+            praat_label = get_hume_label(praat_norm_round)
 
-            # now load Hume
+            # load Hume
             raw_h      = load_hume_average(
-                            f"hume_ai/filtered_results/average/{entry_id}_average_emotions.json")
+                f"hume_ai/filtered_results/average/{entry_id}_average_emotions.json"
+            )
             hume_probs = normalize_emotions(raw_h)
             hume_scores = {emo: round(score, 3) for emo, score in hume_probs.items()}
             hume_label = get_hume_label(hume_scores)
 
+            # output combined JSON
             out = {
-                "entry_id":        entry_id,
-                "vocal_features":  feats,
-                "praat_scores":    praat_scores,
-                "praat_label":     praat_label,
-                "hume_probs":      hume_scores,
-                "hume_label":      hume_label,
+                "entry_id":       entry_id,
+                "vocal_features": feats,
+                "praat_scores":   praat_norm_round,
+                "praat_label":    praat_label,
+                "hume_probs":     hume_scores,
+                "hume_label":     hume_label,
             }
 
-            with open(os.path.join(out_dir, f"{entry_id}_vocal_vs_hume.json"), "w") as f:
+            with open(os.path.join(OUT_DIR, f"{entry_id}_vocal_vs_hume.json"), "w") as f:
                 json.dump(out, f, indent=4)
 
-            print("✅", entry_id)
+            print("ok", entry_id)
 
         except Exception as e:
             print(f"[!] {entry_id}: {e}")
+
 
 if __name__ == "__main__":
     main()

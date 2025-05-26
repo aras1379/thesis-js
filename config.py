@@ -1,7 +1,13 @@
 #config.py 
+INPUT_RQ2_RQ3 = "results_combined_rq2_rq3.json"
+INPUT_DIR_OLD = "comparisons_rq1_2"
+INPUT_DIR_V3 = "new_rq_run_V4"
+INPUT_DIR_V0 = "new_rq_run_V0"
+EXPORT_DIR = "THESIS_NEW"
+PLOT_DIR = "THESIS_PLOTS"
 
 #Change this to the current audio for analyzation 
-active_audio_id = "id_006_pos"
+active_audio_id = "id_006_neg"
 
 emotions_to_analyze = [
     "anger", "joy", "sadness", "surprise (positive)", 
@@ -17,22 +23,12 @@ audio_files = {
         "m4a": "audio_use/negative/2-neg.m4a",
         "wav": "audio_use/negative/2-neg.wav"
     },
-    "id_003_neg":{
-        "m4a": "audio_use/negative/3-neg.m4a",
-        "wav": "audio_use/negative/3-neg.wav"
-    },
+  
     "id_004_neg": {
         "m4a": "audio_use/negative/4-neg1.m4a",
         "wav": "audio_use/negative/4-neg1.wav"
     },
-    "id_0042_neg": {
-        "m4a": "audio_use/negative/4-neg2.m4a",
-        "wav": "audio_use/negative/4-neg2.wav"
-    },
-    "id_0043_neg": {
-        "m4a": "audio_use/negative/4-neg3.m4a",
-        "wav": "audio_use/negative/4-neg3.wav"
-    },
+
     "id_005_neg": {
         "m4a": "audio_use/negative/5-neg.m4a",
         "wav": "audio_use/negative/5-neg.wav"
@@ -92,10 +88,7 @@ audio_files = {
         "m4a": "audio_use/positive/2-pos.m4a",
         "wav": "audio_use/positive/2-pos.wav"
     },
-    "id_003_pos": {
-        "m4a": "audio_use/positive/3-pos.m4a",
-        "wav": "audio_use/positive/3-pos.wav"
-    },
+ 
     "id_004_pos": {
         "m4a": "audio_use/positive/4-pos.m4a",
         "wav": "audio_use/positive/4-pos.wav"
@@ -148,5 +141,5 @@ audio_files = {
     "id_016_pos":{
         "m4a": "audio_use/positive/16-pos.m4a",
         "wav": "audio_use/positive/16-pos.wav"
-    }
+    },
 }

@@ -29,26 +29,7 @@
             "surprise": 1
         }
     },
-    "id_0042_neg": {
-        "audio_file": "audio_use/negative/4-neg2.wav",
-        "self_assessed": {
-            "anger": 4,
-            "joy": 1,
-            "sadness": 6,
-            "fear": 1,
-            "surprise": 2
-        }
-    },
-    "id_0043_neg": {
-        "audio_file": "audio_use/negative/4-neg3.wav",
-        "self_assessed": {
-            "anger": 6,
-            "joy": 1,
-            "sadness": 6,
-            "fear": 3,
-            "surprise": 1
-        }
-    },
+ 
     "id_005_neg": {
         "audio_file": "audio_use/negative/5-neg.wav",
         "self_assessed": {

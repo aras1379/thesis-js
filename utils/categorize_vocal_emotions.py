@@ -3,20 +3,7 @@
 
 #Could be much more improved but i give up now 
 
-import os
-import json
-import sys 
-import parselmouth
-
-from praat_parselmouth.vocal_extract import extract_features
-from pathlib import Path
-import json
-import os
-
-import math
-from math import log, pi
-from utils.data_utils import z_score
-from typing import Dict, Tuple
+from typing import Dict, Tuple, List
 
 FEATURE_STATS = {
     "pitch": {
@@ -101,132 +88,6 @@ FEATURE_STATS = {
 # A single definition of EMOTIONS:
 EMOTIONS = ["anger","joy","fear","sadness","surprise"]  # or list(FEATURE_STATS["jitter_local"].keys())
 
-def categorize_emotion_from_table2(feats):
-    # pull out exactly those six features, converting formants from Hz→kHz
-    flat = {
-        "jitter_local":   feats["jitter_local"],
-        "shimmer_local":  feats["shimmer_local"],
-        "mean_hnr_db":    feats["mean_hnr_db"],
-        "F1": feats["formants_hz"]["F1"] / 1000.0,
-        "F2": feats["formants_hz"]["F2"] / 1000.0,
-        "F3": feats["formants_hz"]["F3"] / 1000.0,
-    }
-    distances = {}
-    for emo in EMOTIONS:
-        total = 0.0
-        for feat, x in flat.items():
-            mu, sd = FEATURE_STATS[feat][emo]
-            if sd>0 and x is not None and not math.isnan(x):
-                z = (x - mu)/sd
-                total += z*z
-        distances[emo] = total
-    return min(distances, key=distances.get)
-
-def classify_segment(audio_path: str, t_mid: float, window: float):
-    snd     = parselmouth.Sound(audio_path)
-    snippet = snd.extract_part(t_mid-window, t_mid+window, preserve_times=True)
-    feats   = extract_features(snippet)
-
-    # build distances exactly as in your table‐classifier
-    flat = {
-        "jitter_local":   feats["jitter_local"],
-        "shimmer_local":  feats["shimmer_local"],
-        "mean_hnr_db":    feats["mean_hnr_db"],
-        "F1": feats["formants_hz"]["F1"]/1000.0,
-        "F2": feats["formants_hz"]["F2"]/1000.0,
-        "F3": feats["formants_hz"]["F3"]/1000.0,
-    }
-
-    dists = {}
-    for emo in EMOTIONS:
-        total = 0.0
-        for feat, x in flat.items():
-            mu, sd = FEATURE_STATS[feat][emo]
-            if sd>0 and x is not None and not math.isnan(x):
-                z = (x - mu)/sd
-                total += z*z
-        dists[emo] = total
-
-    print(f"[t={t_mid:.2f}s] distances →", {k:round(v,2) for k,v in dists.items()})
-    # pick the minimal distance
-    return min(dists, key=dists.get)
-
-def categorize_emotion_from_table_full(sound_or_path, t_mid: float, window: float):
-    """
-    Returns a dict {emotion: Mahalanobis‑distance} for the snippet
-    around t_mid ± window seconds.
-    """
-    # 1) get a Sound object
-    if isinstance(sound_or_path, str):
-        snd = parselmouth.Sound(sound_or_path)
-    else:
-        snd = sound_or_path
-
-    # 2) extract the snippet
-    snippet = snd.extract_part(from_time=t_mid - window,
-                               to_time  =t_mid + window,
-                               preserve_times=True)
-
-    # 3) pull features from that snippet
-    feats = extract_features(snippet)
-
-    # flatten out the six table‑features (formants in kHz!)
-    flat = {
-        "jitter_local":  feats["jitter_local"],
-        "shimmer_local": feats["shimmer_local"],
-        "mean_hnr_db":   feats["mean_hnr_db"],
-        "F1":            feats["formants_hz"]["F1"]  / 1000.0,
-        "F2":            feats["formants_hz"]["F2"]  / 1000.0,
-        "F3":            feats["formants_hz"]["F3"]  / 1000.0,
-    }
-
-    # 4) compute squared‑z Mahalanobis sum for each emotion
-    distances = {}
-    for emo in EMOTIONS:
-        total = 0.0
-        for feat_name, x in flat.items():
-            mu, sd = FEATURE_STATS[feat_name][emo]
-            if sd > 0 and x is not None and not math.isnan(x):
-                z = (x - mu) / sd
-                total += z*z
-        distances[emo] = total
-
-    return distances
-
-
-def rate_emotion_distances(feats):
-    d = {}
-    for emo in EMOTIONS:
-        s = 0.0
-        for feat, stats in FEATURE_STATS.items():
-            x = feats.get(feat)
-            if x is None or math.isnan(x):
-                continue
-            mu, sd = stats[emo]
-            z = (x - mu)/sd if sd>0 else 0.0
-            s += z*z
-        d[emo] = s
-    return d
-
-def rate_emotion_probs(feats, temp=2.0):
-    # naive‑Bayes log‐likelihood
-    logps = {}
-    for emo in EMOTIONS:
-        lp = 0.0
-        for feat, stats in FEATURE_STATS.items():
-            x = feats.get(feat)
-            if x is None or math.isnan(x):
-                continue
-            mu, sd = stats[emo]
-            if sd <= 0: 
-                continue
-            z = (x - mu)/sd
-            lp += -0.5*z*z - math.log(sd*math.sqrt(2*math.pi))
-        logps[emo] = lp
-    m = max(logps.values())
-    exps = {e: math.exp((logps[e]-m)/temp) for e in EMOTIONS}
-    S = sum(exps.values()) or 1.0
-    return {e: exps[e]/S for e in EMOTIONS}
 
 
 def normalize_by_inverse(distances, eps=1e-6):
@@ -234,6 +95,7 @@ def normalize_by_inverse(distances, eps=1e-6):
     s = sum(inv.values())
     return {emo: v/s for emo, v in inv.items()}
 
+### STANDARDISED DISTANCE FUNCTION 
 def categorize_emotion_table(vocal_features: dict) -> Dict[str, float]:
     """
     1) Computes, for each emotion, the sum of |x - mean|/sd across all features
@@ -287,613 +149,154 @@ def categorize_emotion_table(vocal_features: dict) -> Dict[str, float]:
     return scores
 
 
-def categorize_emotion(feats):
-    # flatten your formants
-    flat = {
-        "mean_pitch_st": feats["mean_pitch_st"],
-        "mean_intensity_db": feats["mean_intensity_db"],
-        "mean_hnr_db": feats["mean_hnr_db"],
-        "jitter_local": feats["jitter_local"],
-        "shimmer_local": feats["shimmer_local"],
-        "F1": feats["formants_hz"]["F1"],
-        "F2": feats["formants_hz"]["F2"],
-        "F3": feats["formants_hz"]["F3"],
-    }
+FALLBACK_EPSILON = 0.3
+MIN_ANGER_ANCHORS = 1
+MIN_JOY_ANCHORS = 1
+JOY_LOUD_HNR_BONUS = 1.0
+K_EXTREME = 1.6 
+ANCHOR = 1.0
 
-    # compute sum of squared z's for each emotion
-    distances = {}
-    for emo in EMOTIONS:
-        s = 0.0
-        for feat, x in flat.items():
-            mu, sd = FEATURE_STATS[feat][emo]
-            if sd > 0 and x is not None and not math.isnan(x):
-                z = (x - mu) / sd
-                s += z*z
-        distances[emo] = s
-
-    # pick the minimal distance
-    return min(distances, key=distances.get)
-
-
-STATS = {
-    "pitch_mean": 170,  "pitch_std": 30,
-    "loudness_mean": 65, "loudness_std": 5
+BENCHMARKS = {
+    "anger":    [ ("hnr","below"), ("jit","below"), ("loud", "above")],
+    "joy":      [("pitch","above"), ("hnr","above"), ("loud", "above")],
+    "sadness":  [("pitch","below"), ("hnr","below"), ("loud", "below")],
+    "fear":     [("hnr","above"), ("jit","below"), ("shim","below"), ("pitch","above"),],          # optional
+    "surprise": [("jit","above"), ("shim","above")],      
+}
+FEATURE_WEIGHTS = {
+    "pitch": 1.3, "loud": 0.5, "hnr": 1.0,
+    "jit":  1.0, "shim": 1.0,
+    "f1":   1.0, "f2":   1.0, "f3":  1.0,
+}
+SD_KEY = {
+    "pitch":"sd",  "loud":"sd_l", "hnr":"sd_h",
+    "jit":"sd_j",  "shim":"sd_s",
+    "f1":"sd_f1",  "f2":"sd_f2",  "f3":"sd_f3",
 }
 
+def categorise_emotion_all_scores(
+    vf: dict,
+    K_NEAR: float = 1.25,
+    k_extreme: float = 1.6,
+    K_EXTREME_PER_EMO: Dict[str, float] = None,
+    use_bm_gate: bool = False, 
+) -> List[Tuple[str, float]]:
+    # ——————————————————————————————————————
+    # vf = extracted features from Praat 
+    pitch    = vf.get("mean_pitch_st")
+    loud     = vf.get("mean_intensity_db")
+    hnr      = vf.get("mean_hnr_db")
+    jitter      = vf.get("jitter_local")
+    shimmer     = vf.get("shimmer_local")
+    formants    = vf.get("formants_hz", {})
+    f1, f2, f3  = formants.get("F1"), formants.get("F2"), formants.get("F3")
 
-def categorize_emotion_from_vocal_markers_all(vocal_features):
-    """
-    Given a dict of vocal features, compute and return a sorted list of emotion scores.
-    Returns:
-        List of tuples [(emotion, score), ...] sorted by descending score.
-    """
-    # Extract core features
-    pitch      = vocal_features.get("mean_pitch_hz")
-    intensity  = vocal_features.get("mean_intensity_db")
-    hnr        = vocal_features.get("mean_hnr_db")
-    jitter     = vocal_features.get("jitter_local")
-    shimmer    = vocal_features.get("shimmer_local")
-    loudness   = intensity  # interchangeable
-
-    formants   = vocal_features.get("formants_hz", {})
-    f1 = formants.get("F1")
-    f2 = formants.get("F2")
-    f3 = formants.get("F3")
-
-    # Optional features
-    alpha_ratio      = vocal_features.get("alpha_ratio")
-    hammarberg_index = vocal_features.get("hammarberg_index")
-    slopeV0V500      = vocal_features.get("slopeV0V500")
-    voiced_length    = vocal_features.get("voiced_length")
-    unvoiced_length  = vocal_features.get("unvoiced_length")
-
-    # Normalize a couple of features
-    pitch_z    = z_score(pitch, STATS["pitch_mean"], STATS["pitch_std"])
-    loudness_z = z_score(loudness, STATS["loudness_mean"], STATS["loudness_std"])
-
-    # Initialize scores
-    scores = {emotion: 0 for emotion in ["anger", "fear", "joy", "sadness", "surprise"]}
-
-    # ---------------------
-    # ANGER
-    # ---------------------
-    if loudness and loudness > 6.5 and hnr and hnr < 2.5:
-        scores["anger"] += 1
-    if hammarberg_index is not None and hammarberg_index < -1.0:
-        scores["anger"] += 1
-    if alpha_ratio is not None and alpha_ratio > 2.3:
-        scores["anger"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 2.4:
-        scores["anger"] += 1
-    if jitter is not None and jitter < 0.02:
-        scores["anger"] += 1
-    if shimmer is not None and shimmer < 0.02:
-        scores["anger"] += 1
-
-    # ---------------------
-    # FEAR
-    # ---------------------
-    if shimmer is not None and shimmer > 0.03:
-        scores["fear"] += 1
-    if jitter is not None and jitter > 0.03:
-        scores["fear"] += 1
-    if hnr is not None and hnr > 4:
-        scores["fear"] += 1
-    if hammarberg_index is not None and hammarberg_index < -0.7:
-        scores["fear"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 4.0:
-        scores["fear"] += 1
-    if alpha_ratio is not None and alpha_ratio < 1.5:
-        scores["fear"] += 1
-
-    # ---------------------
-    # JOY
-    # ---------------------
-    # high pitch
-    if pitch_z and 6.5 <= pitch_z <= 8.5:
-        scores["joy"] += 1
-    if f1 and f1 > 500:
-        scores["joy"] += 1
-    if f2 and f2 > 1900:
-        scores["joy"] += 1
-    if hnr and hnr > 3:
-        scores["joy"] += 1
-    if shimmer is not None and shimmer < 0.02:
-        scores["joy"] += 1
-    if alpha_ratio is not None and alpha_ratio > 2.0:
-        scores["joy"] += 1
-    if hammarberg_index is not None and hammarberg_index > -1.0:
-        scores["joy"] += 1
-    if slopeV0V500 is not None and slopeV0V500 < 2.5:
-        scores["joy"] += 1
-
-    # ---------------------
-    # SADNESS
-    # ---------------------
-    if pitch and pitch < 120:
-        scores["sadness"] += 1
-    if loudness and loudness < 60:
-        scores["sadness"] += 1
-    if hnr and hnr < 3:
-        scores["sadness"] += 1
-    if shimmer is not None and shimmer > 0.03:
-        scores["sadness"] += 1
-    if alpha_ratio is not None and alpha_ratio < 2.0:
-        scores["sadness"] += 1
-    if slopeV0V500 is not None and slopeV0V500 < 1.0:
-        scores["sadness"] += 1
-
-    # ---------------------
-    # SURPRISE
-    # ---------------------
-    if hnr and hnr > 3.5:
-        scores["surprise"] += 1
-    if shimmer is not None and shimmer < 0.02:
-        scores["surprise"] += 1
-    if jitter is not None and jitter < 0.02:
-        scores["surprise"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 3.0:
-        scores["surprise"] += 1
-    if unvoiced_length is not None and unvoiced_length < 1.0:
-        scores["surprise"] += 1
-    if hammarberg_index is not None and hammarberg_index > -1.0:
-        scores["surprise"] += 1
-
-    # Sort and return
-    sorted_scores = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    return sorted_scores
-
-def categorize_emotion_from_vocal_markers(vocal_features):
-    pitch = vocal_features["mean_pitch_hz"]
-    intensity = vocal_features["mean_intensity_db"]
-    hnr = vocal_features["mean_hnr_db"]
-    jitter = vocal_features["jitter_local"]
-    shimmer = vocal_features["shimmer_local"]
-    loudness = intensity  # interchangeable
-    f1 = vocal_features["formants_hz"]["F1"]
-    f2 = vocal_features["formants_hz"]["F2"]
-    f3 = vocal_features["formants_hz"]["F3"]
-
-    # New features (optional or NaN-safe)
-    alpha_ratio = vocal_features.get("alpha_ratio")
-    hammarberg_index = vocal_features.get("hammarberg_index")
-    slopeV0V500 = vocal_features.get("slopeV0V500")
-    voiced_length = vocal_features.get("voiced_length")
-    unvoiced_length = vocal_features.get("unvoiced_length")
+    # Data from Swedish Research on vocal markers(Ekberg, 2018)
+    # Mean and sd
+    M = {
+    "anger": {
+        "pitch": 5.00,   "sd": 5.39,
+        "loud": 7.16,    "sd_l": 0.66,
+        "hnr": 2.36,     "sd_h": 0.52,
+        "jit": -0.13,    "sd_j": 0.38,
+        "shim": -1.03,   "sd_s": 0.21,
+        "f1": 0.78,      "sd_f1": 0.34,
+        "f2": 1.20,      "sd_f2": 0.35,
+        "f3": 0.80,      "sd_f3": 0.34
+    },
+    "fear": {
+        "pitch": 5.81,   "sd": 2.31,
+        "loud": 5.09,    "sd_l": 0.71,
+        "hnr": 4.83,     "sd_h": 0.55,
+        "jit": -0.98,    "sd_j": 0.41,
+        "shim": -1.43,   "sd_s": 0.23,
+        "f1": 1.47,      "sd_f1": 0.37,
+        "f2": 1.75,      "sd_f2": 0.37,
+        "f3": 0.88,      "sd_f3": 0.37
+    },
+    "joy": {  
+        "pitch": 7.18,   "sd": 6.25,
+        "loud": 6.49,    "sd_l": 0.66,
+        "hnr": 3.99,     "sd_h": 0.52,
+        "jit": 0.58,     "sd_j": 0.38,
+        "shim": -1.02,   "sd_s": 0.21,
+        "f1": 1.75,      "sd_f1": 0.34,
+        "f2": 1.94,      "sd_f2": 0.35,
+        "f3": 1.59,      "sd_f3": 0.34
+    },
+    "sadness": {
+        "pitch": 3.99,   "sd": 5.36,
+        "loud": 2.96,    "sd_l": 0.68,
+        "hnr": 2.16,     "sd_h": 0.54,
+        "jit": 0.32,     "sd_j": 0.39,
+        "shim": -1.02,   "sd_s": 0.22,
+        "f1": 0.12,      "sd_f1": 0.35,
+        "f2": 0.23,      "sd_f2": 0.36,
+        "f3": -0.10,     "sd_f3": 0.35
+    },
+    "surprise": {
+        "pitch": 3.56,   "sd": 4.14,
+        "loud": 1.24,    "sd_l": 0.68,
+        "hnr": 1.31,     "sd_h": 0.54,
+        "jit": 2.14,     "sd_j": 0.39,
+        "shim": 0.13,    "sd_s": 0.22,
+        "f1": 0.57,      "sd_f1": 0.35,
+        "f2": 1.03,      "sd_f2": 0.36,
+        "f3": 0.72,      "sd_f3": 0.35
+    }
+}
     
-    pitch_z = z_score(pitch, STATS["pitch_mean"], STATS["pitch_std"])
-    loudness_z = z_score(loudness, STATS["loudness_mean"], STATS["loudness_std"])
-
-
-    scores = {
-        "anger": 0,
-        "fear": 0,
-        "joy": 0,
-        "sadness": 0,
-        "surprise": 0
-    }
-    # Table: Pitch means (M) and standard deviations (SD)
-    PITCH_STATS = {
-        "anger": (5.00, 0.53),
-        "joy": (7.18, 0.65),
-        "fear": (5.81, 2.31),
-        "sadness": (3.99, 0.56),
-        "surprise": (3.56, 0.14)
-    }
+    k_ext_per_emo = K_EXTREME_PER_EMO or {}
+    default_k = k_extreme
+    bm_gate   = use_bm_gate
     
-    #pitch_z = z_score(pitch, 170, 30)  # 👈 just estimate mean and std from your own data or the research table
-    if pitch_z > 1.0:
-        scores["joy"] += 1
-    if pitch_z < -1.0:
-        scores["sadness"] += 1
-
-
-
-    # ---------------------
-    # 🚨 ANGER
-    # ---------------------
-    if loudness > 6.5 and hnr < 2.5: scores["anger"] += 1
-
-    if hammarberg_index is not None and hammarberg_index < -1.0: scores["anger"] += 1
-    if alpha_ratio is not None and alpha_ratio > 2.3: scores["anger"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 2.4: scores["anger"] += 1
-    if jitter < 0.02: scores["anger"] += 1
-    if shimmer < 0.02: scores["anger"] += 1
-
-    # ---------------------
-    # 😱 FEAR
-    # ---------------------
-    if shimmer > 0.03: scores["fear"] += 1
-    if jitter > 0.03: scores["fear"] += 1
-    if hnr > 4: scores["fear"] += 1
-    if hammarberg_index is not None and hammarberg_index < -0.7: scores["fear"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 4.0: scores["fear"] += 1
-    if alpha_ratio is not None and alpha_ratio < 1.5: scores["fear"] += 1
-
-    # ---------------------
-    # 😄 JOY
-    # ---------------------
-    # Pitch M and SD from table
-    if 6.5 <= pitch_z <= 8.5: scores["joy"] += 1  # within ±1 SD of joy mean
-
-    if f1 > 500: scores["joy"] += 1
-    if f2 > 1900: scores["joy"] += 1
-    if hnr > 3: scores["joy"] += 1
-    if shimmer < 0.02: scores["joy"] += 1
-    if alpha_ratio is not None and alpha_ratio > 2.0: scores["joy"] += 1
-    if hammarberg_index is not None and hammarberg_index > -1.0: scores["joy"] += 1
-    if slopeV0V500 is not None and slopeV0V500 < 2.5: scores["joy"] += 1
-
-    # ---------------------
-    # 😢 SADNESS
-    # ---------------------
-    if pitch < 120: scores["sadness"] += 1
-    if loudness < 60: scores["sadness"] += 1
-    if hnr < 3: scores["sadness"] += 1
-    if shimmer > 0.03: scores["sadness"] += 1
-    if alpha_ratio is not None and alpha_ratio < 2.0: scores["sadness"] += 1
-    if slopeV0V500 is not None and slopeV0V500 < 1.0: scores["sadness"] += 1
-
-    # ---------------------
-    # 😲 SURPRISE
-    # ---------------------
-    if hnr > 3.5: scores["surprise"] += 1
-    if shimmer < 0.02: scores["surprise"] += 1
-    if jitter < 0.02: scores["surprise"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 3.0: scores["surprise"] += 1
-    if unvoiced_length is not None and unvoiced_length < 1.0: scores["surprise"] += 1
-    if hammarberg_index is not None and hammarberg_index > -1.0: scores["surprise"] += 1
-
-    best_label = max(scores.items(), key=lambda x: x[1])[0]
-
-    print(f"Scores: {scores} → {best_label}")
-    return best_label
-
-########Func below NOT in use but might need for documentation later ! #########
-def score_emotions_from_markers2(vocal_features):
-    # pull out exactly what extract_features returns:
-    pitch_st  = vocal_features["mean_pitch_st"]          # semitones above 150Hz
-    loudness  = vocal_features["mean_intensity_db"]      # dB
-    hnr       = vocal_features["mean_hnr_db"]            # dB
-    jitter    = vocal_features["jitter_local"]
-    shimmer   = vocal_features["shimmer_local"]
-
-    formants = vocal_features.get("formants_hz", {})
-    f1 = formants.get("F1", 0) * 1000
-    f2 = formants.get("F2", 0) * 1000
-    f3 = formants.get("F3", 0) * 1000
-
-    alpha_ratio      = vocal_features.get("alpha_ratio")
-    hammarberg_index = vocal_features.get("hammarberg_index")
-    slopeV0V500      = vocal_features.get("slopeV0V500")
-
-    scores = {e:0 for e in ["anger","fear","joy","sadness","surprise"]}
-
-    # ----- pitch rules (no z‑scoring) -----
-    if pitch_st >  7.0:  # ≈ 1 semitone above the “joy” mean of 7.18
-        scores["joy"] += 1
-    if pitch_st <  4.0:  # ≈ 1 semitone below the “sadness” mean of 3.99
-        scores["sadness"] += 1
-
-    # ----- anger -----
-    if loudness <  5.0 and hnr <  2.5:
-        scores["anger"] += 1
-    if hammarberg_index is not None and hammarberg_index < -1.0:
-        scores["anger"] += 1
-    if alpha_ratio is not None and alpha_ratio > 2.3:
-        scores["anger"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 2.4:
-        scores["anger"] += 1
-    if jitter  < 0.02:
-        scores["anger"] += 1
-    if shimmer < 0.02:
-        scores["anger"] += 1
-
-    # ----- fear -----
-    if shimmer > 0.03:
-        scores["fear"] += 1
-    if jitter  > 0.03:
-        scores["fear"] += 1
-    if hnr     > 4.0:
-        scores["fear"] += 1
-    if hammarberg_index is not None and hammarberg_index < -0.7:
-        scores["fear"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 4.0:
-        scores["fear"] += 1
-    if alpha_ratio is not None and alpha_ratio < 1.5:
-        scores["fear"] += 1
-
-    # ----- joy -----
-    if f1  > 500:   scores["joy"] += 1
-    if f2  > 1900:  scores["joy"] += 1
-    if hnr > 3.0:   scores["joy"] += 1
-    if shimmer < 0.02:
-        scores["joy"] += 1
-    if alpha_ratio  is not None and alpha_ratio > 2.0:
-        scores["joy"] += 1
-    if hammarberg_index is not None and hammarberg_index > -1.0:
-        scores["joy"] += 1
-    if slopeV0V500 is not None and slopeV0V500 < 2.5:
-        scores["joy"] += 1
-
-    # ----- sadness -----
-    if loudness   < 60:    scores["sadness"] += 1
-    if hnr        < 3.0:   scores["sadness"] += 1
-    if shimmer    > 0.03:  scores["sadness"] += 1
-    if alpha_ratio is not None and alpha_ratio < 2.0:
-        scores["sadness"] += 1
-    if slopeV0V500 is not None and slopeV0V500 < 1.0:
-        scores["sadness"] += 1
-
-    # ----- surprise -----
-    if hnr      > 3.5:     scores["surprise"] += 1
-    if shimmer < 0.02:     scores["surprise"] += 1
-    if jitter  < 0.02:     scores["surprise"] += 1
-    if slopeV0V500 is not None and slopeV0V500 > 3.0:
-        scores["surprise"] += 1
-    if hammarberg_index is not None and hammarberg_index > -1.0:
-        scores["surprise"] += 1
-
-    return scores
-
-
-
-def categorize_emotion_from_vocal_markers33(vocal_features):
-    pitch = vocal_features["mean_pitch_hz"]
-    loudness = vocal_features["mean_intensity_db"]
-    hnr = vocal_features["mean_hnr_db"]
-    jitter = vocal_features["jitter_local"]
-    shimmer = vocal_features["shimmer_local"]
-    f1 = vocal_features["formants_hz"]["F1"]
-    f2 = vocal_features["formants_hz"]["F2"]
-    
-    alpha_ratio = vocal_features.get("alpha_ratio")
-    hammarberg_index = vocal_features.get("hammarberg_index")
-    slopeV0V500 = vocal_features.get("slopeV0V500")
-    voiced_length = vocal_features.get("voiced_length")
-    unvoiced_length = vocal_features.get("unvoiced_length")
-
-    emotions = ["anger", "fear", "joy", "sadness", "surprise"]
-    scores = {e: 0 for e in emotions}
-
-    # Selektiva top-3 features per emotion (från tabellen)
-    emotion_feature_map = {
-        "anger": ["loudness", "hnr", "hammarberg_index"],
-        "fear": ["jitter", "shimmer", "hnr"],
-        "joy": ["pitch", "f2", "alpha_ratio"],
-        "sadness": ["pitch", "loudness", "shimmer"],
-        "surprise": ["slopeV0V500", "hammarberg_index", "unvoiced_length"]
-    }
-
-    feature_values = {
-        "pitch": pitch,
-        "loudness": loudness,
-        "hnr": hnr,
-        "jitter": jitter,
-        "shimmer": shimmer,
-        "alpha_ratio": alpha_ratio,
-        "hammarberg_index": hammarberg_index,
-        "slopeV0V500": slopeV0V500,
-        "voiced_length": voiced_length,
-        "unvoiced_length": unvoiced_length,
-        "f2": f2
-    }
-
-    for emotion, top_features in emotion_feature_map.items():
-        for feat in top_features:
-            val = feature_values.get(feat)
-            if val is not None and feat in ACOUSTIC_STATS:
-                mean, std = ACOUSTIC_STATS[feat][emotion]
-                z = z_score(val, mean, std)
-                if abs(z) < 1:
-                    scores[emotion] += 1
-
-    # Bonusregler för att särskilja joy/sadness bättre
-    pitch_z = z_score(pitch, STATS["pitch_mean"], STATS["pitch_std"])
-    loudness_z = z_score(loudness, STATS["loudness_mean"], STATS["loudness_std"])
-
-    if pitch_z > 1: scores["joy"] += 1
-    if pitch_z < -1: scores["sadness"] += 1
-    if loudness_z < -1: scores["sadness"] += 1
-
-    best_label = max(scores.items(), key=lambda x: x[1])[0]
-    print(f"Scores: {scores} → {best_label}")
-    return best_label
-
-
-def categorize_emotion_from_vocal_markers4(vocal_features):
-    pitch = vocal_features["mean_pitch_hz"]
-    loudness = vocal_features["mean_intensity_db"]
-    hnr = vocal_features["mean_hnr_db"]
-    jitter = vocal_features["jitter_local"]
-    shimmer = vocal_features["shimmer_local"]
-
-    f1 = vocal_features["formants_hz"]["F1"]
-    f2 = vocal_features["formants_hz"]["F2"]
-    f3 = vocal_features["formants_hz"]["F3"]
-
-    alpha_ratio = vocal_features.get("alpha_ratio")
-    hammarberg_index = vocal_features.get("hammarberg_index")
-    slopeV0V500 = vocal_features.get("slopeV0V500")
-    voiced_length = vocal_features.get("voiced_length")
-    unvoiced_length = vocal_features.get("unvoiced_length")
-
-    emotions = ["anger", "fear", "joy", "sadness", "surprise"]
-    scores = {e: 0 for e in emotions}
-
-    # Z-score från din egen data
-    pitch_z = z_score(pitch, STATS["pitch_mean"], STATS["pitch_std"])
-    loudness_z = z_score(loudness, STATS["loudness_mean"], STATS["loudness_std"])
-
-    # Kombinera ACOUSTIC_STATS för generella drag
-    feature_map = {
-        "pitch": pitch,
-        "loudness": loudness,
-        "hnr": hnr,
-        "jitter": jitter,
-        "shimmer": shimmer,
-        "alpha_ratio": alpha_ratio,
-        "hammarberg_index": hammarberg_index,
-        "slopeV0V500": slopeV0V500,
-        "voiced_length": voiced_length,
-        "unvoiced_length": unvoiced_length
-    }
-
-    for emotion in emotions:
-        for feature, value in feature_map.items():
-            if value is not None and feature in ACOUSTIC_STATS:
-                mean, std = ACOUSTIC_STATS[feature][emotion]
-                z = z_score(value, mean, std)
-                if abs(z) < 1:
-                    scores[emotion] += 1  # mjuk viktning
-
-    # 🔧 Bonusregler med mer spets:
-    if pitch_z > 1.0: scores["joy"] += 1
-    if pitch_z < -1.0: scores["sadness"] += 1
-    if pitch > 170: scores["joy"] += 1
-    if pitch < 120: scores["sadness"] += 1
-
-    if f1 > 500: scores["joy"] += 1
-    if f2 > 1900: scores["joy"] += 1
-    if hnr > 3: scores["joy"] += 1
-    if hnr > 4: scores["fear"] += 1
-    if shimmer < 0.02: scores["joy"] += 1
-    if shimmer > 0.03: scores["fear"] += 1
-    if jitter > 0.03: scores["fear"] += 1
-    if jitter < 0.02: scores["anger"] += 1
-    if alpha_ratio is not None:
-        if alpha_ratio > 2.0: scores["joy"] += 1
-        if alpha_ratio < 1.5: scores["fear"] += 1
-    if hammarberg_index is not None:
-        if hammarberg_index > -1.0: scores["joy"] += 1
-        if hammarberg_index < -1.0: scores["anger"] += 1
-    if slopeV0V500 is not None:
-        if slopeV0V500 < 2.5: scores["joy"] += 1
-        if slopeV0V500 > 4.0: scores["fear"] += 1
-    if unvoiced_length is not None and unvoiced_length < 1.0:
-        scores["surprise"] += 1
-
-    best_label = max(scores.items(), key=lambda x: x[1])[0]
-    print(f"Scores: {scores} → {best_label}")
-    return best_label
-
-def categorize_emotion_from_vocal_markers5(vocal_features):
-    # Grundläggande features
-    pitch = vocal_features["mean_pitch_hz"]
-    loudness = vocal_features["mean_intensity_db"]
-    hnr = vocal_features["mean_hnr_db"]
-    jitter = vocal_features["jitter_local"]
-    shimmer = vocal_features["shimmer_local"]
-
-    f1 = vocal_features["formants_hz"]["F1"]
-    f2 = vocal_features["formants_hz"]["F2"]
-    f3 = vocal_features["formants_hz"]["F3"]
-
-    # Extra features
-    alpha_ratio = vocal_features.get("alpha_ratio")
-    hammarberg_index = vocal_features.get("hammarberg_index")
-    slopeV0V500 = vocal_features.get("slopeV0V500")
-    voiced_length = vocal_features.get("voiced_length")
-    unvoiced_length = vocal_features.get("unvoiced_length")
-
-    emotions = ["anger", "fear", "joy", "sadness", "surprise"]
-    scores = {e: 0 for e in emotions}
-
-    # Alla features vi har i ACOUSTIC_STATS
-    feature_map = {
-        "pitch": pitch,
-        "loudness": loudness,
-        "hnr": hnr,
-        "jitter": jitter,
-        "shimmer": shimmer,
-        "alpha_ratio": alpha_ratio,
-        "hammarberg_index": hammarberg_index,
-        "slopeV0V500": slopeV0V500,
-        "voiced_length": voiced_length,
-        "unvoiced_length": unvoiced_length
-    }
-
-    for emotion in emotions:
-        for feature, value in feature_map.items():
-            if value is not None and feature in ACOUSTIC_STATS:
-                mean, std = ACOUSTIC_STATS[feature][emotion]
-                z = z_score(value, mean, std)
-                if abs(z) < 1:  # ✅ inom 1 standardavvikelse
-                    scores[emotion] += 1
-
-    # Bonusregler som baseras på forskning, kan anpassas vidare:
-    if pitch > 170: scores["joy"] += 1
-    if pitch < 120: scores["sadness"] += 1
-    if f1 > 500: scores["joy"] += 1
-    if f2 > 1900: scores["joy"] += 1
-    if hnr > 4: scores["fear"] += 1
-    if shimmer < 0.02: scores["joy"] += 1
-    if shimmer > 0.03: scores["fear"] += 1
-
-    # Resultat
-    best_label = max(scores.items(), key=lambda x: x[1])[0]
-    print(f"Scores: {scores} → {best_label}")
-    return best_label
-
-def categorize_emotion_from_vocal57(vocal_features):
-    pitch = vocal_features["mean_pitch_hz"]
-    intensity = vocal_features["mean_intensity_db"]
-    hnr = vocal_features["mean_hnr_db"]
-    jitter = vocal_features["jitter_local"]
-    shimmer = vocal_features["shimmer_local"]
-    loudness = intensity
-    f1 = vocal_features["formants_hz"]["F1"]
-
-    scores = {
-        "anger": 0,
-        "fear": 0,
-        "joy": 0,
-        "sadness": 0,
-        "surprise": 0
-    }
-
-    # Anger
-    if loudness > 65: scores["anger"] += 1
-    if shimmer < 0.02: scores["anger"] += 1
-    if jitter < 0.02: scores["anger"] += 1
-
-    # Fear
-    #if shimmer > 0.03: scores["fear"] += 1
-    #if jitter > 0.02: scores["fear"] += 1
-    if hnr > 3: scores["fear"] += 1
-    if shimmer > 0.03: scores["fear"] += 1
-    if jitter > 0.03: scores["fear"] += 1  # increase threshold
-
-
-    # Joy
-    #if pitch > 170: scores["joy"] += 1
-    if f1 > 500 and f1 < 700: scores["joy"] += 1  # Add a range check
-    if hnr > 3: scores["joy"] += 1
-    #if shimmer < 0.02: scores["joy"] += 1
-    if pitch > 170: scores["joy"] += 1  # previously += 2
-
-
-    if shimmer < 0.02: scores["joy"] += 1
-
-
-    # Sadness
-    if pitch < 120: scores["sadness"] += 1
-    if intensity < 60: scores["sadness"] += 1
-    #if hnr < 3: scores["sadness"] += 1
-    if hnr < 5: scores["sadness"] += 1
-    if jitter > 0.02: scores["sadness"] += 1
-
-
-    # Surprise
-    if loudness < 60: scores["surprise"] += 1
-    if shimmer < 0.02: scores["surprise"] += 1
-    if jitter < 0.02: scores["surprise"] += 1
-
-    # Return emotion with highest score
-    best_label = max(scores.items(), key=lambda x: x[1])[0]
-    print(f"✅ NEW FUNC used | Scores: {scores} → {best_label}")
-
-
-
-    return best_label
+    # Vocal cue helpers
+    def near(value, mean, sd, k=K_NEAR):
+        return value is not None and abs(value - mean) <= k * sd
+
+    def extreme(value, mean, sd, direction, emo):
+
+        k = k_ext_per_emo.get(emo, default_k)        
+        if value is None: return False
+        if direction=="above": return value > mean + k*sd
+        else:                  return value < mean - k*sd
+
+    def feature_val(key):
+        return {
+            "pitch": pitch, "loud": loud, "hnr": hnr,
+            "jit": jitter, "shim": shimmer,
+            "f1": f1 and f1/1000, "f2": f2 and f2/1000, "f3": f3 and f3/1000,
+        }[key]
+
+    cue_counts = {emo: 0.0 for emo in M}    
+    for emo, stats in M.items():
+        hits = 0
+        for feat_key, direction in BENCHMARKS[emo]:
+            v = feature_val(feat_key)
+            if extreme(v, stats[feat_key], stats[SD_KEY[feat_key]], direction, emo):
+                hits += 1
+
+        # Benchmark gates 
+        if bm_gate and emo in "anger":
+            if hits >= 2:         
+                cue_counts[emo] += hits * 1.0
+        elif bm_gate and emo in ("sadness", "joy"):
+            if hits>=1:
+                cue_counts[emo] += hits *1.0
+        else:
+            cue_counts[emo] += hits * 1.0
+
+        for val, key in [
+            (pitch, "pitch"), (loud, "loud"), (hnr, "hnr"),
+            (jitter, "jit"), (shimmer, "shim"),
+            (f1 and f1/1000, "f1"), (f2 and f2/1000, "f2"), (f3 and f3/1000, "f3")
+        ]:
+            if near(val, stats[key], stats[SD_KEY[key]], K_NEAR):
+                cue_counts[emo] += FEATURE_WEIGHTS.get(key, 1.0)
+   
+    #Call standardised distance function
+    prob = categorize_emotion_table(vf)
+
+    combined = {e: cue_counts[e] + 0.3*prob.get(e,0.0) for e in cue_counts}
+    return sorted(combined.items(), key=lambda kv: kv[1], reverse=True)
 

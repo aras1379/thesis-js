@@ -1,3 +1,5 @@
+## NOT USED FOR THESIS! 
+
 import os, json, math, argparse, sys
 import numpy as np, pandas as pd, parselmouth
 import matplotlib.pyplot as plt
@@ -8,7 +10,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from config import active_audio_id, audio_files, emotions_to_analyze
 from praat_parselmouth.vocal_extract import extract_features
-from utils.categorize_vocal_emotions import classify_segment, categorize_emotion_table
+from utils.categorize_vocal_emotions import categorise_emotion_all_scores, categorize_emotion_table, categorize_emotion_from_vocal_markers_all
 from hume_ai.hume_utils import normalize_emotions
 
 LABEL_LIST = ['anger','fear','joy','sadness','surprise']
@@ -48,38 +50,7 @@ def normalize_dict(d, keys):
         probs = np.zeros_like(vals)
     return dict(zip(keys, probs))
 
-def micro_level_analysis_all2(wav, hume_json_path):
-    pt, pv = get_pitch_data(wav)
-    it, iv = get_intensity_data(wav)
-    segments = load_hume_segments(hume_json_path)
 
-    rows = []
-    for seg in segments:
-        t_mid = seg.get("time")
-        if t_mid is None: 
-            continue
-
-        row = {
-            "SegmentTime":    t_mid,
-            "AvgPitch_Hz":    segment_average(pt, pv, t_mid),
-            "AvgIntensity_dB":segment_average(it, iv, t_mid),
-        }
-
-        # 1) dump all Hume scores
-        for emo in LABEL_LIST:
-            # keys in seg might be capitalized or have other fields—lowercase match
-            row[f"hume_{emo}"] = seg.get(emo, seg.get(emo.capitalize(), np.nan))
-
-        # 2) pick Hume top‐label
-        hvec = {emo: row[f"hume_{emo}"] for emo in LABEL_LIST}
-        row["Hume_label"] = max(hvec, key=lambda e: hvec[e] or 0)
-
-        # 3) Praat label on the same snippet
-        row["Praat_label"] = classify_segment(wav, t_mid, WINDOW)
-
-        rows.append(row)
-
-    return pd.DataFrame(rows)
 
 def get_segments(path):
     return json.load(open(path))
@@ -126,7 +97,7 @@ def micro_level_analysis_all(wav_path, segments):
 
         feats = extract_features(snippet)
         # 4) Praat soft‐scores via your new table function
-        praat_probs = categorize_emotion_table(feats)
+        praat_probs = categorise_emotion_all_scores(feats)
         if len(rows) < 5:  # only for the first few
             print(f"\n--- DEBUG segment {len(rows)} at t={t_mid:.2f}s ---")
             print("Features:", feats)
@@ -186,10 +157,10 @@ def main():
     hume_json = f"hume_ai/filtered_results/filtered/{entry_id}_filtered_emotions.json"
     segments  = json.load(open(hume_json))        # <-- load it here
     df = micro_level_analysis_all(wav_path, segments)
-    plot_softcurves(df)
+    #plot_softcurves(df)
 
     # now just plot the two label streams
-    plot_labels_over_time(df)
+   # plot_labels_over_time(df)
 
 if __name__=="__main__":
     main()

@@ -1,8 +1,8 @@
 {
     "entry_id": "id_012_neg",
     "vocal_features": {
-        "mean_pitch_st": -2.12,
-        "mean_pitch_hz": 132.68,
+        "mean_pitch_st": -2.72,
+        "mean_pitch_hz": 128.22,
         "mean_intensity_db": 63.5,
         "mean_hnr_db": 2.61,
         "jitter_local": 0.0252,
@@ -14,11 +14,11 @@
         }
     },
     "praat_scores": {
-        "anger": 0.209,
-        "joy": 0.207,
-        "fear": 0.202,
+        "anger": 0.21,
+        "joy": 0.21,
+        "fear": 0.2,
         "sadness": 0.19,
-        "surprise": 0.193
+        "surprise": 0.19
     },
     "praat_label": "anger",
     "hume_probs": {

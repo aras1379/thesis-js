@@ -11,7 +11,7 @@ from config import audio_files, active_audio_id
 from utils.data_utils import plot_and_save
 
 # Load RQ2/RQ3 results
-with open("results_combined_rq2_rq3.json", "r") as f:
+with open("results_combined_normalized_percent.json", "r") as f:
     results = json.load(f)
 
 entry_id = active_audio_id

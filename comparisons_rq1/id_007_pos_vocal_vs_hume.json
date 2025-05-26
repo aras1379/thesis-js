@@ -1,8 +1,8 @@
 {
     "entry_id": "id_007_pos",
     "vocal_features": {
-        "mean_pitch_st": -4.8,
-        "mean_pitch_hz": 113.7,
+        "mean_pitch_st": -5.88,
+        "mean_pitch_hz": 106.8,
         "mean_intensity_db": 68.07,
         "mean_hnr_db": -0.24,
         "jitter_local": 0.0385,
@@ -14,10 +14,10 @@
         }
     },
     "praat_scores": {
-        "anger": 0.208,
-        "joy": 0.202,
-        "fear": 0.198,
-        "sadness": 0.192,
+        "anger": 0.21,
+        "joy": 0.2,
+        "fear": 0.2,
+        "sadness": 0.19,
         "surprise": 0.2
     },
     "praat_label": "anger",

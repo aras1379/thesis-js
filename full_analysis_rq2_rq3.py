@@ -30,7 +30,8 @@ try:
     nlp_rounded = {k: round(v, 2) for k, v in nlp_norm.items()}
 
     # Load Hume results
-    hume_emotions = load_hume_average(hume_avg_file)
+    hume_raw = load_hume_average(hume_avg_file)
+    hume_emotions = normalize_emotions(hume_raw)
     print("Hume Emotions:", hume_emotions)
 
     # Get self-assessed labels 

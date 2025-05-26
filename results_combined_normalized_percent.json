@@ -1,0 +1,770 @@
+{
+    "id_0043_neg": {
+        "audio_file": "audio_use/negative/4-neg3.m4a",
+        "nlp_emotions": {
+            "anger": 38.38,
+            "joy": 10.1,
+            "sadness": 31.31,
+            "fear": 15.15,
+            "surprise": 5.05
+        },
+        "hume_emotions": {
+            "anger": 42.42,
+            "fear": 11.11,
+            "joy": 27.27,
+            "sadness": 10.1,
+            "surprise": 9.09
+        },
+        "self_assessed": {
+            "anger": 35.0,
+            "joy": 6.0,
+            "sadness": 35.0,
+            "fear": 18.0,
+            "surprise": 6.0
+        }
+    },
+    "id_001_neg": {
+        "audio_file": "audio_use/negative/1-neg.m4a",
+        "nlp_emotions": {
+            "anger": 68.0,
+            "joy": 8.0,
+            "sadness": 17.0,
+            "fear": 4.0,
+            "surprise": 3.0
+        },
+        "hume_emotions": {
+            "anger": 20.0,
+            "fear": 12.0,
+            "joy": 51.0,
+            "sadness": 8.0,
+            "surprise": 9.0
+        },
+        "self_assessed": {
+            "anger": 45.45,
+            "joy": 9.09,
+            "sadness": 27.27,
+            "fear": 9.09,
+            "surprise": 9.09
+        }
+    },
+    "id_002_neg": {
+        "audio_file": "audio_use/negative/2-neg.m4a",
+        "nlp_emotions": {
+            "anger": 12.12,
+            "joy": 19.19,
+            "sadness": 37.37,
+            "fear": 25.25,
+            "surprise": 6.06
+        },
+        "hume_emotions": {
+            "anger": 20.0,
+            "fear": 14.0,
+            "joy": 31.0,
+            "sadness": 21.0,
+            "surprise": 14.0
+        },
+        "self_assessed": {
+            "anger": 39.6,
+            "joy": 6.93,
+            "sadness": 19.8,
+            "fear": 26.73,
+            "surprise": 6.93
+        }
+    },
+    "id_004_neg": {
+        "audio_file": "audio_use/negative/4-neg1.m4a",
+        "nlp_emotions": {
+            "anger": 36.63,
+            "joy": 0.0,
+            "sadness": 38.61,
+            "fear": 9.9,
+            "surprise": 14.85
+        },
+        "hume_emotions": {
+            "anger": 40.0,
+            "fear": 15.0,
+            "joy": 23.0,
+            "sadness": 11.0,
+            "surprise": 11.0
+        },
+        "self_assessed": {
+            "anger": 31.0,
+            "joy": 8.0,
+            "sadness": 38.0,
+            "fear": 15.0,
+            "surprise": 8.0
+        }
+    },
+    "id_0042_neg": {
+        "audio_file": "audio_use/negative/4-neg2.m4a",
+        "nlp_emotions": {
+            "anger": 32.32,
+            "joy": 5.05,
+            "sadness": 43.43,
+            "fear": 11.11,
+            "surprise": 8.08
+        },
+        "hume_emotions": {
+            "anger": 35.0,
+            "fear": 12.0,
+            "joy": 29.0,
+            "sadness": 15.0,
+            "surprise": 9.0
+        },
+        "self_assessed": {
+            "anger": 29.0,
+            "joy": 7.0,
+            "sadness": 43.0,
+            "fear": 7.0,
+            "surprise": 14.0
+        }
+    },
+    "id_005_neg": {
+        "audio_file": "audio_use/negative/5-neg.m4a",
+        "nlp_emotions": {
+            "anger": 31.0,
+            "joy": 11.0,
+            "sadness": 26.0,
+            "fear": 21.0,
+            "surprise": 11.0
+        },
+        "hume_emotions": {
+            "anger": 21.0,
+            "fear": 16.0,
+            "joy": 15.0,
+            "sadness": 34.0,
+            "surprise": 14.0
+        },
+        "self_assessed": {
+            "anger": 22.22,
+            "joy": 11.11,
+            "sadness": 33.33,
+            "fear": 22.22,
+            "surprise": 11.11
+        }
+    },
+    "id_006_neg": {
+        "audio_file": "audio_use/negative/6-neg.m4a",
+        "nlp_emotions": {
+            "anger": 38.38,
+            "joy": 10.1,
+            "sadness": 31.31,
+            "fear": 15.15,
+            "surprise": 5.05
+        },
+        "hume_emotions": {
+            "anger": 30.3,
+            "fear": 27.27,
+            "joy": 17.17,
+            "sadness": 16.16,
+            "surprise": 9.09
+        },
+        "self_assessed": {
+            "anger": 33.33,
+            "joy": 8.08,
+            "sadness": 33.33,
+            "fear": 8.08,
+            "surprise": 17.17
+        }
+    },
+    "id_007_neg": {
+        "audio_file": "audio_use/negative/7-neg.m4a",
+        "nlp_emotions": {
+            "anger": 55.0,
+            "joy": 0.0,
+            "sadness": 26.0,
+            "fear": 13.0,
+            "surprise": 6.0
+        },
+        "hume_emotions": {
+            "anger": 33.0,
+            "fear": 15.0,
+            "joy": 27.0,
+            "sadness": 15.0,
+            "surprise": 10.0
+        },
+        "self_assessed": {
+            "anger": 29.0,
+            "joy": 29.0,
+            "sadness": 14.0,
+            "fear": 14.0,
+            "surprise": 14.0
+        }
+    },
+    "id_001_pos": {
+        "audio_file": "audio_use/positive/1-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 90.0,
+            "sadness": 0.0,
+            "fear": 0.0,
+            "surprise": 10.0
+        },
+        "hume_emotions": {
+            "anger": 15.15,
+            "fear": 10.1,
+            "joy": 47.47,
+            "sadness": 13.13,
+            "surprise": 14.14
+        },
+        "self_assessed": {
+            "anger": 7.92,
+            "joy": 45.54,
+            "sadness": 7.92,
+            "fear": 7.92,
+            "surprise": 30.69
+        }
+    },
+    "id_002_pos": {
+        "audio_file": "audio_use/positive/2-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 58.42,
+            "sadness": 6.93,
+            "fear": 13.86,
+            "surprise": 20.79
+        },
+        "hume_emotions": {
+            "anger": 22.0,
+            "fear": 17.0,
+            "joy": 29.0,
+            "sadness": 19.0,
+            "surprise": 13.0
+        },
+        "self_assessed": {
+            "anger": 9.0,
+            "joy": 55.0,
+            "sadness": 9.0,
+            "fear": 18.0,
+            "surprise": 9.0
+        }
+    },
+    "id_004_pos": {
+        "audio_file": "audio_use/positive/4-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 74.0,
+            "sadness": 9.0,
+            "fear": 0.0,
+            "surprise": 17.0
+        },
+        "hume_emotions": {
+            "anger": 27.0,
+            "fear": 18.0,
+            "joy": 27.0,
+            "sadness": 14.0,
+            "surprise": 14.0
+        },
+        "self_assessed": {
+            "anger": 8.08,
+            "joy": 50.51,
+            "sadness": 8.08,
+            "fear": 8.08,
+            "surprise": 25.25
+        }
+    },
+    "id_005_pos": {
+        "audio_file": "audio_use/positive/5-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 45.45,
+            "sadness": 12.12,
+            "fear": 18.18,
+            "surprise": 24.24
+        },
+        "hume_emotions": {
+            "anger": 22.0,
+            "fear": 16.0,
+            "joy": 14.0,
+            "sadness": 35.0,
+            "surprise": 13.0
+        },
+        "self_assessed": {
+            "anger": 9.09,
+            "joy": 36.36,
+            "sadness": 18.18,
+            "fear": 18.18,
+            "surprise": 18.18
+        }
+    },
+    "id_006_pos": {
+        "audio_file": "audio_use/positive/6-pos.m4a",
+        "nlp_emotions": {
+            "anger": 22.0,
+            "joy": 35.0,
+            "sadness": 9.0,
+            "fear": 4.0,
+            "surprise": 30.0
+        },
+        "hume_emotions": {
+            "anger": 26.26,
+            "fear": 31.31,
+            "joy": 15.15,
+            "sadness": 17.17,
+            "surprise": 10.1
+        },
+        "self_assessed": {
+            "anger": 8.0,
+            "joy": 38.0,
+            "sadness": 8.0,
+            "fear": 8.0,
+            "surprise": 38.0
+        }
+    },
+    "id_007_pos": {
+        "audio_file": "audio_use/positive/7-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 81.0,
+            "sadness": 0.0,
+            "fear": 0.0,
+            "surprise": 19.0
+        },
+        "hume_emotions": {
+            "anger": 22.0,
+            "fear": 15.0,
+            "joy": 39.0,
+            "sadness": 11.0,
+            "surprise": 13.0
+        },
+        "self_assessed": {
+            "anger": 14.14,
+            "joy": 43.43,
+            "sadness": 14.14,
+            "fear": 14.14,
+            "surprise": 14.14
+        }
+    },
+    "id_010_neg": {
+        "audio_file": "audio_use/negative/10-neg.m4a",
+        "nlp_emotions": {
+            "anger": 41.41,
+            "joy": 7.07,
+            "sadness": 34.34,
+            "fear": 14.14,
+            "surprise": 3.03
+        },
+        "hume_emotions": {
+            "anger": 24.24,
+            "fear": 15.15,
+            "joy": 29.29,
+            "sadness": 18.18,
+            "surprise": 13.13
+        },
+        "self_assessed": {
+            "anger": 33.0,
+            "joy": 7.0,
+            "sadness": 20.0,
+            "fear": 13.0,
+            "surprise": 27.0
+        }
+    },
+    "id_011_neg": {
+        "audio_file": "audio_use/negative/11-neg.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 89.0,
+            "sadness": 0.0,
+            "fear": 0.0,
+            "surprise": 11.0
+        },
+        "hume_emotions": {
+            "anger": 16.0,
+            "fear": 10.0,
+            "joy": 49.0,
+            "sadness": 12.0,
+            "surprise": 13.0
+        },
+        "self_assessed": {
+            "anger": 30.0,
+            "joy": 30.0,
+            "sadness": 20.0,
+            "fear": 10.0,
+            "surprise": 10.0
+        }
+    },
+    "id_012_neg": {
+        "audio_file": "audio_use/negative/12-neg.m4a",
+        "nlp_emotions": {
+            "anger": 22.0,
+            "joy": 11.0,
+            "sadness": 33.0,
+            "fear": 6.0,
+            "surprise": 28.0
+        },
+        "hume_emotions": {
+            "anger": 32.0,
+            "fear": 15.0,
+            "joy": 25.0,
+            "sadness": 14.0,
+            "surprise": 14.0
+        },
+        "self_assessed": {
+            "anger": 12.12,
+            "joy": 38.38,
+            "sadness": 12.12,
+            "fear": 25.25,
+            "surprise": 12.12
+        }
+    },
+    "id_013_neg": {
+        "audio_file": "audio_use/negative/13-neg.m4a",
+        "nlp_emotions": {
+            "anger": 43.56,
+            "joy": 0.0,
+            "sadness": 30.69,
+            "fear": 20.79,
+            "surprise": 4.95
+        },
+        "hume_emotions": {
+            "anger": 32.32,
+            "fear": 13.13,
+            "joy": 22.22,
+            "sadness": 19.19,
+            "surprise": 13.13
+        },
+        "self_assessed": {
+            "anger": 30.69,
+            "joy": 7.92,
+            "sadness": 30.69,
+            "fear": 22.77,
+            "surprise": 7.92
+        }
+    },
+    "id_014_neg": {
+        "audio_file": "audio_use/negative/14-neg.m4a",
+        "nlp_emotions": {
+            "anger": 29.0,
+            "joy": 10.0,
+            "sadness": 19.0,
+            "fear": 32.0,
+            "surprise": 10.0
+        },
+        "hume_emotions": {
+            "anger": 26.0,
+            "fear": 17.0,
+            "joy": 23.0,
+            "sadness": 23.0,
+            "surprise": 11.0
+        },
+        "self_assessed": {
+            "anger": 11.11,
+            "joy": 33.33,
+            "sadness": 11.11,
+            "fear": 22.22,
+            "surprise": 22.22
+        }
+    },
+    "id_010_pos": {
+        "audio_file": "audio_use/positive/10-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 63.0,
+            "sadness": 15.0,
+            "fear": 0.0,
+            "surprise": 22.0
+        },
+        "hume_emotions": {
+            "anger": 20.2,
+            "fear": 17.17,
+            "joy": 33.33,
+            "sadness": 18.18,
+            "surprise": 11.11
+        },
+        "self_assessed": {
+            "anger": 7.92,
+            "joy": 45.54,
+            "sadness": 30.69,
+            "fear": 7.92,
+            "surprise": 7.92
+        }
+    },
+    "id_011_pos": {
+        "audio_file": "audio_use/positive/11-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 79.0,
+            "sadness": 0.0,
+            "fear": 0.0,
+            "surprise": 21.0
+        },
+        "hume_emotions": {
+            "anger": 26.0,
+            "fear": 14.0,
+            "joy": 27.0,
+            "sadness": 16.0,
+            "surprise": 17.0
+        },
+        "self_assessed": {
+            "anger": 10.0,
+            "joy": 60.0,
+            "sadness": 10.0,
+            "fear": 10.0,
+            "surprise": 10.0
+        }
+    },
+    "id_012_pos": {
+        "audio_file": "audio_use/positive/12-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 62.63,
+            "sadness": 8.08,
+            "fear": 17.17,
+            "surprise": 12.12
+        },
+        "hume_emotions": {
+            "anger": 28.0,
+            "fear": 12.0,
+            "joy": 36.0,
+            "sadness": 10.0,
+            "surprise": 14.0
+        },
+        "self_assessed": {
+            "anger": 8.08,
+            "joy": 50.51,
+            "sadness": 8.08,
+            "fear": 8.08,
+            "surprise": 25.25
+        }
+    },
+    "id_013_pos": {
+        "audio_file": "audio_use/positive/13-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 90.0,
+            "sadness": 0.0,
+            "fear": 0.0,
+            "surprise": 10.0
+        },
+        "hume_emotions": {
+            "anger": 15.0,
+            "fear": 9.0,
+            "joy": 53.0,
+            "sadness": 11.0,
+            "surprise": 12.0
+        },
+        "self_assessed": {
+            "anger": 10.0,
+            "joy": 60.0,
+            "sadness": 10.0,
+            "fear": 10.0,
+            "surprise": 10.0
+        }
+    },
+    "id_014_pos": {
+        "audio_file": "audio_use/positive/14-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 73.0,
+            "sadness": 18.0,
+            "fear": 0.0,
+            "surprise": 9.0
+        },
+        "hume_emotions": {
+            "anger": 20.0,
+            "fear": 14.0,
+            "joy": 33.0,
+            "sadness": 19.0,
+            "surprise": 14.0
+        },
+        "self_assessed": {
+            "anger": 10.0,
+            "joy": 40.0,
+            "sadness": 10.0,
+            "fear": 10.0,
+            "surprise": 30.0
+        }
+    },
+    "id_015_pos": {
+        "audio_file": "audio_use/positive/15-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 56.0,
+            "sadness": 0.0,
+            "fear": 7.0,
+            "surprise": 37.0
+        },
+        "hume_emotions": {
+            "anger": 35.35,
+            "fear": 12.12,
+            "joy": 24.24,
+            "sadness": 15.15,
+            "surprise": 13.13
+        },
+        "self_assessed": {
+            "anger": 20.0,
+            "joy": 50.0,
+            "sadness": 10.0,
+            "fear": 10.0,
+            "surprise": 10.0
+        }
+    },
+    "id_015_neg": {
+        "audio_file": "audio_use/negative/15-neg.m4a",
+        "nlp_emotions": {
+            "anger": 23.0,
+            "joy": 10.0,
+            "sadness": 27.0,
+            "fear": 22.0,
+            "surprise": 18.0
+        },
+        "hume_emotions": {
+            "anger": 32.67,
+            "fear": 17.82,
+            "joy": 25.74,
+            "sadness": 13.86,
+            "surprise": 9.9
+        },
+        "self_assessed": {
+            "anger": 27.27,
+            "joy": 18.18,
+            "sadness": 18.18,
+            "fear": 27.27,
+            "surprise": 9.09
+        }
+    },
+    "id_016_pos": {
+        "audio_file": "audio_use/positive/16-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 88.0,
+            "sadness": 12.0,
+            "fear": 0.0,
+            "surprise": 0.0
+        },
+        "hume_emotions": {
+            "anger": 28.0,
+            "fear": 14.0,
+            "joy": 21.0,
+            "sadness": 24.0,
+            "surprise": 13.0
+        },
+        "self_assessed": {
+            "anger": 10.0,
+            "joy": 60.0,
+            "sadness": 10.0,
+            "fear": 10.0,
+            "surprise": 10.0
+        }
+    },
+    "id_016_neg": {
+        "audio_file": "audio_use/negative/16-neg.m4a",
+        "nlp_emotions": {
+            "anger": 29.0,
+            "joy": 10.0,
+            "sadness": 33.0,
+            "fear": 18.0,
+            "surprise": 10.0
+        },
+        "hume_emotions": {
+            "anger": 29.0,
+            "fear": 17.0,
+            "joy": 18.0,
+            "sadness": 26.0,
+            "surprise": 10.0
+        },
+        "self_assessed": {
+            "anger": 44.44,
+            "joy": 11.11,
+            "sadness": 22.22,
+            "fear": 11.11,
+            "surprise": 11.11
+        }
+    },
+    "id_008_neg": {
+        "audio_file": "audio_use/negative/8-neg.m4a",
+        "nlp_emotions": {
+            "anger": 74.0,
+            "joy": 0.0,
+            "sadness": 17.0,
+            "fear": 0.0,
+            "surprise": 9.0
+        },
+        "hume_emotions": {
+            "anger": 31.68,
+            "fear": 16.83,
+            "joy": 21.78,
+            "sadness": 21.78,
+            "surprise": 7.92
+        },
+        "self_assessed": {
+            "anger": 33.33,
+            "joy": 11.11,
+            "sadness": 22.22,
+            "fear": 11.11,
+            "surprise": 22.22
+        }
+    },
+    "id_009_neg": {
+        "audio_file": "audio_use/negative/9-neg.m4a",
+        "nlp_emotions": {
+            "anger": 44.0,
+            "joy": 6.0,
+            "sadness": 35.0,
+            "fear": 12.0,
+            "surprise": 3.0
+        },
+        "hume_emotions": {
+            "anger": 27.0,
+            "fear": 14.0,
+            "joy": 34.0,
+            "sadness": 12.0,
+            "surprise": 13.0
+        },
+        "self_assessed": {
+            "anger": 33.33,
+            "joy": 11.11,
+            "sadness": 33.33,
+            "fear": 11.11,
+            "surprise": 11.11
+        }
+    },
+    "id_009_pos": {
+        "audio_file": "audio_use/positive/9-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 85.15,
+            "sadness": 9.9,
+            "fear": 0.0,
+            "surprise": 4.95
+        },
+        "hume_emotions": {
+            "anger": 22.77,
+            "fear": 12.87,
+            "joy": 41.58,
+            "sadness": 12.87,
+            "surprise": 9.9
+        },
+        "self_assessed": {
+            "anger": 11.0,
+            "joy": 56.0,
+            "sadness": 11.0,
+            "fear": 11.0,
+            "surprise": 11.0
+        }
+    },
+    "id_008_pos": {
+        "audio_file": "audio_use/positive/8-pos.m4a",
+        "nlp_emotions": {
+            "anger": 0.0,
+            "joy": 81.0,
+            "sadness": 0.0,
+            "fear": 0.0,
+            "surprise": 19.0
+        },
+        "hume_emotions": {
+            "anger": 12.0,
+            "fear": 10.0,
+            "joy": 60.0,
+            "sadness": 10.0,
+            "surprise": 8.0
+        },
+        "self_assessed": {
+            "anger": 11.0,
+            "joy": 56.0,
+            "sadness": 11.0,
+            "fear": 11.0,
+            "surprise": 11.0
+        }
+    }
+}
